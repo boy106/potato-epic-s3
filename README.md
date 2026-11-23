@@ -2,27 +2,15 @@
 
 这是「土豆史诗」S3 赛季玩法扩展的离线版本，包含现代枪械模组等内容。
 
-## 在线试玩
+**仓库**：https://github.com/boy106/potato-epic-s3
 
-访问地址：
+## 在线试玩（上传完成后可用）
 
-**https://boy106.github.io/potato-epic-s3/**
+https://boy106.github.io/potato-epic-s3/
 
-## 本地运行
+## 完整离线版
 
-直接用浏览器打开 `index.html` 即可（推荐使用 Chrome / Edge）。
-
-或者使用本地服务器：
-
-```bash
-# Python
-python -m http.server 8080
-
-# 或者 Node.js
-npx serve .
-```
-
-然后访问 http://localhost:8080
+因为音效和资源文件比较多，我已经帮你把仓库建好了。完整文件请用下面这个 zip 上传到仓库（或者直接本地下载使用）。
 
 ## 包含内容
 
@@ -33,9 +21,3 @@ npx serve .
   - 子弹穿透、配件改装
   - 黑市平板商店
   - 专用靶场地图
-
-## 注意事项
-
-- 本项目为静态网页，完全可离线运行
-- 文件体积约 11MB，GitHub 免费仓库完全够用
-- 如需更新内容，直接重新上传覆盖对应文件即可

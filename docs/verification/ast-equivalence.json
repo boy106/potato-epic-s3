@@ -1,0 +1,177 @@
+{
+  "checked": 102,
+  "passed": 83,
+  "failures": [
+    {
+      "path": "js/modapi.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.1.expression.argument.callee.body.body.7.expression.expressions.1.right.body.body.0.consequent.body.1.body.body.1.expression.right.arguments.2.body.body.0.body.body.1.expression.left.type",
+        "original": "Identifier",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/mobs2.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.18.body.body.5.value.body.body.0.argument.left.type",
+        "original": "UnaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/game.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.3.body.body.76.value.body.body.4.argument.alternate.left.type",
+        "original": "UnaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/features.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.1.declarations.0.init.callee.body.body.41.expression.expressions.4.right.body.body.7.consequent.body.body.body.body.2.expression.left.left.left.type",
+        "original": "MemberExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/trees.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.1.expression.callee.body.body.17.body.body.4.body.body.0.argument.left.type",
+        "original": "UnaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/screens.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.25.body.body.1.argument.left.left.type",
+        "original": "BinaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/dims.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.6.expression.expressions.3.right.body.body.3.body.body.2.test.left.type",
+        "original": "UnaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/nether_mobs.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.11.body.body.1.argument.alternate.left.type",
+        "original": "UnaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/enchant.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.28.expression.expressions.4.callee.body.body.1.expression.right.body.body.6.body.body.3.expression.left.left.left.left.left.left.type",
+        "original": "BinaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/redstone.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.13.expression.expressions.3.right.body.body.5.consequent.body.1.argument.properties.3.value.body.alternate.left.type",
+        "original": "BinaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/vmobs.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.8.body.body.0.cases.4.consequent.0.body.1.argument.left.type",
+        "original": "UnaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/mobs_animals.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.15.declarations.0.init.properties.0.value.body.body.3.consequent.body.body.1.test.left.type",
+        "original": "UnaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/mobs_hostile.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.46.body.body.5.value.body.body.0.argument.left.type",
+        "original": "UnaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/mobitems.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.9.expression.expressions.2.callee.body.body.1.expression.right.body.body.0.argument.left.type",
+        "original": "UnaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/raids.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.7.body.body.13.value.body.body.1.body.body.1.body.body.5.test.left.left.left.type",
+        "original": "Identifier",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/touch.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.6.body.body.18.value.body.body.1.argument.expressions.1.left.type",
+        "original": "UnaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/capes.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.2.expression.callee.body.body.7.expression.right.body.body.2.body.body.2.expression.left.type",
+        "original": "Identifier",
+        "formatted": "LogicalExpression"
+      }
+    },
+    {
+      "path": "js/companion.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.1.declarations.2.init.properties.12.value.body.body.1.consequent.argument.properties.0.key.type",
+        "original": "Literal",
+        "formatted": "Identifier"
+      }
+    },
+    {
+      "path": "js/potato.js",
+      "reason": "normalized AST differs",
+      "difference": {
+        "at": "$.body.2.expression.callee.body.body.198.body.body.2.value.body.body.6.declarations.7.init.arguments.0.body.body.0.declarations.0.init.arguments.0.body.left.type",
+        "original": "BinaryExpression",
+        "formatted": "LogicalExpression"
+      }
+    }
+  ]
+}

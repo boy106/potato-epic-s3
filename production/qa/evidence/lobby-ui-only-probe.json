@@ -1,0 +1,258 @@
+{
+  "console": [
+    {
+      "type": "warning",
+      "text": "missing tile i_waxed_copper_door"
+    },
+    {
+      "type": "warning",
+      "text": "missing tile i_waxed_oxidized_copper_door"
+    },
+    {
+      "type": "warning",
+      "text": "missing tile i_waxed_exposed_copper_door"
+    },
+    {
+      "type": "warning",
+      "text": "missing tile i_waxed_weathered_copper_door"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+    },
+    {
+      "type": "warning",
+      "text": "The resource http://127.0.0.1:8811/mods/xzguns/tiles.webp was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    }
+  ],
+  "errors": [],
+  "badResponses": [
+    {
+      "status": 404,
+      "url": "http://127.0.0.1:8811/js/skins_data.js"
+    },
+    {
+      "status": 404,
+      "url": "http://127.0.0.1:8811/potato/logo.svg"
+    }
+  ],
+  "failed": [
+    {
+      "url": "http://127.0.0.1:8811/js/skins_data.js",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "body": "反馈 BUG\n遇到问题？直接发给开发者\n›\n人机对战\n随时开打 · 不卡顿 · 不排队\n1V1 / 2V2 / 淘汰赛 / 乱斗 · 赢了也加天梯分\n开始对战\n天梯排位\n未登录\n好友约战\n自定义房间 · 房间码\n靶场训练\n清房 · 自由射击\n衣柜\n皮肤 · 枪皮 · 披风 · 装饰\n签到\n—\n登录\n登录后可以排位、约战",
+  "dom": {
+    "state": "title",
+    "uiOnly": true,
+    "screen": "LobbyScreen",
+    "lobby": true,
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "cls": "lb-bug",
+        "a": "bug",
+        "text": "反馈 BUG\n遇到问题？直接发给开发者\n›",
+        "display": "grid",
+        "rect": {
+          "x": 43.1875,
+          "y": 394.546875,
+          "width": 380.3974914550781,
+          "height": 77.03125,
+          "top": 394.546875,
+          "right": 423.5849914550781,
+          "bottom": 471.578125,
+          "left": 43.1875
+        }
+      },
+      {
+        "tag": "DIV",
+        "cls": "blk cut it rank aibig",
+        "a": "ai",
+        "text": "人机对战\n随时开打 · 不卡顿 · 不排队\n1V1 / 2V2 / 淘汰赛 / 乱斗 · 赢了也加天梯分\n开始对战",
+        "display": "grid",
+        "rect": {
+          "x": 852.1835327148438,
+          "y": 43.1875,
+          "width": 544.6289672851562,
+          "height": 300.7303771972656,
+          "top": 43.1875,
+          "right": 1396.8125,
+          "bottom": 343.9178771972656,
+          "left": 852.1835327148438
+        }
+      },
+      {
+        "tag": "DIV",
+        "cls": "blk cut it rk2",
+        "a": "rank",
+        "text": "天梯排位\n未登录",
+        "display": "block",
+        "rect": {
+          "x": 852.1835327148438,
+          "y": 359.85418701171875,
+          "width": 252.95904541015625,
+          "height": 142.6329345703125,
+          "top": 359.85418701171875,
+          "right": 1105.142578125,
+          "bottom": 502.48712158203125,
+          "left": 852.1835327148438
+        }
+      },
+      {
+        "tag": "DIV",
+        "cls": "blk cut it ",
+        "a": "friend",
+        "text": "好友约战\n自定义房间 · 房间码",
+        "display": "block",
+        "rect": {
+          "x": 1125.180908203125,
+          "y": 356.53125,
+          "width": 271.631591796875,
+          "height": 147.890625,
+          "top": 356.53125,
+          "right": 1396.8125,
+          "bottom": 504.421875,
+          "left": 1125.180908203125
+        }
+      },
+      {
+        "tag": "DIV",
+        "cls": "blk cut it ",
+        "a": "range",
+        "text": "靶场训练\n清房 · 自由射击",
+        "display": "block",
+        "rect": {
+          "x": 852.1835327148438,
+          "y": 519.6273193359375,
+          "width": 252.95904541015625,
+          "height": 144.932373046875,
+          "top": 519.6273193359375,
+          "right": 1105.142578125,
+          "bottom": 664.5596923828125,
+          "left": 852.1835327148438
+        }
+      },
+      {
+        "tag": "DIV",
+        "cls": "blk cut it ",
+        "a": "armory",
+        "text": "衣柜\n皮肤 · 枪皮 · 披风 · 装饰",
+        "display": "block",
+        "rect": {
+          "x": 1125.180908203125,
+          "y": 522.1089477539062,
+          "width": 271.631591796875,
+          "height": 150.35980224609375,
+          "top": 522.1089477539062,
+          "right": 1396.8125,
+          "bottom": 672.46875,
+          "left": 1125.180908203125
+        }
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "tb cut lb-sign",
+        "a": "sign",
+        "text": "签到",
+        "display": "flex",
+        "rect": {
+          "x": 1071.359375,
+          "y": 802.09375,
+          "width": 77.078125,
+          "height": 60.46875,
+          "top": 802.09375,
+          "right": 1148.4375,
+          "bottom": 862.5625,
+          "left": 1071.359375
+        }
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "tb cut lb-coin",
+        "a": "guns",
+        "text": "—",
+        "display": "flex",
+        "rect": {
+          "x": 1161.390625,
+          "y": 802.09375,
+          "width": 88.578125,
+          "height": 60.46875,
+          "top": 802.09375,
+          "right": 1249.96875,
+          "bottom": 862.5625,
+          "left": 1161.390625
+        }
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "tb cut",
+        "a": "full",
+        "text": "",
+        "display": "flex",
+        "rect": {
+          "x": 1262.921875,
+          "y": 802.09375,
+          "width": 60.46875,
+          "height": 60.46875,
+          "top": 802.09375,
+          "right": 1323.390625,
+          "bottom": 862.5625,
+          "left": 1262.921875
+        }
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "tb cut",
+        "a": "options",
+        "text": "",
+        "display": "flex",
+        "rect": {
+          "x": 1336.34375,
+          "y": 802.09375,
+          "width": 60.46875,
+          "height": 60.46875,
+          "top": 802.09375,
+          "right": 1396.8125,
+          "bottom": 862.5625,
+          "left": 1336.34375
+        }
+      },
+      {
+        "tag": "DIV",
+        "cls": "lb-me cut out",
+        "a": "account",
+        "text": "登录\n登录后可以排位、约战",
+        "display": "flex",
+        "rect": {
+          "x": 43.1875,
+          "y": 778.78125,
+          "width": 187.9375,
+          "height": 83.78125,
+          "top": 778.78125,
+          "right": 231.125,
+          "bottom": 862.5625,
+          "left": 43.1875
+        }
+      }
+    ],
+    "images": [
+      {
+        "src": "http://127.0.0.1:8811/potato/logo.svg",
+        "complete": true,
+        "naturalWidth": 0
+      },
+      {
+        "src": "",
+        "complete": true,
+        "naturalWidth": 0
+      }
+    ],
+    "storage": {}
+  }
+}

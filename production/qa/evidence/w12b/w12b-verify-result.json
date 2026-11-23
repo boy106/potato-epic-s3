@@ -1,0 +1,180 @@
+{
+  "pass": 29,
+  "total": 29,
+  "results": [
+    {
+      "no": 1,
+      "name": "每把枪 ammo ∈ 8 种口径 id",
+      "ok": true,
+      "detail": "19 枪全部合规"
+    },
+    {
+      "no": 1,
+      "name": "黑市商店可购 8 种弹药且数量与 §6.2 一致",
+      "ok": true,
+      "detail": "{\"ammo_pistol\":16,\"ammo_rifle\":12,\"ammo_shell\":8,\"ammo_grenade\":2,\"ammo_45\":10,\"ammo_762\":8,\"ammo_338\":6,\"ammo_potato\":10}"
+    },
+    {
+      "no": 2,
+      "name": "8 把新枪 _spec 三标注齐全（2 把 P2 转膛榴弹/土豆枪本期后置）",
+      "ok": true,
+      "detail": "heavy_pistol=ammo_45/A drum_smg=ammo_pistol/A carbine=ammo_rifle/A battle_rifle=ammo_762/A dmr=ammo_762/B slug_gun=ammo_shell/A combat_shotgun=ammo_shell/A long_sniper=ammo_338/A"
+    },
+    {
+      "no": 3,
+      "name": "逐枪 DPS 断言",
+      "ok": true,
+      "detail": "[W12b热修] heavy_pistol dmg 6->5.5(DPS 21->19.25<=手枪18×1.1=19.8)、dmr dmg 9->7(DPS 22.5->17.5<=狙击16.8×1.1=18.48)，rate 均不动。其余 6 枪未动：drum_smg 37.5<=39.6 / carbine 40<=44.55 / battle_rifle 36<=44.55 / slug_gun 21<=66 / combat_shotgun 32.4<=66 / long_sniper 16.5<=18.48。复检 0 硬失败。"
+    },
+    {
+      "no": 4,
+      "name": "任意 枪+配件 组合 pen ≤ 7",
+      "ok": true,
+      "detail": "最坏 long_sniper+att_pen_mag = 7（狙击 5.5 基线不存在；long_sniper 6.5+1.5=7 封顶）"
+    },
+    {
+      "no": 4,
+      "name": "穿甲弹匣 dmg×0.9 生效（long_sniper 30→27）",
+      "ok": true,
+      "detail": "pen=7 dmg=27"
+    },
+    {
+      "no": 5,
+      "name": ".45 枪 head=2.5 / 5.56 枪无 head 字段→×2 / 左轮 head=3 保留",
+      "ok": true,
+      "detail": "heavy_pistol=2.5 carbine=2 revolver=3"
+    },
+    {
+      "no": 5,
+      "name": "引擎四肢 ×0.75 分支未被改动（源码断言）",
+      "ok": true,
+      "detail": "trace 内 b=u?_&&_.head||2:p?.75:1 原样保留"
+    },
+    {
+      "no": 6,
+      "name": "1.4×dmg 判定表达式保留",
+      "ok": true,
+      "detail": "1.4*l.dmg ; 1.4*l.dmg ; 1.4*l.dmg ; 1.4*l.dmg"
+    },
+    {
+      "no": 6,
+      "name": "爆头击杀判定阈值语义一致：slug_gun 1 弹丸 / combat_shotgun 9 弹丸 / 其余无弹丸分裂",
+      "ok": true,
+      "detail": "1.4×dmg 判定沿用 gun.dmg 基数（含 12ga 弹丸独立判定），源码断言通过"
+    },
+    {
+      "no": 7,
+      "name": "under/mag 槽位集合与白名单合法（引擎一槽一件天然互斥）",
+      "ok": true,
+      "detail": "11+8 枪全部合法"
+    },
+    {
+      "no": 7,
+      "name": "改装 UI accept 白名单校验保留（源码断言）",
+      "ok": true,
+      "detail": "TabletScreen accept 闭包原样"
+    },
+    {
+      "no": 7,
+      "name": "mag 槽四选一无扩容×快拔互斥漏洞（快拔/扩容同槽，引擎单值）",
+      "ok": true,
+      "detail": "同槽单值由 e.atts(stack).a[slot] 单键保证"
+    },
+    {
+      "no": 8,
+      "name": "A 策略枪占比 ≥70%（7/8）",
+      "ok": true,
+      "detail": "7/8 = 88%"
+    },
+    {
+      "no": 8,
+      "name": "B 策略枪（dmr）元素数 ≤60",
+      "ok": true,
+      "detail": "g3=45 g3fp=45"
+    },
+    {
+      "no": 8,
+      "name": "新模型 UV 全部落在既有 tile 条带内（0 报错）",
+      "ok": true,
+      "detail": "检查 6628 面"
+    },
+    {
+      "no": 8,
+      "name": "新枪开火音全部复用既有音源（0 新增音频文件）",
+      "ok": true,
+      "detail": "fire_heavy_pistol→fire_revolver, fire_drum_smg→fire_smg, fire_carbine→fire_ar, fire_battle_rifle→fire_ar, fire_dmr→fire_rifle, fire_slug_gun→fire_shotgun, fire_combat_shotgun→fire_shotgun, fire_long_sniper→fire_sniper"
+    },
+    {
+      "no": 9,
+      "name": "ROUNDS（Bo5 枪池）diff 为空",
+      "ok": true,
+      "detail": "逐字一致"
+    },
+    {
+      "no": 9,
+      "name": "淘汰赛 randGuns diff 为空",
+      "ok": true,
+      "detail": "逐字一致"
+    },
+    {
+      "no": 9,
+      "name": "duel 枪池数组 _ diff 为空（新枪未进 1v1/自定义预设池）",
+      "ok": true,
+      "detail": "逐字一致"
+    },
+    {
+      "no": 9,
+      "name": "乱斗权重表含 8 把新枪且每把 ≤840",
+      "ok": true,
+      "detail": "heavy_pistol=600 drum_smg=500 carbine=520 battle_rifle=480 dmr=420 slug_gun=500 combat_shotgun=520 long_sniper=380"
+    },
+    {
+      "no": 9,
+      "name": "乱斗抽取逻辑消费 FFA_W（源码断言）",
+      "ok": true,
+      "detail": "ffaGun 加权抽取已接线"
+    },
+    {
+      "no": 10,
+      "name": "跳过：sfe_mapdata.js/sfe_poi.js 为并行成员独占域",
+      "ok": true,
+      "detail": "移交事项：§6.3 权重表 + xzguns↔SFE id 映射需 W12c 落地（见汇报）"
+    },
+    {
+      "no": 11,
+      "name": "4 个旧弹药 id 在弹药表与物品注册表中均保留",
+      "ok": true,
+      "detail": "ammo_pistol/9×19、ammo_rifle/5.56、ammo_shell/12ga、ammo_grenade 全保留（旧档弹药仍可被 pistol/smg/ar 等对应口径枪发射）"
+    },
+    {
+      "no": 12,
+      "name": "bench 数据块登记 8 新枪 + 4 新弹药 + 5 新配件（纯本地材料单，无联网校验）",
+      "ok": true,
+      "detail": "guns+8 ammo+4 atts+5"
+    },
+    {
+      "no": 12,
+      "name": "data.js 物品注册 +17（id 32033-32049 无冲突）",
+      "ok": true,
+      "detail": "items 33→50"
+    },
+    {
+      "no": 13,
+      "name": "11 枪散布/后坐/穿透/伤害/射速/弹容等数值字段 diff = 0",
+      "ok": true,
+      "detail": "全部逐字段一致；变更仅限 ammo 指向迁移(5) 与 slots 新配件白名单(10)"
+    },
+    {
+      "no": 13,
+      "name": "data.js tiles 注册表 diff = 0",
+      "ok": true,
+      "detail": "新增物品复用既有 tile 名，未动图集"
+    },
+    {
+      "no": "hotfix",
+      "name": "W12b 热修回归（w12b-hotfix-verify.cjs）",
+      "ok": true,
+      "detail": "node --check 通过；§8.3 八枪全达标；pen 封顶 7（long_sniper+穿甲=7）；bench 商店 8 新枪+11 老枪引用完整；乱斗 FFA_W 8 枪 ≤840；11 老枪数值字段对 pre-w12b diff=0（仅 ammo 迁移与 slots 白名单）；其余 6 新枪保持规格值。规格矛盾（§4.1 vs §8.3）已按 ×1.1 收紧并待主理人规格勘误。"
+    }
+  ]
+}

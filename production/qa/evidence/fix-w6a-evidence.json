@@ -1,0 +1,86 @@
+{
+ "url": "http://127.0.0.1:8815/index.html",
+ "ts": "2026-11-21 21:04:27",
+ "results": [
+  {
+   "name": "D-003 #err 失败态可见",
+   "ok": true,
+   "detail": "display=True"
+  },
+  {
+   "name": "D-003 z-index 99 生效（不被 #boot 压住）",
+   "ok": true,
+   "detail": "errZ=99 bootZ=9"
+  },
+  {
+   "name": "D-003 与 logo 无几何重叠（装饰层已淡出）",
+   "ok": true,
+   "detail": "overlap=False logoHidden=True"
+  },
+  {
+   "name": "D-003 面板含「重试」按钮（可点击）",
+   "ok": true,
+   "detail": "id=err-retry"
+  },
+  {
+   "name": "D-003 面板全部文字/按钮对比度 ≥ 4.5:1",
+   "ok": true,
+   "detail": "title=6.11 msg=12.11 hint=10.71 retry=6.15 (最低 6.11)"
+  },
+  {
+   "name": "D-003 错误文案包含根因（WebGL2）",
+   "ok": true,
+   "detail": "启动失败WebGL2 不可用请使用最新版 Chrome / Edge / Firefox 浏览器打开，并确保已启用 WebGL2 / 硬件加速。重试"
+  },
+  {
+   "name": "D-004 加载条冻结（宽度 4s 不变）",
+   "ok": true,
+   "detail": "width 74.4% -> 74.4%"
+  },
+  {
+   "name": "D-004 文案为「启动失败」终态",
+   "ok": true,
+   "detail": "boottext=启动失败"
+  },
+  {
+   "name": "D-004 boot 进入 fail 终态（装饰层隐藏/条变错误样式）",
+   "ok": true,
+   "detail": "boot.fail=True bootbar.fail=True tipHidden=True"
+  },
+  {
+   "name": "D-004 不再出现假进度爬升（未显示「正在准备贴图」）",
+   "ok": true,
+   "detail": "boottext=启动失败"
+  },
+  {
+   "name": "D-010 展示版本与 GAME_BUILD 一致",
+   "ok": true,
+   "detail": "build-number=BUILD 2026.11.14a GAME_BUILD=2026.11.14a"
+  },
+  {
+   "name": "D-010 失败终态下 #err 面板仍在（终态不被版本同步破坏）",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "GYRO Gyro 模块加载且 API 面完整",
+   "ok": true,
+   "detail": "{\"groupVisible\": true, \"uiPickMode\": true, \"testHooks\": true}"
+  },
+  {
+   "name": "GYRO 设置组注入路径可调用（groupVisible 不抛错）",
+   "ok": true,
+   "detail": "True"
+  },
+  {
+   "name": "控制台/网络无 W6a 改动引入的新错误（404 仅基线已知缺陷）",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "name": "基线已知缺陷 404 保持原样（未因 W6a 扩大）",
+   "ok": true,
+   "detail": "known404=['skins_data.js']"
+  }
+ ]
+}

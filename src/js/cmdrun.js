@@ -1,0 +1,1342 @@
+"use strict";
+class CmdError extends Error {}
+const cmdFail = (e) => {
+    throw new CmdError(e);
+  },
+  GAME_RULES = {
+    advance_time: !0,
+    advance_weather: !0,
+    keep_inventory: !1,
+    spawn_mobs: !0,
+    spawn_monsters: !0,
+    spawn_patrols: !0,
+    spawn_phantoms: !0,
+    spawn_wandering_traders: !0,
+    spawn_wardens: !0,
+    natural_health_regeneration: !0,
+    fall_damage: !0,
+    fire_damage: !0,
+    drowning_damage: !0,
+    freeze_damage: !0,
+    immediate_respawn: !1,
+    show_death_messages: !0,
+    mob_griefing: !0,
+    raids: !0,
+    random_tick_speed: 3,
+    mob_drops: !0,
+    block_drops: !0,
+    entity_drops: !0,
+    tnt_explodes: !0,
+    send_command_feedback: !0,
+    pvp: !0,
+    universal_anger: !1,
+    forgive_dead_players: !0,
+    max_entity_cramming: 24,
+    players_sleeping_percentage: 100,
+    spread_vines: !0,
+    water_source_conversion: !0,
+    lava_source_conversion: !1,
+    ender_pearls_vanish_on_death: !0,
+    projectiles_can_break_blocks: !0,
+    show_advancement_messages: !0,
+    limited_crafting: !1,
+    respawn_radius: 10,
+    max_block_modifications: 32768,
+    fire_spread_radius_around_player: 128,
+    locator_bar: !0,
+    reduced_debug_info: !1,
+    max_snow_accumulation_height: 1,
+    command_blocks_work: !0,
+    command_block_output: !0,
+    max_command_sequence_length: 65536,
+  },
+  RULE_ALIAS = {
+    doDaylightCycle: "advance_time",
+    doWeatherCycle: "advance_weather",
+    keepInventory: "keep_inventory",
+    doMobSpawning: "spawn_mobs",
+    spawnMonsters: "spawn_monsters",
+    doPatrolSpawning: "spawn_patrols",
+    doInsomnia: "spawn_phantoms",
+    doTraderSpawning: "spawn_wandering_traders",
+    doWardenSpawning: "spawn_wardens",
+    naturalRegeneration: "natural_health_regeneration",
+    fallDamage: "fall_damage",
+    fireDamage: "fire_damage",
+    drowningDamage: "drowning_damage",
+    freezeDamage: "freeze_damage",
+    doImmediateRespawn: "immediate_respawn",
+    showDeathMessages: "show_death_messages",
+    mobGriefing: "mob_griefing",
+    randomTickSpeed: "random_tick_speed",
+    doMobLoot: "mob_drops",
+    doTileDrops: "block_drops",
+    doEntityDrops: "entity_drops",
+    tntExplodes: "tnt_explodes",
+    sendCommandFeedback: "send_command_feedback",
+    universalAnger: "universal_anger",
+    forgiveDeadPlayers: "forgive_dead_players",
+    maxEntityCramming: "max_entity_cramming",
+    playersSleepingPercentage: "players_sleeping_percentage",
+    doVinesSpread: "spread_vines",
+    waterSourceConversion: "water_source_conversion",
+    lavaSourceConversion: "lava_source_conversion",
+    enderPearlsVanishOnDeath: "ender_pearls_vanish_on_death",
+    projectilesCanBreakBlocks: "projectiles_can_break_blocks",
+    announceAdvancements: "show_advancement_messages",
+    doLimitedCrafting: "limited_crafting",
+    spawnRadius: "respawn_radius",
+    commandModificationBlockLimit: "max_block_modifications",
+    locatorBar: "locator_bar",
+    reducedDebugInfo: "reduced_debug_info",
+    snowAccumulationHeight: "max_snow_accumulation_height",
+    commandBlocksEnabled: "command_blocks_work",
+    commandBlockOutput: "command_block_output",
+    maxCommandChainLength: "max_command_sequence_length",
+  };
+function cmdWords(e) {
+  const t = [];
+  let a = "",
+    s = 0,
+    i = !1;
+  for (const o of e)
+    i
+      ? ((a += o), '"' === o && (i = !1))
+      : '"' !== o
+        ? (("[" !== o && "{" !== o) || s++,
+          ("]" !== o && "}" !== o) || s--,
+          " " === o && s <= 0 ? (a && t.push(a), (a = "")) : (a += o))
+        : ((i = !0), (a += o));
+  return (a && t.push(a), t);
+}
+Game.prototype.rule = function (e) {
+  const t = this.gameRules;
+  return t && void 0 !== t[e] ? t[e] : GAME_RULES[e];
+};
+const stripNs = (e) => String(e || "").replace(/^minecraft:/, ""),
+  vanillaY = (e) => (e.world && e.world.minY) || 0;
+function cmdPos(e, t, a, s, i = !1) {
+  [t, a, s].some((e) => void 0 === e) && cmdFail("坐标不完整（需要 x y z）");
+  const o = e.g,
+    n = [t, a, s];
+  if (n.some((e) => "^" === e[0])) {
+    n.every((e) => "^" === e[0]) || cmdFail("不能混用世界坐标和局部坐标（^）");
+    const [t, a, s] = n.map((e) => parseFloat(e.slice(1)) || 0),
+      i = e.rot[0],
+      o = e.rot[1],
+      r = [-Math.sin(i) * Math.cos(o), Math.sin(o), -Math.cos(i) * Math.cos(o)],
+      l = [-Math.cos(i), 0, Math.sin(i)],
+      c = [r[1] * l[2] - r[2] * l[1], r[2] * l[0] - r[0] * l[2], r[0] * l[1] - r[1] * l[0]];
+    return [0, 1, 2].map((i) => e.pos[i] + l[i] * t + c[i] * a + r[i] * s);
+  }
+  return n.map((t, a) => {
+    if ("~" === t[0]) return e.pos[a] + (parseFloat(t.slice(1)) || 0);
+    const s = parseFloat(t);
+    return (
+      isNaN(s) && cmdFail("无效的坐标：" + t),
+      1 === a ? s - vanillaY(o) : s + (i && 1 !== a && !t.includes(".") ? 0.5 : 0)
+    );
+  });
+}
+const cmdBlockPos = (e, t, a, s) => cmdPos(e, t, a, s).map(Math.floor);
+function cmdInt(e, t, a = -1 / 0, s = 1 / 0) {
+  const i = Number(e);
+  return (
+    Number.isInteger(i) || cmdFail(`${t}应为整数，实际为 ${e}`),
+    i < a && cmdFail(`${t}不能小于 ${a}，实际为 ${i}`),
+    i > s && cmdFail(`${t}不能大于 ${s}，实际为 ${i}`),
+    i
+  );
+}
+function cmdTime(e) {
+  const t = /^(\d+(?:\.\d+)?)([tsd]?)$/.exec(String(e || ""));
+  return (
+    t || cmdFail("无效的时间：" + e),
+    Math.round(parseFloat(t[1]) * { "": 1, t: 1, s: 20, d: 24e3 }[t[2]])
+  );
+}
+function cmdBlock(e) {
+  const t = /^(?:minecraft:)?([a-z0-9_]+)(?:\[(.*)\])?$/.exec(String(e || ""));
+  t || cmdFail("无效的方块：" + e);
+  const a = t[1];
+  if ("air" === a || "cave_air" === a || "void_air" === a) return [0, 0];
+  const s = "undefined" != typeof STATE_ALIAS ? STATE_ALIAS[a] : void 0,
+    i = BID[a] ?? BID[s];
+  void 0 === i && cmdFail("未知的方块：" + a);
+  const o = BLOCKS[i];
+  if (t[2] && o.states) {
+    let e = ("function" == typeof mapVanillaState && (mapVanillaState(a) || [])[1]) || 0;
+    for (const s of t[2].split(",")) {
+      const [t, n] = s.split("=").map((e) => e.trim());
+      if (!t) continue;
+      o.states.some((e) => t in e) || cmdFail(`方块 ${a} 没有属性 ${t}`);
+      const r = Features.withProp(i, e, t, n);
+      ((o.states[r] && o.states[r][t] === n) || cmdFail(`方块 ${a} 的属性 ${t} 不能为 ${n}`),
+        (e = r));
+    }
+    return [i, e];
+  }
+  return (
+    ("function" == typeof mapVanillaState
+      ? mapVanillaState(a + (t[2] ? "[" + t[2] + "]" : ""))
+      : null) || [i, 0]
+  );
+}
+function cmdItem(e) {
+  const t = /^(?:minecraft:)?([a-z0-9_]+)(?:\[(.*)\])?$/.exec(String(e || ""));
+  (t && void 0 !== ITEM_KEY[t[1]]) || cmdFail("未知的物品：" + stripNs(e));
+  const a = { id: ITEM_KEY[t[1]], count: 1, dmg: 0 };
+  if (t[2]) {
+    const e = /enchantments=\{([^}]*)\}/.exec(t[2]);
+    e &&
+      (a.e = e[1]
+        .split(",")
+        .map((e) => e.split(":").map((e) => e.trim().replace(/"/g, "")))
+        .filter((e) => e.length >= 2)
+        .map((e) => (3 === e.length ? [e[1], +e[2]] : [stripNs(e[0]), +e[1]]))
+        .filter(([e]) => "undefined" == typeof ENCH || ENCH[e]));
+    const s = /custom_name=(?:"([^"]*)"|'([^']*)')/.exec(t[2]);
+    s && (a.name = s[1] || s[2]);
+  }
+  return a;
+}
+function cmdType(e) {
+  return e instanceof Player
+    ? "player"
+    : "undefined" != typeof ItemEntity && e instanceof ItemEntity
+      ? "item"
+      : "undefined" != typeof ExperienceOrb && e instanceof ExperienceOrb
+        ? "experience_orb"
+        : e.type
+          ? String(e.type)
+          : e.constructor.name.replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase();
+}
+const cmdName = (e, t) =>
+  t === e.player
+    ? e.playerName || "玩家"
+    : t.customName ||
+      (t.T && t.T.cn) ||
+      ("undefined" != typeof ItemEntity && t instanceof ItemEntity && t.stack
+        ? ITEMS[t.stack.id].cn
+        : cmdType(t));
+function cmdSplitArgs(e) {
+  const t = [];
+  let a = "",
+    s = 0,
+    i = !1;
+  for (const o of e)
+    i
+      ? ((a += o), '"' === o && (i = !1))
+      : '"' !== o
+        ? (("[" !== o && "{" !== o) || s++,
+          ("]" !== o && "}" !== o) || s--,
+          "," !== o || 0 !== s ? (a += o) : (t.push(a), (a = "")))
+        : ((i = !0), (a += o));
+  return (a && t.push(a), t);
+}
+function cmdRange(e) {
+  const num = (t) => {
+    const a = parseFloat(t);
+    return (isNaN(a) && cmdFail("无效的范围：" + e), a);
+  };
+  if (!(e = String(e)).includes("..")) {
+    const t = num(e);
+    return [t, t];
+  }
+  const [t, a] = e.split("..");
+  return ["" === t ? -1 / 0 : num(t), "" === a ? 1 / 0 : num(a)];
+}
+function cmdTargets(e, t, a = {}) {
+  const s = e.g,
+    i = s.player;
+  if ((void 0 === t && cmdFail("缺少目标"), "@" !== t[0])) {
+    const e = s.entities.filter((e) => !e.dead && e.customName === t);
+    if (e.length) return e;
+    if (!1 === a.entities || t === (s.playerName || "") || /^[A-Za-z0-9_]{1,16}$/.test(t))
+      return [i];
+    cmdFail("未找到实体");
+  }
+  const o = /^@([parse])(?:\[(.*)\])?$/.exec(t);
+  o || cmdFail("无效的选择器：" + t);
+  const n = o[1],
+    r = {};
+  if (o[2])
+    for (const e of cmdSplitArgs(o[2])) {
+      const t = e.indexOf("=");
+      if (t < 0) continue;
+      const a = e.slice(0, t).trim(),
+        s = e.slice(t + 1).trim();
+      (r[a] || (r[a] = [])).push(s);
+    }
+  const one = (e) => r[e] && r[e][0];
+  if ("s" === n) {
+    const t = e.src ? e.entity : e.entity || i;
+    return t ? filterTargets(e, [t], r) : [];
+  }
+  let l = "e" === n ? [i, ...s.entities.filter((e) => !(e.dead || e.deathTime > 0))] : [i];
+  l = filterTargets(e, l, r);
+  const c = ["x", "y", "z"].map((t, a) =>
+      void 0 !== one(t)
+        ? 1 === a
+          ? parseFloat(one(t)) - vanillaY(s)
+          : parseFloat(one(t))
+        : e.pos[a],
+    ),
+    dist = (e) => Math.hypot(e.pos[0] - c[0], e.pos[1] - c[1], e.pos[2] - c[2]),
+    d = one("sort") || ("p" === n ? "nearest" : "r" === n ? "random" : "arbitrary");
+  "nearest" === d
+    ? l.sort((e, t) => dist(e) - dist(t))
+    : "furthest" === d
+      ? l.sort((e, t) => dist(t) - dist(e))
+      : "random" === d && l.sort(() => Math.random() - 0.5);
+  const m =
+    void 0 !== one("limit") ? cmdInt(one("limit"), "limit", 1) : "p" === n || "r" === n ? 1 : 1 / 0;
+  return l.slice(0, m);
+}
+function filterTargets(e, t, a) {
+  const s = e.g,
+    one = (e) => a[e] && a[e][0],
+    i = ["x", "y", "z"].map((t, a) =>
+      void 0 !== one(t)
+        ? 1 === a
+          ? parseFloat(one(t)) - vanillaY(s)
+          : parseFloat(one(t))
+        : e.pos[a],
+    );
+  for (const e of a.type || []) {
+    const a = "!" === e[0],
+      s = stripNs(a ? e.slice(1) : e);
+    t = t.filter((e) => (cmdType(e) === s) !== a);
+  }
+  for (const e of a.name || []) {
+    const a = "!" === e[0],
+      i = (a ? e.slice(1) : e).replace(/^"|"$/g, "");
+    t = t.filter((e) => (cmdName(s, e) === i) !== a);
+  }
+  for (const e of a.tag || []) {
+    const a = "!" === e[0],
+      s = a ? e.slice(1) : e;
+    t = t.filter(
+      (e) => ("" === s ? !(!e.tags || !e.tags.size) : !(!e.tags || !e.tags.has(s))) !== a,
+    );
+  }
+  if (one("distance")) {
+    const [e, a] = cmdRange(one("distance"));
+    t = t.filter((t) => {
+      const s = Math.hypot(t.pos[0] - i[0], t.pos[1] - i[1], t.pos[2] - i[2]);
+      return s >= e && s <= a;
+    });
+  }
+  if (["dx", "dy", "dz"].some((e) => void 0 !== one(e))) {
+    const e = ["dx", "dy", "dz"].map((e) => parseFloat(one(e)) || 0),
+      a = i.map((t, a) => Math.min(t, t + e[a])),
+      s = i.map((t, a) => Math.max(t, t + e[a]) + 1);
+    t = t.filter((e) => {
+      const t = e.box ? e.box() : [e.pos[0], e.pos[1], e.pos[2], e.pos[0], e.pos[1], e.pos[2]];
+      return t[0] < s[0] && t[3] > a[0] && t[1] < s[1] && t[4] > a[1] && t[2] < s[2] && t[5] > a[2];
+    });
+  }
+  for (const e of a.gamemode || []) {
+    const a = "!" === e[0],
+      i = a ? e.slice(1) : e;
+    t = t.filter((e) => (e instanceof Player && s.mode === i) !== a);
+  }
+  if (one("level")) {
+    const [e, a] = cmdRange(one("level"));
+    t = t.filter((t) => t instanceof Player && s.xpLevel() >= e && s.xpLevel() <= a);
+  }
+  return t;
+}
+const needTargets = (e) => (e.length || cmdFail("未找到实体"), e),
+  needPlayers = (e) => (
+    (e = e.filter((e) => e instanceof Player)).length || cmdFail("未找到玩家"),
+    e
+  ),
+  MODE_CN = {
+    survival: "生存模式",
+    creative: "创造模式",
+    spectator: "旁观模式",
+    adventure: "冒险模式",
+  },
+  DIFF_NAMES = ["peaceful", "easy", "normal", "hard"],
+  DIFF_CN = ["和平", "简单", "普通", "困难"];
+function cmdMode(e) {
+  const t = {
+    survival: "survival",
+    s: "survival",
+    0: "survival",
+    creative: "creative",
+    c: "creative",
+    1: "creative",
+    adventure: "adventure",
+    a: "adventure",
+    2: "adventure",
+    spectator: "spectator",
+    sp: "spectator",
+    3: "spectator",
+  }[e];
+  return (t || cmdFail("未知的游戏模式：" + e), "adventure" === t ? "survival" : t);
+}
+function cmdSetBlock(e, t, a, s, i, o) {
+  const n = e.world,
+    r = `${t},${a},${s}`;
+  (e.blockEntities && e.blockEntities.has(r) && e.blockEntities.delete(r), (e.cmdPlaced = r));
+  try {
+    n.setBlock(t, a, s, i, o);
+  } finally {
+    e.cmdPlaced = null;
+  }
+}
+const CMD_RUN = {
+  help() {
+    this.ui.open(new CommandHelpScreen(this));
+  },
+  seed(e) {
+    e.say(
+      "种子：[" + (this.worldMeta ? this.worldMeta.seed : this.world.seed) + "]",
+      "#FFFFFF",
+      !0,
+    );
+  },
+  list(e) {
+    e.say(`当前共有 1 名玩家在线（最大玩家数为 1）：${this.playerName || "玩家"}`, "#FFFFFF", !0);
+  },
+  gamemode(e, t) {
+    t[0] || cmdFail("用法：/gamemode <模式> [目标]");
+    const a = cmdMode(t[0]);
+    t[1] ? needPlayers(cmdTargets(e, t[1])) : this.player;
+    (a === this.mode && cmdFail("游戏模式未改变"), this.setMode(a));
+  },
+  defaultgamemode(e, t) {
+    const a = cmdMode(t[0]);
+    (this.worldMeta && (this.worldMeta.defaultMode = a), e.say(`默认游戏模式现在为${MODE_CN[a]}`));
+  },
+  difficulty(e, t) {
+    if (!t[0]) return void e.say(`难度为${DIFF_CN[this.difficulty]}`, "#FFFFFF", !0);
+    const a =
+      DIFF_NAMES.indexOf(t[0]) >= 0 ? DIFF_NAMES.indexOf(t[0]) : ["0", "1", "2", "3"].indexOf(t[0]);
+    (a < 0 && cmdFail("无效的难度：" + t[0]),
+      this.hardcore && cmdFail("极限模式下不能修改难度"),
+      a === this.difficulty && cmdFail(`难度未改变，它已被设置为${DIFF_CN[a]}`),
+      (this.difficulty = a),
+      e.say(`难度已被设置为${DIFF_CN[a]}`));
+  },
+  time(e, t) {
+    const a = { day: 1e3, noon: 6e3, night: 13e3, midnight: 18e3, sunrise: 23e3, sunset: 12e3 };
+    if ("set" === t[0] || "add" === t[0]) {
+      const s = a[t[1]] ?? cmdTime(t[1]);
+      ("set" === t[0]
+        ? (this.worldTime = 24e3 * Math.floor(this.worldTime / 24e3) + s)
+        : (this.worldTime += s),
+        e.say("已将时间设为 " + (((this.worldTime % 24e3) + 24e3) % 24e3)));
+    } else if ("query" === t[0]) {
+      const a =
+        "gametime" === t[1]
+          ? this.tickCount
+          : "day" === t[1]
+            ? Math.floor(this.worldTime / 24e3)
+            : ((this.worldTime % 24e3) + 24e3) % 24e3;
+      e.say("时间是 " + a, "#FFFFFF", !0);
+    } else cmdFail("用法：/time set|add|query …");
+  },
+  weather(e, t) {
+    const a = t[1] ? cmdTime(t[1]) : null;
+    "clear" === t[0]
+      ? ((this.rainTarget = 0),
+        (this.weather = 0),
+        (this.thunder = !1),
+        (this.weatherTimer = a ?? 12e3 + 168e3 * Math.random()),
+        e.say("天气已设为晴天"))
+      : "rain" === t[0]
+        ? ((this.rainTarget = 1),
+          (this.weather = 1),
+          (this.thunder = !1),
+          (this.weatherTimer = a ?? 12e3 + 12e3 * Math.random()),
+          e.say("天气已设为雨天"))
+        : "thunder" === t[0]
+          ? ((this.rainTarget = 1),
+            (this.weather = 1),
+            (this.thunder = !0),
+            (this.weatherTimer = a ?? 3600 + 12e3 * Math.random()),
+            e.say("天气已设为雷暴"))
+          : cmdFail("用法：/weather clear|rain|thunder [时长]");
+  },
+  give(e, t) {
+    let a, s, i;
+    t[0] && ("@" === t[0][0] || (void 0 === ITEM_KEY[stripNs(t[0]).replace(/\[.*$/, "")] && t[1]))
+      ? ((a = needPlayers(cmdTargets(e, t[0]))), (s = t[1]), (i = t[2]))
+      : ((a = [this.player]), (s = t[0]), (i = t[1]));
+    const o = cmdItem(s),
+      n = void 0 !== i ? cmdInt(i, "数量", 1, 6400) : 1,
+      r = this.player;
+    let l = n;
+    for (; l > 0;) {
+      const e = Math.min(l, maxStack(o.id)),
+        t = r.inv.add({ ...o, count: e });
+      (t && this.dropFromPlayer({ ...o, count: t }), (l -= e));
+    }
+    e.say(`已将 ${n} 个 [${ITEMS[o.id].cn}] 给予 ${cmdName(this, r)}`);
+  },
+  clear(e, t) {
+    t[0] ? needPlayers(cmdTargets(e, t[0])) : this.player;
+    const a = t[1] ? cmdItem(t[1]) : null,
+      s = void 0 !== t[2] ? cmdInt(t[2], "数量", 0) : 1 / 0,
+      i = this.player;
+    let o = 0;
+    for (let e = 0; e < i.inv.slots.length && o < s; e++) {
+      const t = i.inv.slots[e];
+      if (!t || (a && t.id !== a.id)) continue;
+      const n = Math.min(t.count, s - o);
+      ((o += n), 0 !== s && ((t.count -= n), t.count || (i.inv.slots[e] = null)));
+    }
+    (o || cmdFail(`未在 ${cmdName(this, i)} 身上找到物品`),
+      e.say(
+        0 === s
+          ? `在 ${cmdName(this, i)} 身上找到了 ${o} 个匹配的物品`
+          : `已从 ${cmdName(this, i)} 移除 ${o} 个物品`,
+      ));
+  },
+  tp(e, t) {
+    let a,
+      s = null,
+      i = null;
+    const isPos = (e) => void 0 !== e && /^[~^]?-?[\d.]*$/.test(e);
+    1 === t.length
+      ? ((a = [e.entity || this.player]), (s = needTargets(cmdTargets(e, t[0]))[0]))
+      : t.length >= 3 && isPos(t[0]) && isPos(t[1]) && isPos(t[2])
+        ? ((a = [e.entity || this.player]),
+          (s = cmdPos(e, t[0], t[1], t[2], !0)),
+          void 0 !== t[3] && (i = [t[3], t[4]]))
+        : 2 === t.length
+          ? ((a = needTargets(cmdTargets(e, t[0]))), (s = needTargets(cmdTargets(e, t[1]))[0]))
+          : t.length >= 4
+            ? ((a = needTargets(cmdTargets(e, t[0]))),
+              (s = cmdPos(e, t[1], t[2], t[3], !0)),
+              void 0 !== t[4] && (i = [t[4], t[5]]))
+            : cmdFail("用法：/tp <目标> | <x> <y> <z>");
+    const o = Array.isArray(s) ? s : [...s.pos];
+    for (const e of a)
+      if (
+        (e.vehicle && e.dismount && e.dismount(),
+        (e.pos = [...o]),
+        (e.prev = [...o]),
+        e.vel && (e.vel = [0, 0, 0]),
+        (e.fallDist = 0),
+        Array.isArray(s) || ((e.yaw = s.yaw), (e.pitch = s.pitch)),
+        i)
+      ) {
+        const ry = (e, t) =>
+          void 0 === e ? t : "~" === e[0] ? t + (parseFloat(e.slice(1)) || 0) : parseFloat(e);
+        (void 0 !== i[0] &&
+          (e.yaw =
+            "~" === i[0][0]
+              ? e.yaw - ((parseFloat(i[0].slice(1)) || 0) * Math.PI) / 180
+              : Math.PI - (parseFloat(i[0]) * Math.PI) / 180),
+          void 0 !== i[1] && (e.pitch = (-ry(i[1], (180 * -e.pitch) / Math.PI) * Math.PI) / 180));
+      }
+    const n = o.map((e, t) => (e + (1 === t ? vanillaY(this) : 0)).toFixed(2)).join(", ");
+    e.say(
+      1 === a.length
+        ? `已将 ${cmdName(this, a[0])} 传送至 ${Array.isArray(s) ? n : cmdName(this, s)}`
+        : `已将 ${a.length} 个实体传送至 ${Array.isArray(s) ? n : cmdName(this, s)}`,
+    );
+  },
+  summon(e, t) {
+    const a = stripNs(t[0]);
+    a || cmdFail("用法：/summon <实体> [x y z]");
+    const s =
+      void 0 !== t[1]
+        ? cmdPos(e, t[1], t[2], t[3], !0)
+        : (() => {
+            const e = this.player,
+              t = this.lookDir();
+            return [e.pos[0] + 3 * t[0], e.pos[1] + 0.5, e.pos[2] + 3 * t[2]];
+          })();
+    let i = null;
+    if ("tnt" === a) i = new PrimedTNT(this, Math.floor(s[0]), s[1], Math.floor(s[2]));
+    else {
+      if ("lightning_bolt" === a)
+        return (this.strikeLightning(s[0], s[1], s[2]), void e.say("已召唤新的闪电"));
+      if ("ender_dragon" === a) i = new EnderDragon(this, s[0], s[1], s[2]);
+      else {
+        if ("experience_orb" === a && "undefined" != typeof ExperienceOrb)
+          return (this.dropXp(s[0], s[1], s[2], 1), void e.say("已召唤新的经验球"));
+        MOB_TYPES[a] && ((i = createMob(this, a, s[0], s[1], s[2])), i && (i.persistent = !0));
+      }
+    }
+    i || cmdFail("无法召唤实体：" + a);
+    const o = /CustomName:"([^"]*)"|CustomName:'([^']*)'/.exec(t.slice(4).join(" "));
+    (o && (i.customName = o[1] || o[2]),
+      /NoAI:1b|NoAI:true/.test(t.slice(4).join(" ")) && (i.noAI = !0),
+      this.addEntity(i),
+      e.say("已召唤新的" + cmdName(this, i)));
+  },
+  kill(e, t) {
+    const a = needTargets(t[0] ? cmdTargets(e, t[0]) : [e.entity || this.player]);
+    let s = 0;
+    for (const e of a)
+      e !== this.player
+        ? "undefined" != typeof EnderDragon && e instanceof EnderDragon
+          ? 0 === e.deathTime &&
+            ((e.health = 0),
+            (e.deathTime = 1),
+            Sound.ev("entity.ender_dragon.death", e.pos, 10, 1),
+            s++)
+          : e instanceof Living
+            ? 0 === e.deathTime && ((e.health = 0), e.die({ type: "void" }), s++)
+            : ((e.dead = !0), s++)
+        : ("creative" === this.mode || "spectator" === this.mode
+            ? ((e.health = 0), e.die({ type: "void" }))
+            : e.hurt(1 / 0, { type: "void", bypass: !0 }),
+          s++);
+    e.say(1 === s ? `已清除 ${cmdName(this, a[0])}` : `已清除 ${s} 个实体`);
+  },
+  effect(e, t) {
+    if ("clear" === t[0]) {
+      const a = needTargets(t[1] ? cmdTargets(e, t[1]) : [this.player]).filter(
+          (e) => e instanceof Living,
+        ),
+        s = t[2] ? stripNs(t[2]) : null;
+      s && !EFFECTS[s] && cmdFail("未知的状态效果：" + s);
+      let i = 0;
+      for (const e of a)
+        s
+          ? e.hasEffect(s) && (e.removeEffect(s), i++)
+          : e.effects && e.effects.size && (e.clearEffects(), i++);
+      return (
+        i || cmdFail("目标没有可移除的效果"),
+        void e.say(
+          s
+            ? `已移除 ${1 === a.length ? cmdName(this, a[0]) : a.length + " 个目标"} 的 ${EFFECTS[s].cn} 效果`
+            : `已移除 ${1 === a.length ? cmdName(this, a[0]) : a.length + " 个目标"} 的所有效果`,
+        )
+      );
+    }
+    "give" !== t[0] &&
+      cmdFail(
+        "用法：/effect give <目标> <效果> [秒数] [等级] [隐藏粒子]  或  /effect clear [目标] [效果]",
+      );
+    const a = needTargets(cmdTargets(e, t[1])).filter((e) => e instanceof Living),
+      s = stripNs(t[2]);
+    EFFECTS[s] || cmdFail("未知的状态效果：" + s);
+    const i = "instant_health" === s || "instant_damage" === s,
+      o = "infinite" === t[3] ? -1 : void 0 !== t[3] ? cmdInt(t[3], "秒数", 1, 1e6) : i ? 1 : 30,
+      n = void 0 !== t[4] ? cmdInt(t[4], "等级", 0, 255) : 0,
+      r = "true" === t[5];
+    let l = 0;
+    for (const e of a) {
+      e.addEffect(s, n, o < 0 ? -1 : i ? 1 : 20 * o, !1);
+      const t = e.effects && e.effects.get(s);
+      (t && r && (t.hidden = !0), l++);
+    }
+    (l || cmdFail("无法应用此效果（目标对效果免疫，或已有更强的效果）"),
+      e.say(
+        `已将 ${EFFECTS[s].cn} 效果应用于 ${1 === a.length ? cmdName(this, a[0]) : a.length + " 个目标"}`,
+      ));
+  },
+  enchant(e, t) {
+    needTargets(cmdTargets(e, t[0]));
+    const a = stripNs(t[1]),
+      s = ENCH[a];
+    s || cmdFail("未知的魔咒：" + a);
+    const i = void 0 !== t[2] ? cmdInt(t[2], "等级", 1) : 1;
+    i > s.max && cmdFail(`${i} 级超过了该魔咒支持的最高等级 ${s.max}`);
+    const o = this.player,
+      n = o.inv.held;
+    (n || cmdFail(`${cmdName(this, o)} 手上没有物品`),
+      s.sup.has(n.id) || "book" === ITEMS[n.id].key || cmdFail(`${ITEMS[n.id].cn} 不支持该魔咒`));
+    const cn = (e) => ("undefined" != typeof NET_ENCH_CN && NET_ENCH_CN[e]) || e;
+    for (const [e] of n.e || [])
+      e === a || enchCompatible(e, a) || cmdFail(`${cn(a)} 与物品上已有的 ${cn(e)} 冲突`);
+    ((n.e = [...(n.e || []).filter(([e]) => e !== a), [a, i]]),
+      e.say(
+        `已将魔咒 ${cn(a)}${1 === s.max ? "" : " " + romanNum(i)} 施加于 ${cmdName(this, o)} 的物品上`,
+      ));
+  },
+  xp(e, t) {
+    if (void 0 !== t[0] && /^-?\d+L?$/i.test(t[0])) {
+      const e = parseInt(t[0]);
+      t = /L$/i.test(t[0]) ? ["add", "@s", String(e), "levels"] : ["add", "@s", String(e)];
+    }
+    const a = t[0],
+      s = this.player;
+    (["add", "set", "query"].includes(a) ||
+      cmdFail("用法：/xp add|set|query <目标> [数量] [points|levels]"),
+      needPlayers(cmdTargets(e, t[1] || "@s")));
+    const i = "levels" === ("query" === a ? t[2] : t[3]);
+    if ("query" === a)
+      return void e.say(
+        i
+          ? `${cmdName(this, s)} 拥有 ${this.xpLevel()} 级经验`
+          : `${cmdName(this, s)} 拥有 ${s.xp - this.xpTotalFor(this.xpLevel())} 点经验`,
+        "#FFFFFF",
+        !0,
+      );
+    const o = cmdInt(t[2], "数量"),
+      n = this.xpLevel();
+    if (i) {
+      const e = "add" === a ? Math.max(0, n + o) : Math.max(0, o),
+        t = s.xp - this.xpTotalFor(n);
+      s.xp = this.xpTotalFor(e) + Math.min(t, this.xpNeeded(e) - 1);
+    } else
+      "add" === a
+        ? (s.xp = Math.max(0, s.xp + o))
+        : (o > this.xpNeeded(n) && cmdFail("经验点数不能超过玩家当前等级所需的点数"),
+          (s.xp = this.xpTotalFor(n) + Math.max(0, o)));
+    (this.xpLevel() > n && Sound.ev("entity.player.levelup", s.pos, 0.75, 1),
+      e.say(
+        "add" === a
+          ? `已给予 ${cmdName(this, s)} ${o} ${i ? "级" : "点"}经验`
+          : `已将 ${cmdName(this, s)} 的经验${i ? "等级" : "点数"}设为 ${o}`,
+      ));
+  },
+  setblock(e, t) {
+    const [a, s, i] = cmdBlockPos(e, t[0], t[1], t[2]),
+      [o, n] = cmdBlock(t[3]),
+      r = t[4] || "replace",
+      l = this.world;
+    (s < 0 || s >= HEIGHT || !l.isLoaded(a, i)) && cmdFail("该位置尚未加载");
+    const c = l.getBlock(a, s, i);
+    ("keep" === r && c && cmdFail("无法放置方块"),
+      c === o && l.getMeta(a, s, i) === n && cmdFail("无法放置方块"),
+      "destroy" === r &&
+        c &&
+        (this.dropBlockLoot(a, s, i, c, l.getMeta(a, s, i), null),
+        this.particles.blockBreak(a, s, i, c, l.getMeta(a, s, i))),
+      cmdSetBlock(this, a, s, i, o, n),
+      this.flushMesh(),
+      e.say(`已更改位于 ${a}, ${s + vanillaY(this)}, ${i} 的方块`));
+  },
+  fill(e, t) {
+    const a = cmdBlockPos(e, t[0], t[1], t[2]),
+      s = cmdBlockPos(e, t[3], t[4], t[5]),
+      [i, o] = cmdBlock(t[6]),
+      n = t[7] || "replace",
+      r = "replace" === n && t[8] ? cmdBlock(t[8]) : null,
+      l = this.world,
+      c = a.map((e, t) => Math.min(e, s[t])),
+      d = a.map((e, t) => Math.max(e, s[t])),
+      m = (d[0] - c[0] + 1) * (d[1] - c[1] + 1) * (d[2] - c[2] + 1),
+      h = this.rule("max_block_modifications");
+    (m > h && cmdFail(`指定区域内的方块太多（最大值为 ${h}，指定值为 ${m}）`),
+      (c[1] < 0 || d[1] >= HEIGHT) && cmdFail("该位置超出了世界的范围"));
+    for (let e = c[0]; e <= d[0]; e += 16)
+      for (let t = c[2]; t <= d[2]; t += 16) l.isLoaded(e, t) || cmdFail("该位置尚未加载");
+    l.isLoaded(d[0], d[2]) || cmdFail("该位置尚未加载");
+    let p = 0;
+    for (let e = c[0]; e <= d[0]; e++)
+      for (let a = c[1]; a <= d[1]; a++)
+        for (let s = c[2]; s <= d[2]; s++) {
+          const m =
+              e === c[0] || e === d[0] || a === c[1] || a === d[1] || s === c[2] || s === d[2],
+            h = l.getBlock(e, a, s),
+            u = l.getMeta(e, a, s);
+          let f = i,
+            g = o;
+          ("outline" !== n || m) &&
+            ("hollow" !== n || m || ((f = 0), (g = 0)),
+            ("keep" === n && h) ||
+              (r && (h !== r[0] || (t[8].includes("[") && u !== r[1]))) ||
+              (h === f && u === g) ||
+              ("destroy" === n && h && this.dropBlockLoot(e, a, s, h, u, null),
+              cmdSetBlock(this, e, a, s, f, g),
+              p++));
+        }
+    (p || cmdFail("没有方块被填充"), this.flushMesh(), e.say(`成功填充了 ${p} 个方块`));
+  },
+  clone(e, t) {
+    const a = cmdBlockPos(e, t[0], t[1], t[2]),
+      s = cmdBlockPos(e, t[3], t[4], t[5]),
+      i = cmdBlockPos(e, t[6], t[7], t[8]),
+      o = this.world,
+      n = t[9] || "replace",
+      r = t[10] || "normal",
+      l = a.map((e, t) => Math.min(e, s[t])),
+      c = a.map((e, t) => Math.max(e, s[t])),
+      d = c.map((e, t) => e - l[t] + 1),
+      m = d[0] * d[1] * d[2],
+      h = this.rule("max_block_modifications");
+    (m > h && cmdFail(`指定区域内的方块太多（最大值为 ${h}，指定值为 ${m}）`),
+      (l[1] < 0 || c[1] >= HEIGHT || i[1] < 0 || i[1] + d[1] > HEIGHT) &&
+        cmdFail("该位置超出了世界的范围"));
+    for (const [e, t] of [
+      [l[0], l[2]],
+      [c[0], c[2]],
+      [i[0], i[2]],
+      [i[0] + d[0] - 1, i[2] + d[2] - 1],
+    ])
+      o.isLoaded(e, t) || cmdFail("该位置尚未加载");
+    [0, 1, 2].every((e) => i[e] <= c[e] && i[e] + d[e] - 1 >= l[e]) &&
+      "force" !== r &&
+      cmdFail("源区域和目标区域不能重叠");
+    const p = [];
+    for (let e = 0; e < d[0]; e++)
+      for (let a = 0; a < d[1]; a++)
+        for (let s = 0; s < d[2]; s++) {
+          const i = l[0] + e,
+            r = l[1] + a,
+            c = l[2] + s,
+            d = o.getBlock(i, r, c);
+          if ("masked" === n && !d) continue;
+          if ("filtered" === n && t[11] && d !== cmdBlock(t[11])[0]) continue;
+          const m = this.blockEntities && this.blockEntities.get(`${i},${r},${c}`);
+          p.push([
+            e,
+            a,
+            s,
+            d,
+            o.getMeta(i, r, c),
+            m ? JSON.parse(JSON.stringify(m)) : null,
+            i,
+            r,
+            c,
+          ]);
+        }
+    if ("move" === r) for (const e of p) cmdSetBlock(this, e[6], e[7], e[8], 0, 0);
+    let u = 0;
+    for (const [e, t, a, s, o, n] of p) {
+      const r = i[0] + e,
+        l = i[1] + t,
+        c = i[2] + a;
+      l < 0 ||
+        l >= HEIGHT ||
+        (cmdSetBlock(this, r, l, c, s, o),
+        n &&
+          this.blockEntities &&
+          ((n.pos = [r, l, c]), this.blockEntities.set(`${r},${l},${c}`, n)),
+        u++);
+    }
+    (this.flushMesh(), e.say(`成功复制了 ${u} 个方块`));
+  },
+  gamerule(e, t) {
+    t[0] || cmdFail("用法：/gamerule <规则> [值]");
+    const a = RULE_ALIAS[t[0]] || stripNs(t[0]);
+    if ((a in GAME_RULES || cmdFail("未知的游戏规则：" + t[0]), void 0 === t[1]))
+      return void e.say(`游戏规则 ${a} 目前为：${this.rule(a)}`, "#FFFFFF", !0);
+    let s;
+    ("boolean" == typeof GAME_RULES[a]
+      ? ("true" !== t[1] && "false" !== t[1] && cmdFail("应为 true 或 false"),
+        (s = "true" === t[1]))
+      : (s = cmdInt(t[1], "值", 0)),
+      ((this.gameRules || (this.gameRules = {}))[a] = s),
+      e.say(`游戏规则 ${a} 已被设置为：${s}`));
+  },
+  spawnpoint(e, t) {
+    const a = this.player,
+      s = void 0 !== t[1] ? cmdBlockPos(e, t[1], t[2], t[3]) : a.pos.map(Math.floor);
+    (t[0] && needPlayers(cmdTargets(e, t[0])),
+      (a.spawn = s),
+      (a.bedSpawn = !1),
+      "overworld" !== this.dim && (a.spawnDim = this.dim),
+      e.say(
+        `已将 ${cmdName(this, a)} 的重生点设置为 (${s[0]}, ${s[1] + vanillaY(this)}, ${s[2]})`,
+      ));
+  },
+  setworldspawn(e, t) {
+    const a = void 0 !== t[0] ? cmdBlockPos(e, t[0], t[1], t[2]) : this.player.pos.map(Math.floor);
+    (this.worldMeta && (this.worldMeta.spawn = a),
+      e.say(`已将世界重生点设置为 (${a[0]}, ${a[1] + vanillaY(this)}, ${a[2]})`));
+  },
+  say(e, t) {
+    (t.length || cmdFail("用法：/say <消息>"),
+      this.ui.message(`[${e.name || this.playerName || "玩家"}] ${t.join(" ")}`));
+  },
+  me(e, t) {
+    this.ui.message(`* ${e.name || this.playerName || "玩家"} ${t.join(" ")}`);
+  },
+  msg(e, t) {
+    (t.length < 2 && cmdFail("用法：/msg <玩家> <消息>"), needPlayers(cmdTargets(e, t[0])));
+    const a = t.slice(1).join(" ");
+    (this.ui.message(`你悄悄地对 ${this.playerName || "玩家"} 说：${a}`, "#AAAAAA"),
+      this.ui.message(`${this.playerName || "玩家"} 悄悄地对你说：${a}`, "#AAAAAA"));
+  },
+  tellraw(e, t) {
+    needPlayers(cmdTargets(e, t[0]));
+    const a = t.slice(1).join(" ");
+    let s;
+    try {
+      s = JSON.parse(a);
+    } catch (e) {
+      s = a.replace(/^"|"$/g, "");
+    }
+    const i = [],
+      walk = (e, t) => {
+        if (null == e) return;
+        if ("string" == typeof e || "number" == typeof e || "boolean" == typeof e)
+          return void i.push([String(e), t]);
+        if (Array.isArray(e)) return void e.forEach((e) => walk(e, t));
+        const a =
+          (e.color &&
+            (CMD_COLORS[e.color] || (/^#[0-9a-f]{6}$/i.test(e.color) ? e.color : null))) ||
+          t;
+        void 0 !== e.text ? i.push([String(e.text), a]) : e.translate && i.push([e.translate, a]);
+        for (const t of e.extra || []) walk(t, a);
+      };
+    (walk(s, "#FFFFFF"),
+      this.ui.message(i.map((e) => e[0]).join(""), (i[0] && i[0][1]) || "#FFFFFF"));
+  },
+  title(e, t) {
+    needPlayers(cmdTargets(e, t[0]));
+    const a = this.ui,
+      s = t[1],
+      text = () => {
+        const e = t.slice(2).join(" ");
+        try {
+          const t = JSON.parse(e);
+          return "string" == typeof t
+            ? t
+            : Array.isArray(t)
+              ? t.map((e) => e.text ?? e).join("")
+              : (t.text ?? "") + (t.extra || []).map((e) => e.text ?? e).join("");
+        } catch (t) {
+          return e.replace(/^"|"$/g, "");
+        }
+      },
+      i = a.titleState || (a.titleState = { fadeIn: 10, stay: 70, fadeOut: 20 });
+    ("title" === s
+      ? ((i.title = text()), (i.start = this.tickCount), void 0 === i.sub && (i.sub = ""))
+      : "subtitle" === s
+        ? (i.sub = text())
+        : "actionbar" === s
+          ? (a.actionBar = { text: text(), t: performance.now() })
+          : "clear" === s
+            ? (i.title = null)
+            : "reset" === s
+              ? (a.titleState = { fadeIn: 10, stay: 70, fadeOut: 20 })
+              : "times" === s
+                ? ((i.fadeIn = cmdTime(t[2])),
+                  (i.stay = cmdTime(t[3])),
+                  (i.fadeOut = cmdTime(t[4])))
+                : cmdFail("用法：/title <目标> title|subtitle|actionbar|clear|reset|times …"),
+      e.say(
+        "times" === s
+          ? "已更改标题显示时间"
+          : "clear" === s
+            ? "已清除标题"
+            : "reset" === s
+              ? "已重置标题选项"
+              : "已显示标题",
+      ));
+  },
+  playsound(e, t) {
+    const a = stripNs(t[0]);
+    (a || cmdFail("用法：/playsound <声音> [来源] [目标] [x y z] [音量] [音调]"),
+      t[2] && needPlayers(cmdTargets(e, t[2])));
+    const s = void 0 !== t[3] ? cmdPos(e, t[3], t[4], t[5], !0) : [...this.player.pos],
+      i = void 0 !== t[6] ? parseFloat(t[6]) : 1,
+      o = void 0 !== t[7] ? parseFloat(t[7]) : 1;
+    (Sound.ev(a, s, i, o) ||
+      "undefined" == typeof SOUND_EVENTS ||
+      SOUND_EVENTS[a] ||
+      cmdFail("未知的声音：" + a),
+      e.say(`已向 ${cmdName(this, this.player)} 播放声音 ${a}`));
+  },
+  stopsound(e) {
+    (Sound.stopAll && Sound.stopAll(), e.say("已停止所有声音"));
+  },
+  particle(e, t) {
+    const a = stripNs(t[0]);
+    a || cmdFail("用法：/particle <粒子> [x y z] [dx dy dz] [速度] [数量]");
+    const s = void 0 !== t[1] ? cmdPos(e, t[1], t[2], t[3], !0) : [...this.player.pos],
+      i = [t[4], t[5], t[6]].map((e) => parseFloat(e) || 0),
+      o = parseFloat(t[7]) || 0,
+      n = void 0 !== t[8] ? cmdInt(t[8], "数量", 0, 2e3) : 1,
+      r = CMD_PARTICLES[a] || a;
+    for (let e = 0; e < Math.max(1, n); e++) {
+      const g2 = () => 0.8 * (Math.random() + Math.random() + Math.random() - 1.5);
+      this.particles.spawn(
+        r,
+        s[0] + i[0] * g2(),
+        s[1] + i[1] * g2(),
+        s[2] + i[2] * g2(),
+        (Math.random() - 0.5) * o,
+        (Math.random() - 0.5) * o,
+        (Math.random() - 0.5) * o,
+      );
+    }
+    e.say(`正在显示粒子 ${a}`);
+  },
+  damage(e, t) {
+    const a = needTargets(cmdTargets(e, t[0])).filter((e) => e instanceof Living),
+      s = parseFloat(t[1]);
+    (isNaN(s) || s < 0) && cmdFail("伤害量无效");
+    const i = stripNs(t[2] || "generic"),
+      o = { type: "generic" === i ? "magic" : i };
+    if ("by" === t[3] && t[4]) {
+      const a = cmdTargets(e, t[4])[0];
+      a && ((o.attacker = a), (o.knockFrom = a.pos));
+    }
+    for (const e of a) e.hurt(s, o);
+    e.say(`已对 ${1 === a.length ? cmdName(this, a[0]) : a.length + " 个实体"} 造成 ${s} 点伤害`);
+  },
+  ride(e, t) {
+    const a = needTargets(cmdTargets(e, t[0]))[0];
+    if ("dismount" === t[1]) {
+      if (a === this.player && a.vehicle)
+        return (a.dismount(), void e.say(`${cmdName(this, a)} 已停止骑乘`));
+      cmdFail("该实体没有在骑乘");
+    }
+    "mount" !== t[1] && cmdFail("用法：/ride <目标> mount <载具> | dismount");
+    const s = needTargets(cmdTargets(e, t[2]))[0];
+    (a !== this.player && cmdFail("这里只有玩家能被设为骑乘"),
+      s === a && cmdFail("实体不能骑乘自己"),
+      a.mount(s),
+      e.say(`${cmdName(this, a)} 开始骑乘 ${cmdName(this, s)}`));
+  },
+  tag(e, t) {
+    const a = needTargets(cmdTargets(e, t[0])),
+      s = t[1],
+      i = t[2];
+    if ("list" === s) {
+      const t = [...new Set(a.flatMap((e) => [...(e.tags || [])]))];
+      return void e.say(
+        t.length
+          ? `${1 === a.length ? cmdName(this, a[0]) : a.length + " 个实体"} 共有 ${t.length} 个标签：${t.join(", ")}`
+          : "没有标签",
+        "#FFFFFF",
+        !0,
+      );
+    }
+    i || cmdFail("用法：/tag <目标> add|remove|list <名称>");
+    let o = 0;
+    for (const e of a) {
+      const t = e.tags || (e.tags = new Set());
+      ("add" === s ? !t.has(i) && t.add(i) : t.delete(i)) && o++;
+    }
+    (o || cmdFail("add" === s ? "无法添加标签：目标已有此标签" : "无法移除标签：目标没有此标签"),
+      e.say(
+        `已${"add" === s ? "为" : "从"} ${1 === a.length ? cmdName(this, a[0]) : o + " 个实体"} ${"add" === s ? "添加" : "移除"}标签 ${i}`,
+      ));
+  },
+  random(e, t) {
+    const a = t[1] || t[0];
+    a || cmdFail("用法：/random value|roll <范围>");
+    const [s, i] = cmdRange(a);
+    (!isFinite(s) || !isFinite(i) || i < s) && cmdFail("无效的范围");
+    const o = randInt(s, i);
+    "roll" === t[0]
+      ? this.ui.message(`${this.playerName || "玩家"} 掷出了 ${o}（从 ${s} 到 ${i}）`)
+      : e.say("随机数：" + o, "#FFFFFF", !0);
+  },
+};
+((CMD_RUN.teleport = CMD_RUN.tp),
+  (CMD_RUN.tell = CMD_RUN.w = CMD_RUN.msg),
+  (CMD_RUN.experience = CMD_RUN.xp),
+  (CMD_RUN.gm = CMD_RUN.gamemode));
+const CMD_COLORS = {
+    black: "#000000",
+    dark_blue: "#0000AA",
+    dark_green: "#00AA00",
+    dark_aqua: "#00AAAA",
+    dark_red: "#AA0000",
+    dark_purple: "#AA00AA",
+    gold: "#FFAA00",
+    gray: "#AAAAAA",
+    dark_gray: "#555555",
+    blue: "#5555FF",
+    green: "#55FF55",
+    aqua: "#55FFFF",
+    red: "#FF5555",
+    light_purple: "#FF55FF",
+    yellow: "#FFFF55",
+    white: "#FFFFFF",
+  },
+  CMD_PARTICLES = {
+    happy_villager: "bone_meal",
+    angry_villager: "smoke",
+    large_smoke: "smoke",
+    explosion_emitter: "explosion",
+    poof: "poof",
+    heart: "heart",
+    note: "note",
+    flame: "flame",
+    soul_fire_flame: "flame",
+    crit: "crit",
+    enchanted_hit: "crit",
+    bubble: "bubble",
+    portal: "portal",
+    lava: "lava",
+    smoke: "smoke",
+    rain: "rain",
+    effect: "effect",
+    entity_effect: "effect",
+  };
+function cmdExec(e, t, a) {
+  const s = e.ui,
+    i = e.player;
+  a && "/" !== t[0] && (t = "/" + t);
+  const o = cmdWords(t.slice(1)),
+    n = (o[0] || "").replace(/^minecraft:/, ""),
+    r = o.slice(1),
+    l = a
+      ? {
+          g: e,
+          pos: [...a.pos],
+          rot: a.rot || [0, 0],
+          entity: a.entity || null,
+          src: a,
+          name: a.name,
+          say: (e, t, s = !1) => a.say(e, s),
+        }
+      : {
+          g: e,
+          pos: [...i.pos],
+          rot: [i.yaw, i.pitch],
+          entity: i,
+          say: (t, a = "#AAAAAA", i = !1) => {
+            (i || e.rule("send_command_feedback")) && s.message(t, a);
+          },
+        },
+    err = (e) => (a ? a.fail(e) : s.message(e, "#FF5555"), !1);
+  if (!(
+    a ||
+    e.cheats ||
+    ["help", "seed", "me", "msg", "tell", "w", "list", "trigger", "random"].includes(n) ||
+    (self.CMD_FREE && CMD_FREE.has(n))
+  ))
+    return err("未知或不完整的命令，错误见下\n…/" + n + "<--[此处]");
+  const c = CMD_RUN[n];
+  if (!c) return err(`未知或不完整的命令「${n}」。输入 /help 查看命令`);
+  try {
+    return (c.call(e, l, r), !0);
+  } catch (e) {
+    return e instanceof CmdError
+      ? err(e.message)
+      : (err("执行命令时出现意外错误：" + e.message), console.error(e), !1);
+  }
+}
+(() => {
+  const e = Game.prototype.tick;
+  Game.prototype.tick = function () {
+    const t = this.worldTime,
+      a = this.weatherTimer,
+      s = e.call(this);
+    if (!this.net && "play" === this.state) {
+      if (
+        (!1 !== this.rule("advance_time") ||
+          this.worldTime === t ||
+          (this.ui.screen && this.ui.screen.pauses) ||
+          this.worldTime !== t + 1 ||
+          (this.worldTime = t),
+        !1 === this.rule("advance_weather") && void 0 !== a && (this.weatherTimer = a),
+        this.thunder && this.weather > 0.8 && "overworld" === this.dim && Math.random() < 1 / 400)
+      ) {
+        const e = this.player,
+          t = Math.floor(e.pos[0] + 128 * (Math.random() - 0.5)),
+          a = Math.floor(e.pos[2] + 128 * (Math.random() - 0.5));
+        this.world.isLoaded(t, a) &&
+          this.strikeLightning(t + 0.5, this.world.surfaceY(t, a) + 1, a + 0.5);
+      }
+      this.rainTarget || (this.thunder = !1);
+    }
+    return s;
+  };
+  const t = Game.prototype.onPlayerDeath;
+  Game.prototype.onPlayerDeath = function (e) {
+    const a = this.player;
+    if (!this.net && this.rule("keep_inventory")) {
+      const s = a.inv.slots.slice(),
+        i = a.xp,
+        o = this.ui.chat.length;
+      a.inv.slots.fill(null);
+      const n = t.call(this, e);
+      return (
+        (a.inv.slots = s),
+        (a.xp = i),
+        (this.deathScore = i),
+        this.rule("show_death_messages") || (this.ui.chat.length = o),
+        n
+      );
+    }
+    const s = this.ui.chat.length,
+      i = t.call(this, e);
+    return (
+      this.net || this.rule("show_death_messages") || (this.ui.chat.length = s),
+      !this.net &&
+        this.rule("immediate_respawn") &&
+        setTimeout(() => {
+          "play" === this.state && this.player.deathTime > 0 && (this.ui.close(), this.respawn());
+        }, 1050),
+      i
+    );
+  };
+  const a = Player.prototype.hurt;
+  Player.prototype.hurt = function (e, t) {
+    const s = this.game,
+      i = t && t.type;
+    if (!s.net) {
+      if ("fall" === i && !s.rule("fall_damage")) return !1;
+      if (("fire" === i || "lava" === i || "hotFloor" === i) && !s.rule("fire_damage")) return !1;
+      if ("drown" === i && !s.rule("drowning_damage")) return !1;
+      if ("freeze" === i && !s.rule("freeze_damage")) return !1;
+    }
+    return a.call(this, e, t);
+  };
+  const s = Player.prototype.hungerTick;
+  Player.prototype.hungerTick = function () {
+    const e = this.game;
+    if (!e.net && !e.rule("natural_health_regeneration")) {
+      const e = this.health,
+        t = s.call(this);
+      return (this.health > e && !this.creative && (this.health = e), t);
+    }
+    return s.call(this);
+  };
+  const i = Game.prototype.spawnMobs;
+  Game.prototype.spawnMobs = function () {
+    if (!this.rule("spawn_mobs")) return;
+    const e = this.entities.length,
+      t = this.trySpawnPhantoms,
+      a = this.trySpawnTrader;
+    (this.rule("spawn_phantoms") || (this.trySpawnPhantoms = null),
+      this.rule("spawn_wandering_traders") || (this.trySpawnTrader = null));
+    try {
+      i.call(this);
+    } finally {
+      ((this.trySpawnPhantoms = t), (this.trySpawnTrader = a));
+    }
+    if (!this.rule("spawn_monsters"))
+      for (let t = e; t < this.entities.length; t++) {
+        const e = this.entities[t];
+        e instanceof Mob && e.T && e.T.hostile && (e.dead = !0);
+      }
+  };
+  const o = World.prototype.randomTick;
+  World.prototype.randomTick = function (e, t, a) {
+    const s = this.listener && this.listener.rule ? this.listener.rule("random_tick_speed") : 3;
+    if (3 === s) return o.call(this, e, t, a);
+    for (let i = 0; i < Math.floor(s / 3); i++) o.call(this, e, t, a);
+    s % 3 && Math.random() < (s % 3) / 3 && o.call(this, e, t, a);
+  };
+  const n = Game.prototype.dropBlockLoot;
+  Game.prototype.dropBlockLoot = function (...e) {
+    if (this.net || this.rule("block_drops")) return n.apply(this, e);
+  };
+  const r = Game.prototype.saveWorld;
+  Game.prototype.saveWorld = function (e) {
+    return (
+      this.worldMeta &&
+        "play" === this.state &&
+        ((this.worldMeta.gameRules = this.gameRules || {}),
+        (this.worldMeta.thunder = !!this.thunder)),
+      r.call(this, e)
+    );
+  };
+  const l = Game.prototype.loadWorld;
+  Game.prototype.loadWorld = async function (e) {
+    ((this.gameRules = {}), (this.thunder = !1));
+    const t = await l.call(this, e);
+    return (
+      this.worldMeta &&
+        ((this.gameRules = Object.assign({}, this.worldMeta.gameRules || {})),
+        (this.thunder = !!this.worldMeta.thunder)),
+      t
+    );
+  };
+  const c = Game.prototype.createWorld;
+  Game.prototype.createWorld = function (...e) {
+    ((this.gameRules = { keep_inventory: !0 }), (this.thunder = !1));
+    const set = () => {
+        const e = this.gameRules || (this.gameRules = {});
+        (void 0 === e.keep_inventory && (e.keep_inventory = !0),
+          this.worldMeta && (this.worldMeta.gameRules = Object.assign({}, e)));
+      },
+      t = c.apply(this, e);
+    return t && t.then ? t.then((e) => (set(), e)) : (set(), t);
+  };
+})();
+for (const e of [Mob, VMob]) {
+  const t = e.prototype.die;
+  e.prototype.die = function (e) {
+    const a = this.game;
+    if (!a.net && !a.rule("mob_drops")) {
+      const s = a.dropItem,
+        i = a.dropXp;
+      ((a.dropItem = () => {}), (a.dropXp = () => {}));
+      try {
+        return t.call(this, e);
+      } finally {
+        ((a.dropItem = s), (a.dropXp = i));
+      }
+    }
+    return t.call(this, e);
+  };
+}
+((Game.prototype.strikeLightning = function (e, t, a) {
+  const s = this.world;
+  this.lightningFlash = 4;
+  const i = this.player,
+    o = Math.hypot(i.pos[0] - e, i.pos[2] - a);
+  (Sound.ev(
+    "entity.lightning_bolt.thunder",
+    o < 32 ? [e, t, a] : null,
+    625,
+    0.8 + 0.2 * Math.random(),
+  ),
+    Sound.ev("entity.lightning_bolt.impact", [e, t, a], 2, 0.5 + 0.2 * Math.random()));
+  for (let s = 0; s < 12; s++)
+    this.particles.spawn(
+      "smoke",
+      e + (Math.random() - 0.5),
+      t + 2 * Math.random(),
+      a + (Math.random() - 0.5),
+      0,
+      0.05,
+      0,
+    );
+  if (this.difficulty > 0 && 0 !== this.rule("fire_spread_radius_around_player")) {
+    const i = Math.floor(e),
+      o = Math.floor(t),
+      n = Math.floor(a);
+    !s.getBlock(i, o, n) &&
+      BLOCKS[s.getBlock(i, o - 1, n)].solid &&
+      s.setBlock(i, o, n, this.fireIdAt(i, o, n), 0);
+  }
+  for (const s of [i, ...this.entities])
+    s instanceof Living &&
+      !s.dead &&
+      !s.deathTime &&
+      (Math.abs(s.pos[0] - e) > 3 ||
+        Math.abs(s.pos[2] - a) > 3 ||
+        s.pos[1] < t - 3 ||
+        s.pos[1] > t + 6 ||
+        (s.onLightning && s.onLightning()) ||
+        (s.fireproof || (s.fire = Math.max(s.fire || 0, 160)), s.hurt(5, { type: "lightning" })));
+  this.flushMesh && this.flushMesh();
+}),
+  (() => {
+    const e = UI.prototype.drawChat;
+    UI.prototype.drawChat = function () {
+      const t = this.titleState,
+        a = this.game;
+      if (t && null != t.title && a && "play" === a.state) {
+        const e = a.tickCount - t.start,
+          s = t.fadeIn + t.stay + t.fadeOut;
+        if (e >= s) t.title = null;
+        else {
+          const a =
+              e < t.fadeIn
+                ? e / Math.max(1, t.fadeIn)
+                : e > t.fadeIn + t.stay
+                  ? (s - e) / Math.max(1, t.fadeOut)
+                  : 1,
+            i = this.ctx;
+          (i.save(),
+            (i.globalAlpha = clamp(a, 0, 1)),
+            i.translate(this.w / 2, this.h / 2),
+            i.scale(4, 4),
+            Font.center(i, t.title, 0, -10, "#FFFFFF"),
+            i.restore(),
+            t.sub &&
+              (i.save(),
+              (i.globalAlpha = clamp(a, 0, 1)),
+              i.translate(this.w / 2, this.h / 2),
+              i.scale(2, 2),
+              Font.center(i, t.sub, 0, 5, "#FFFFFF"),
+              i.restore()));
+        }
+      }
+      return e.apply(this, arguments);
+    };
+  })());
+//# sourceURL=js/cmdrun.js

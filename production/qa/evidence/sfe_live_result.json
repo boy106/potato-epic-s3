@@ -1,0 +1,70 @@
+{
+  "teleport": {
+    "tp": [
+      167,
+      75,
+      181
+    ],
+    "name": "西北撤离点",
+    "phase": "DEPLOY",
+    "t": 240
+  },
+  "afterRead": {
+    "phase": "EXTRACT_OPEN",
+    "read": 1,
+    "settle": {
+      "win": true,
+      "title": "撤离成功",
+      "coins": 0,
+      "gainN": 1
+    },
+    "placedDone": 1,
+    "blockEnts": 2,
+    "worldGone": false,
+    "overlay": true
+  },
+  "afterExit": {
+    "clicked": true,
+    "worldGone": true,
+    "planCleared": true,
+    "matchCleared": true
+  },
+  "lsAfter": [
+    "potato-settings",
+    "potato:sfe:stash",
+    "mcjs-crumbs",
+    "mcjs-db",
+    "mcjs-inst:/index.html",
+    "potato:sfe:earn",
+    "mcjs-tid"
+  ],
+  "live": {
+    "state": "play",
+    "sfeWorld": true,
+    "phase": "DEPLOY",
+    "t": 1.8,
+    "mainPick": 2,
+    "mainPOIs": 7,
+    "minorPOIs": 14,
+    "placedDone": 0,
+    "placedFailed": 0,
+    "extractAlways": 3,
+    "lairs": 8,
+    "blockEnts": 2,
+    "playerPos": [
+      361,
+      75,
+      361
+    ],
+    "aiCount": 0,
+    "lsKeys": [
+      "potato-settings",
+      "potato:sfe:stash",
+      "mcjs-crumbs",
+      "mcjs-db",
+      "mcjs-inst:/index.html",
+      "mcjs-tid"
+    ]
+  },
+  "pageErrors": []
+}

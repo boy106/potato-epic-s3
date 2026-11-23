@@ -1,0 +1,290 @@
+{
+  "url": "http://localhost:8842/index.html",
+  "date": "2026-11-22 21:21:05",
+  "results": [
+    {
+      "name": "脚本层模块挂载（SURV/SFE_THROW/SFE_RULES）",
+      "ok": true,
+      "detail": "无头环境无 WebGL2，game 对象由 mock 驱动（对齐 w5b 模式）",
+      "mock": ""
+    },
+    {
+      "name": "关键模块挂 self（SURV/SFE_THROW/TUNE/药物5/投掷3）",
+      "ok": true,
+      "detail": "{'surv': True, 'throw_': True, 'tune': True, 'xz': True, 'drugs': 5, 'throwItems': 3}",
+      "mock": ""
+    },
+    {
+      "name": "xzguns bundle 就绪（XZ 接口可达）",
+      "ok": true,
+      "detail": "XZ=True",
+      "mock": ""
+    },
+    {
+      "name": "A1 满体力连续冲刺耗尽 = 12.5s±0.5（8/s 纯数值模拟）",
+      "ok": true,
+      "detail": "实测 12.50s",
+      "mock": "数值模拟（真机手感另测）"
+    },
+    {
+      "name": "A1 停止消耗 0.8s 后恢复生效（延迟门存在）",
+      "ok": true,
+      "detail": "50→65",
+      "mock": "数值模拟"
+    },
+    {
+      "name": "A1 体力条 HUD 于 drawHUD 链绘制（源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查"
+    },
+    {
+      "name": "A2 姿态差异化恢复 15/12/18/10",
+      "ok": true,
+      "detail": "stand=15 crouch=12 prone=18 walk=10",
+      "mock": ""
+    },
+    {
+      "name": "A2 开镜恢复 = min(姿态速率, 8)",
+      "ok": true,
+      "detail": "ads=8",
+      "mock": ""
+    },
+    {
+      "name": "A3 体力<15 不可进入冲刺；已冲刺者继续",
+      "ok": true,
+      "detail": "{'noSprintEnter': True, 'sprintContinues': True, 'gaspStarted': True, 'gaspNoSprint': True, 'gaspNoJump': True, 'gaspSpeed': True, 'gaspTicks': True, 'noDive': True, 'noMelee': True}",
+      "mock": ""
+    },
+    {
+      "name": "A3 体力=0 触发 1.5s 喘息（×0.8 移速/禁冲刺/禁跳）",
+      "ok": true,
+      "detail": "{'noSprintEnter': True, 'sprintContinues': True, 'gaspStarted': True, 'gaspNoSprint': True, 'gaspNoJump': True, 'gaspSpeed': True, 'gaspTicks': True, 'noDive': True, 'noMelee': True}",
+      "mock": ""
+    },
+    {
+      "name": "A3 体力<25 飞扑无效、<10 近战挥击无效",
+      "ok": true,
+      "detail": "{'noSprintEnter': True, 'sprintContinues': True, 'gaspStarted': True, 'gaspNoSprint': True, 'gaspNoJump': True, 'gaspSpeed': True, 'gaspTicks': True, 'noDive': True, 'noMelee': True}",
+      "mock": ""
+    },
+    {
+      "name": "A4 天梯/乱斗/靶场（xzduel）体力/姿态旁路",
+      "ok": true,
+      "detail": "{'mode': 'comp', 'survOn': False, 'poseOn': False, 'sprintPassed': True}",
+      "mock": ""
+    },
+    {
+      "name": "A5 PLAYER_H.prone = 0.6（fround 引擎惯例）、eye ≈ 0.5",
+      "ok": true,
+      "detail": "{'proneH': 0.6000000238418579, 'swimH': 0.6000000238418579, 'eye': 0.5, 'fitsChain': True}",
+      "mock": ""
+    },
+    {
+      "name": "A5 起立 fits 链回退（stand→crouch→保持趴，源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查（1 格洞真机另测）"
+    },
+    {
+      "name": "A6 趴姿移速 ×0.25（entity.js 速度块，源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查"
+    },
+    {
+      "name": "A6 趴姿禁冲刺（sprint 链含 proning，源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查"
+    },
+    {
+      "name": "A6 姿态过渡 0.3s 锁（poseLock，源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查"
+    },
+    {
+      "name": "A6 散布 ×0.6 挂 XZ.spreadNow 包装（源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查（满配步枪实测需真机）"
+    },
+    {
+      "name": "A7 扑程 3.5±0.5、时长 0.55s、峰值 7 方块/s（初速）",
+      "ok": true,
+      "detail": "扑程 3.66（均值 6.66）时长 0.55 峰值 7.00",
+      "mock": ""
+    },
+    {
+      "name": "A7 落地强制接趴 + 总禁射 0.85s + 撞墙扣 5 体力（源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查"
+    },
+    {
+      "name": "A8 体力<25/非冲刺/冷却 0.5s 不可飞扑（源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查"
+    },
+    {
+      "name": "A9 腿损 40/70 阈值（×0.85 / ×0.7+禁冲刺）",
+      "ok": true,
+      "detail": "{'leg40': True, 'leg70': True, 'hystHold': True, 'hystClear': True, 'arm40': True, 'arm70': True, 'noHpTouch': True, 'reset': True}",
+      "mock": ""
+    },
+    {
+      "name": "A9 阈值解除 −10 迟滞",
+      "ok": true,
+      "detail": "{'leg40': True, 'leg70': True, 'hystHold': True, 'hystClear': True, 'arm40': True, 'arm70': True, 'noHpTouch': True, 'reset': True}",
+      "mock": ""
+    },
+    {
+      "name": "A9 臂损 40/70 阈值（晃动+50% / 换弹×1.3+散布+0.5）",
+      "ok": true,
+      "detail": "{'leg40': True, 'leg70': True, 'hystHold': True, 'hystClear': True, 'arm40': True, 'arm70': True, 'noHpTouch': True, 'reset': True}",
+      "mock": ""
+    },
+    {
+      "name": "A9 损伤不直接致死 + 死亡/结算清零（resetRun）",
+      "ok": true,
+      "detail": "{'leg40': True, 'leg70': True, 'hystHold': True, 'hystClear': True, 'arm40': True, 'arm70': True, 'noHpTouch': True, 'reset': True}",
+      "mock": ""
+    },
+    {
+      "name": "A9 换弹 ×1.3 挂 XZ.slowOf 包装（源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查"
+    },
+    {
+      "name": "A9 开镜晃动 +50% 经 lookWrite（源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查"
+    },
+    {
+      "name": "A10 损伤自然恢复 = 0（5s 无变化）",
+      "ok": true,
+      "detail": "40.2 → 40.2",
+      "mock": ""
+    },
+    {
+      "name": "A11 绷带 3s 每轨 −30，完成才消耗",
+      "ok": true,
+      "detail": "{'started': True, 'total': 60, 'is3s': True, 'consumed': 1, 'legsAfter': 60, 'armsAfter': 60, 'medFull': False, 'medOk': True, 'interrupted': True, 'countAfterBreak': 2, 'mul': 0.5}",
+      "mock": ""
+    },
+    {
+      "name": "A11 HP 满急救包不可用 / 受伤可用",
+      "ok": true,
+      "detail": "{'started': True, 'total': 60, 'is3s': True, 'consumed': 1, 'legsAfter': 60, 'armsAfter': 60, 'medFull': False, 'medOk': True, 'interrupted': True, 'countAfterBreak': 2, 'mul': 0.5}",
+      "mock": ""
+    },
+    {
+      "name": "A11 打断取消不消耗",
+      "ok": true,
+      "detail": "{'started': True, 'total': 60, 'is3s': True, 'consumed': 1, 'legsAfter': 60, 'armsAfter': 60, 'medFull': False, 'medOk': True, 'interrupted': True, 'countAfterBreak': 2, 'mul': 0.5}",
+      "mock": ""
+    },
+    {
+      "name": "A11 读条 ×0.5 缓移（含趴姿，TUNE drugMoveMul）",
+      "ok": true,
+      "detail": "",
+      "mock": "数值 + 源码走查"
+    },
+    {
+      "name": "A11 急救包 6s HP+10（≤上限）+ 清空全部损伤",
+      "ok": true,
+      "detail": "{'hp': 20, 'legs': 0, 'arms': 0, 'sec': 6}",
+      "mock": ""
+    },
+    {
+      "name": "A12 肾上腺素/止痛针/能量饮料效果与时长（§6.2 表）",
+      "ok": true,
+      "detail": "{'epiRefresh': True, 'epiDur': True, 'painDur': True, 'energy': True, 'fatigue': True}",
+      "mock": ""
+    },
+    {
+      "name": "A13 引信 3.5/1.8/2.0s、满蓄 18、蓄力 0.5s",
+      "ok": true,
+      "detail": "{'fuse': True, 'vFull': True, 'c': True, 'e': True, 'mid': True, 'self': True, 'radius': True, 'grenadePath': True}",
+      "mock": ""
+    },
+    {
+      "name": "A13 破片半径 3（explode 同路径）、60→8 线性、自伤 ×0.5",
+      "ok": true,
+      "detail": "{'fuse': True, 'vFull': True, 'c': True, 'e': True, 'mid': True, 'self': True, 'radius': True, 'grenadePath': True}",
+      "mock": ""
+    },
+    {
+      "name": "A13 复用 XZ.Grenade 物理（bundle 公开接口）",
+      "ok": true,
+      "detail": "True",
+      "mock": ""
+    },
+    {
+      "name": "A14 闪光 2.5+2.5/0.8s、AI 4s/2s、锥角 60°",
+      "ok": true,
+      "detail": "{'dur': True, 'ai': True, 'cone': True, 'fwd': True, 'back': True, 'peak': True}",
+      "mock": ""
+    },
+    {
+      "name": "A14 白闪峰值 0.85 + 强度滑条（50%~100%，源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查（滑条真机另测）"
+    },
+    {
+      "name": "A15 烟雾半径 2.5/高 3 持续 12s、粒子预算 60/30（2 团 ≤120/≤60）",
+      "ok": true,
+      "detail": "{'r': True, 'budget': True, 'hit': True, 'miss': True, 'over': True}",
+      "mock": ""
+    },
+    {
+      "name": "A15 线段-圆柱数学判定（穿/旁/越）",
+      "ok": true,
+      "detail": "{'r': True, 'budget': True, 'hit': True, 'miss': True, 'over': True}",
+      "mock": ""
+    },
+    {
+      "name": "A15 AI 视线经 sees 包装 + 不挡子弹（源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": "源码走查（AI 行为与帧时长需真机）"
+    },
+    {
+      "name": "A16 SFEEconomy.onLoot 钩子在战利品生成触发（签名 poiType,itemId,count）",
+      "ok": true,
+      "detail": "{'onLootHook': True, 'lootHook': True, 'lootItem': True, 'tuneSingle': True}",
+      "mock": "模拟 SFEEconomy 本体"
+    },
+    {
+      "name": "A16 onExtract 钩子 alive/dead 两路（撤离结算，源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": ""
+    },
+    {
+      "name": "A16 DEPLOY 禁投掷（源码走查）",
+      "ok": true,
+      "detail": "",
+      "mock": ""
+    },
+    {
+      "name": "A16 全部新增数值集中于 SURV.TUNE（源码走查：药物/投掷/体力/损伤阈值无散落硬编码）",
+      "ok": true,
+      "detail": "TUNE 引用 83 处",
+      "mock": "源码走查"
+    },
+    {
+      "name": "控制台无新报错（豁免无头环境 WebGL2 不可用）",
+      "ok": true,
+      "detail": "",
+      "mock": ""
+    }
+  ],
+  "passed": 47,
+  "total": 47
+}

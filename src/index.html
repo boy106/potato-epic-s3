@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><script>(function(){try{
+var W=window;if(W.__TOY_PERF__){return;}
+var P=W.performance;if(!P||!P.getEntriesByType){return;}
+var M={fw:[],sent:false};W.__TOY_PERF__=M;
+M.pnow=function(){try{return P.now?P.now():(Date.now()-M.t0);}catch(e){return 0;}};
+M.head=Math.round(P.now?P.now():0);
+M.t0=Math.round((P.timeOrigin!==undefined&&P.timeOrigin!==null)?P.timeOrigin:
+ ((P.timing&&P.timing.navigationStart)||Date.now()));
+M.sid=(W.crypto&&W.crypto.randomUUID)?W.crypto.randomUUID():
+ (Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,10));
+M.fcp=undefined;
+M.readFCP=function(){try{
+ if(M.fcp!==undefined){return M.fcp;}
+ var es=P.getEntriesByType("paint")||[];
+ for(var i=0;i<es.length;i++){
+  if(es[i].name==="first-contentful-paint"){M.fcp=Math.round(es[i].startTime);return M.fcp;}}
+}catch(e){}
+return M.fcp;};
+try{var po=new W.PerformanceObserver(function(l){try{
+ var es=l.getEntries();for(var i=0;i<es.length;i++){
+  if(es[i].name==="first-contentful-paint"&&M.fcp===undefined){M.fcp=Math.round(es[i].startTime);
+   try{if(M.onFCP){M.onFCP();}}catch(e){}}}
+}catch(e){}});
+try{po.observe({type:"paint",buffered:true});}catch(e){po.observe({entryTypes:["paint"]});}
+}catch(e){}
+M.probe=function(){try{
+ var hit=[];var d=document;
+ var add=function(k){if(hit.indexOf(k)<0){hit.push(k);}};
+ if(W.unityInstance||W.UnityLoader||W.createUnityInstance){add("unity");}
+ if(W.vm||W.Scratch||W.ScratchVM){add("scratch");}
+ if(W.cc||W.cocos){add("cocos");}
+ if(W.Godot){add("godot");}
+ if(W.PIXI){add("pixi");}
+ if(W.Phaser){add("phaser");}
+ if(W.THREE){add("three");}
+ if(W.BABYLON){add("babylon");}
+ if(W.WebAssembly&&W.Module&&(W.Module.asm||W.Module.wasmBinary||W._malloc)){add("wasm");}
+ if(W.Vue||d.querySelector&&d.querySelector("[data-v-app]")){add("vue");}
+ if(W.React||W.ReactDOM){add("react");}
+ for(var i=0;i<hit.length;i++){if(M.fw.indexOf(hit[i])<0){M.fw.push(hit[i]);}}
+}catch(e){}};
+M.kind=function(){try{
+ var cv=document.getElementsByTagName?document.getElementsByTagName("canvas"):[];
+ var engine=["unity","scratch","cocos","godot","pixi","phaser","three","babylon"];
+ var hasEngine=false;
+ for(var i=0;i<engine.length;i++){if(M.fw.indexOf(engine[i])>=0){hasEngine=true;break;}}
+ if(cv&&cv.length>0){return hasEngine?"canvas-engine":"canvas";}
+ return hasEngine?"dom-engine":"dom";
+}catch(e){return "unknown";}};
+M.collect=function(withKind){try{
+ var nav=(P.getEntriesByType("navigation")||[])[0]||{};
+ var o={toy_id:M.toyID,render_mode:M.renderMode,layer:M.layer,
+  session_id:M.sid,time_origin:M.t0};
+ var put=function(k,v){try{var x=Math.round(v||0);if(x>0){o[k]=x;}}catch(e){}};
+ put("ttfb",nav.responseStart);put("dcl",nav.domContentLoadedEventEnd);
+ put("load",nav.loadEventEnd);put("doc_bytes",nav.decodedBodySize);
+ put("head_ms",M.head);put("transfer_bytes",nav.transferSize);
+ put("encoded_bytes",nav.encodedBodySize);
+ if(withKind){M.probe();o.kind=M.kind();o.fw=M.fw.join(",");}
+ var fcp=M.readFCP();
+ if(fcp!==undefined){o.fcp=fcp;}
+ if(M.fcpEst!==undefined){o.fcp_est=M.fcpEst;}
+ if(M.selfArmed){put("ff_self",M.ffSelf);o.ff_self_src=M.ffSrc||(M.selfDone?"none":"pending");}
+ return o;
+}catch(e){return null;}};
+}catch(e){}})();(function(){try{
+var W=window;var M=W.__TOY_PERF__;if(!M){return;}
+var P=W.performance;if(!P){return;}
+M.fcpEst=undefined;
+M.armEst=function(){try{
+ if(M.estArmed){return;}M.estArmed=true;
+ if(!W.MutationObserver){return;}
+ var D=document;
+ var SKIP={SCRIPT:1,STYLE:1,LINK:1,META:1,HEAD:1,TITLE:1,NOSCRIPT:1,TEMPLATE:1};
+ var INK={IMG:1,SVG:1,VIDEO:1,INPUT:1,BUTTON:1,TEXTAREA:1,SELECT:1};
+ var vis=function(n){try{var s=W.getComputedStyle(n);
+  return !s||(s.display!=="none"&&s.visibility!=="hidden"&&s.opacity!=="0");
+ }catch(e){return true;}};
+ var scan=function(n,dep){try{
+  if(dep>14){return false;}
+  if(n.nodeType===3){return /\S/.test(n.nodeValue||"");}
+  if(n.nodeType!==1){return false;}
+  if(SKIP[n.tagName]){return false;}
+  if(!vis(n)){return false;}
+  if(INK[n.tagName]){return true;}
+  try{var s=W.getComputedStyle(n);
+   if(s&&s.backgroundImage&&s.backgroundImage!=="none"){return true;}}catch(e){}
+  var c=n.childNodes||[];
+  for(var i=0;i<c.length;i++){if(scan(c[i],dep+1)){return true;}}
+  return false;
+ }catch(e){return false;}};
+ var anc=function(n){try{var p=n.parentNode;
+  while(p&&p.nodeType===1){if(SKIP[p.tagName]||!vis(p)){return false;}p=p.parentNode;}
+  return true;
+ }catch(e){return true;}};
+ var ink=function(n){try{
+  if(!n||!D.body){return false;}
+  if(n!==D.body&&(!D.body.contains||!D.body.contains(n))){return false;}
+  if(!anc(n)){return false;}
+  return scan(n,0);
+ }catch(e){return false;}};
+ var now=function(){try{return Math.round(P.now?P.now():(Date.now()-M.t0));}catch(e){return 0;}};
+ var mark=function(){try{
+  if(M.fcpEst!==undefined){return;}
+  var set=function(){try{if(M.fcpEst===undefined){M.fcpEst=now();}}catch(e){}};
+  if(W.requestAnimationFrame){W.requestAnimationFrame(function(){try{setTimeout(set,0);}catch(e){set();}});}
+  else{setTimeout(set,16);}
+ }catch(e){}};
+ var both=function(){try{mark();if(M.selfMark){M.selfMark();}}catch(e){}};
+ var mo=new W.MutationObserver(function(rs){try{
+  for(var i=0;i<rs.length;i++){
+   var a=rs[i].addedNodes||[];
+   for(var j=0;j<a.length;j++){if(ink(a[j])){both();mo.disconnect();return;}}
+   if(rs[i].type==="characterData"&&ink(rs[i].target)){both();mo.disconnect();return;}}
+ }catch(e){}});
+ mo.observe(D,{childList:true,subtree:true,characterData:true});
+}catch(e){}};
+}catch(e){}})();(function(){try{
+var W=window;var M=W.__TOY_PERF__;if(!M){return;}
+var P=W.performance;if(!P){return;}
+M.ffSelf=undefined;M.ffSrc=undefined;M.cvs=[];
+var hit=function(src){try{
+ if(M.ffSelf!==undefined){return;}
+ M.ffSelf=Math.round(M.pnow());M.ffSrc=src;M.unhookCtx();
+ try{if(M.onSelf){M.onSelf();}}catch(e){}
+}catch(e){}};
+M.unhookCtx=function(){try{
+ var H=W.HTMLCanvasElement;
+ if(M.gcOrig&&H&&H.prototype&&H.prototype.getContext===M.gcWrap){H.prototype.getContext=M.gcOrig;}
+ M.gcOrig=null;M.gcWrap=null;M.cvs=[];
+}catch(e){}};
+M.selfMark=function(){try{
+ if(M.ffSelf!==undefined||!W.requestAnimationFrame){return;}
+ W.requestAnimationFrame(function(){try{
+  W.requestAnimationFrame(function(){try{hit("raf2");}catch(e){}});
+ }catch(e){}});
+}catch(e){}};
+M.armSelf=function(){try{
+ if(M.selfArmed){return;}M.selfArmed=true;
+ var H=W.HTMLCanvasElement;
+ if(!H||!H.prototype||typeof H.prototype.getContext!=="function"){return;}
+ var orig=H.prototype.getContext;
+ M.gcOrig=orig;
+ M.gcWrap=function(t){
+  var r=orig.apply(this,arguments);
+  try{if(r&&M.cvs.length<8){
+   var dup=false;
+   for(var i=0;i<M.cvs.length;i++){if(M.cvs[i].c===this){dup=true;break;}}
+   if(!dup){M.cvs.push({c:this,t:(""+t).toLowerCase(),x:r,bad:false});}}}catch(e){}
+  return r;};
+ H.prototype.getContext=M.gcWrap;
+}catch(e){}};
+M.probeCanvas=function(round){try{
+ if(M.ffSelf!==undefined){return;}
+ var D=document;var gl=false;var tainted=false;
+ for(var i=0;i<M.cvs.length;i++){
+  var q=M.cvs[i];var cv=q.c;var x=q.x;
+  if(q.t.indexOf("webgl")>=0||q.t.indexOf("webgpu")>=0){gl=true;continue;}
+  if(q.bad||q.t!=="2d"||!x||!x.getImageData||!cv){continue;}
+  if(D.body&&D.body.contains&&!D.body.contains(cv)){continue;}
+  if(!cv.clientWidth||!cv.clientHeight||!cv.width||!cv.height){continue;}
+  var w=cv.width,h=cv.height;
+  var pts=[[w>>1,h>>1],[0,0],[w-1,h-1],[w>>2,h>>2]];
+  var p=pts[(round||0)%pts.length];
+  try{
+   var d=x.getImageData(p[0],p[1],1,1).data;
+   if(d[3]!==0||d[0]!==0||d[1]!==0||d[2]!==0){hit("pixel");return;}
+  }catch(er){q.bad=true;if(er&&er.name==="SecurityError"){tainted=true;}}
+ }
+ if(M.ffSrc===undefined){if(gl){M.ffSrc="gl-blind";}else if(tainted){M.ffSrc="tainted";}}
+}catch(e){}};
+}catch(e){}})();(function(){try{
+var W=window;var M=W.__TOY_PERF__;if(!M){return;}
+var NS="toy-shell-ability";
+M.toyID=57267118414848;M.renderMode=2;
+M.layer="content";
+M.armEst();M.armSelf();
+try{var pn=0;var pt=M.pnow();var pdone=function(){try{clearInterval(pk);}catch(e){}
+ try{if(M.unhookCtx){M.unhookCtx();}}catch(e){}
+ M.selfDone=true;try{if(M.onSelf){M.onSelf();}}catch(e){}};
+var pk=setInterval(function(){try{
+ M.probeCanvas(pn);
+ if(M.ffSelf!==undefined||++pn>=12||
+  (M.pnow()-pt)>=3600){pdone();}
+}catch(e){pdone();}},300);}catch(e){}
+M.seq=0;
+var flush=function(rs,up){try{
+ if(up==="self"){if(M.sent3){return;}M.sent3=true;}
+ else if(up){if(M.sent2){return;}M.sent2=true;}
+ else{if(M.sent){return;}M.sent=true;}
+ var o=M.collect(true);if(!o){return;}
+ o.flush_reason=up?(up==="self"?"self":"up"):rs;o.seq=++M.seq;o.ns=NS;o.type="perf";
+ M.pendingOut=(o.ff_self_src==="pending");
+ if(W.parent&&W.parent!==W){W.parent.postMessage(o,"*");}
+}catch(e){}};
+try{var n=0;var tk=setInterval(function(){try{M.probe();if(++n>8||M.done){clearInterval(tk);}}catch(e){}},400);}catch(e){}
+var arm=function(){try{
+ var waited=0;
+ var stop=function(t){try{M.done=true;clearInterval(t);}catch(e){}};
+ var tick=setInterval(function(){try{
+  waited+=300;
+  if(M.readFCP()!==undefined){stop(tick);flush("fcp",M.sent);return;}
+  if(M.fcpEst!==undefined){flush("est",false);}
+  if(waited>=5000){stop(tick);flush("bound",false);}
+ }catch(e){stop(tick);flush("err",false);}},300);
+ M.onFCP=function(){try{
+  if(!M.sent||M.sent2){return;}
+  stop(tick);flush("fcp",true);
+ }catch(e){}};
+ M.onSelf=function(){try{
+  if(!M.sent||M.sent3||!M.pendingOut){return;}
+  flush("self","self");
+ }catch(e){}};
+}catch(e){flush("err",false);}};
+if(document.readyState==="complete"){arm();}
+else{W.addEventListener("load",arm,false);}
+}catch(e){}})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>土豆史诗</title>
+<style>
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000;
+    touch-action: none; overscroll-behavior: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+  canvas { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  #ui { pointer-events: none; }
+  #textinput { position: absolute; display: none; background: transparent; border: none; outline: none; color: transparent;
+    caret-color: transparent; font-family: monospace; padding: 0 2px; z-index: 5; }
+  /* D-003: 启动失败面板置顶层（z-index 99 > #boot 的 9），深底 + 橙左边条（对齐 #boot 的 rgba(14,16,20,.9) / #FF5A1F 视觉语言），
+     白字 #F2EFE9 于深底对比度 ≈ 15.8:1（≥4.5:1），含「重试」行动入口（#err-retry，深字压橙底 ≈ 6.2:1） */
+  #err { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); z-index: 99; display: none; pointer-events: auto;
+    color: #F2EFE9; font: 14px/1.7 "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; text-align: center; white-space: normal; }
+  #err .err-panel { background: rgba(14, 16, 20, .92); border-left: 4px solid #FF5A1F; padding: 26px 34px 28px; max-width: min(78vw, 520px);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, .55); }
+  #err .err-title { font: 900 20px/1.3 "Bahnschrift", "Arial Narrow", sans-serif; letter-spacing: 2px; color: #FF5A1F; margin-bottom: 10px; }
+  #err .err-msg { font: 12px/1.6 monospace; color: rgba(242, 239, 233, .85); word-break: break-all; margin-bottom: 8px; }
+  #err .err-hint { color: rgba(242, 239, 233, .8); font-size: 13px; }
+  #err .err-actions { margin-top: 18px; }
+  #err-retry { pointer-events: auto; cursor: pointer; border: 0; padding: 9px 34px; font: 700 14px "PingFang SC", "Microsoft YaHei", sans-serif;
+    letter-spacing: 6px; text-indent: 6px; color: #0E0F12; background: #FF5A1F; box-shadow: 0 0 14px rgba(255, 90, 31, .55); }
+  #err-retry:active { transform: translateY(1px); }
+  /* the boot screen (the user 11-16: 「这个要改的有设计感一些」「进入的界面我觉得可以做的再酷一点」): dark, a HUD round it */
+  #boot { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9; overflow: hidden;
+    color: #F2EFE9; font: 700 14px "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; --u: min(1vw, 1.78vh); --or: #FF5A1F;
+    background-color: #0E0F12; background-image: radial-gradient(ellipse at center, rgba(255,90,31,.10), transparent 60%),
+      linear-gradient(rgba(242,239,233,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(242,239,233,.05) 1px, transparent 1px);
+    background-size: 100% 100%, calc(var(--u) * 4.2) calc(var(--u) * 4.2), calc(var(--u) * 4.2) calc(var(--u) * 4.2);
+    transition: opacity .45s ease, transform .45s ease, filter .45s ease; }
+  #boot.done { opacity: 0; transform: scale(1.06); filter: blur(6px); pointer-events: none; }
+  #boot::after { content: ''; position: absolute; left: 0; right: 0; height: 22vh; top: -22vh; pointer-events: none;
+    background: linear-gradient(transparent, rgba(255,90,31,.07), transparent); animation: btScan 3.2s linear infinite; }
+  @keyframes btScan { to { transform: translateY(144vh); } }
+  #boot .bt-mid { position: relative; width: min(calc(var(--u) * 62), calc(var(--bw, 1vw) * 86)); }
+  #boot .bt-ring { position: absolute; left: 50%; top: 40%; width: calc(var(--u) * 46); height: calc(var(--u) * 46); margin: calc(var(--u) * -23) 0 0 calc(var(--u) * -23);
+    color: rgba(255,90,31,.16); animation: btSpin 14s linear infinite, btFade 1s ease backwards; }
+  @keyframes btSpin { to { transform: rotate(360deg); } }
+  @keyframes btFade { from { opacity: 0; transform: scale(.85); } }
+  #boot .bt-logo { position: relative; animation: btReveal .9s cubic-bezier(.7,0,.2,1) backwards .1s; }
+  #boot .bt-logo svg { display: block; width: 100%; height: auto; }
+  @keyframes btReveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+  #boot .bt-load { position: relative; margin-top: calc(var(--u) * 1.6); animation: btFade .6s ease backwards .5s; }
+  #bootbar { height: 16px; border: 2px solid rgba(242,239,233,.85); padding: 3px; }
+  #bootbar i { display: block; height: 100%; width: 0; transition: width .25s ease-out; box-shadow: 0 0 14px rgba(255,90,31,.55);
+    background: repeating-linear-gradient(90deg, var(--or) 0 10px, rgba(255,90,31,.25) 10px 13px); }
+  #boot .bt-row { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 10px; }
+  #boottext { font-size: 13px; letter-spacing: 1px; color: rgba(242,239,233,.8); }
+  #bootpct { font: 900 calc(var(--u) * 3.6) / 1 "Bahnschrift", "DIN Alternate", "Arial Narrow", sans-serif; font-variant-numeric: tabular-nums; color: var(--or); letter-spacing: 1px; }
+  #boottip { position: absolute; bottom: calc(var(--u) * 6); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 13px; color: rgba(242,239,233,.75); transition: opacity .25s ease; }
+  #boottip b { color: #0E0F12; background: var(--or); padding: 1px 6px; margin-right: 8px; font-size: 11px; letter-spacing: 1px; }
+  #boot .hud { position: absolute; font: 700 11px/1.4 "Bahnschrift", "Arial Narrow", sans-serif; letter-spacing: 2px; color: rgba(242,239,233,.55); }
+  #boot .hud.tl { left: calc(var(--u) * 4); top: calc(var(--u) * 4); } #boot .hud.tr { right: calc(var(--u) * 4); top: calc(var(--u) * 4); text-align: right; }
+  #boot .hud.bl { left: calc(var(--u) * 4); bottom: calc(var(--u) * 4); } #boot .hud.br { right: calc(var(--u) * 4); bottom: calc(var(--u) * 4); text-align: right; }
+  #boot .hud i { display: inline-block; width: 7px; height: 7px; background: var(--or); margin-right: 8px; animation: btBlink 1s steps(2) infinite; }
+  @keyframes btBlink { 50% { opacity: .2; } }
+  #boot .cn { position: absolute; width: calc(var(--u) * 3); height: calc(var(--u) * 3); border: 3px solid var(--or); }
+  #boot .cn.a { left: calc(var(--u) * 2); top: calc(var(--u) * 2); border-right: 0; border-bottom: 0; } #boot .cn.b { right: calc(var(--u) * 2); top: calc(var(--u) * 2); border-left: 0; border-bottom: 0; }
+  #boot .cn.c { left: calc(var(--u) * 2); bottom: calc(var(--u) * 2); border-right: 0; border-top: 0; } #boot .cn.d { right: calc(var(--u) * 2); bottom: calc(var(--u) * 2); border-left: 0; border-top: 0; }
+  #bootnote { display: none; }
+  /* D-004: 失败终态 —— boot 装饰层淡出隐藏（logo 不再压住错误面板，S-10 几何重叠随之解除），加载条定格为错误样式 */
+  #boot.fail .bt-ring, #boot.fail .bt-logo, #boot.fail .hud, #boot.fail .cn, #boot.fail #boottip { display: none; }
+  #bootbar.fail { border-color: rgba(255, 90, 31, .9); }
+  #bootbar.fail i { background: #FF5A1F; box-shadow: 0 0 14px rgba(255, 90, 31, .8); }
+  .bt-logo.flying { transition: transform .95s cubic-bezier(.75,0,.2,1); }
+  .bt-logo.flying path[fill="#F2EFE9"], .bt-logo.flying rect[fill="#5A5E66"] { fill: #111111; transition: fill .7s ease .2s; }
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<canvas id="ui"></canvas>
+<input id="textinput" type="text" autocomplete="off" spellcheck="false">
+<div id="boot"><span class="cn a"></span><span class="cn b"></span><span class="cn c"></span><span class="cn d"></span><div class="hud tl"><i></i>POTATO EPIC // VOXEL SHOOTER</div><div class="hud tr"><span id="build-number">BUILD</span><br>SYS · READY</div><div class="hud bl">土豆史诗 · 仅在 B站 Toy 平台发布</div><div class="hud br">PVP · 1V1 · RANKED</div><div class="bt-mid"><svg class="bt-ring" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="100" cy="100" r="58" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6"/><path d="M100 4v40M100 156v40M4 100h40M156 100h40" stroke="currentColor" stroke-width="3"/></svg><div class="bt-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1028 602">
+<path transform="translate(90.00,90.00) scale(2.0000)" d="M12,30h76v16h-76zM41,0h18v86h-18zM0,84h100v16h-100z" fill="#F2EFE9"/>
+<path transform="translate(306.00,90.00) scale(2.0000)" d="M0,0h100v15h-100zM14,22h72v14h-72zM14,50h72v14h-72zM14,22h17v42h-17zM69,22h17v42h-17zM22,68L38,68L46,86L30,86zM62,68L78,68L70,86L54,86zM0,86h100v14h-100z" fill="#F2EFE9"/>
+<path transform="translate(522.00,90.00) scale(2.0000)" d="M6,12h88v15h-88zM6,40h88v14h-88zM6,12h17v42h-17zM77,12h17v42h-17zM40,0h20v56h-20zM40,52L60,52L28,100L6,100zM24,60L52,60L100,100L72,100z" fill="#F2EFE9"/>
+<path transform="translate(738.00,90.00) scale(2.0000)" d="M2,0L18,0L26,16L10,16zM0,28h25v15h-25zM9,28h16v72h-16zM9,86h24v14h-24zM44,8h50v14h-50zM61,0h16v44h-16zM36,32h64v14h-64zM36,52h64v14h-64zM80,52h16v40h-16zM64,86h32v14h-32zM44,70L56,70L62,84L50,84z" fill="#F2EFE9"/>
+<path d="M164.95,330.17h8.65v8.65h-8.65zM173.59,330.17h8.65v8.65h-8.65zM182.24,338.81h8.65v8.65h-8.65zM156.30,356.11h8.65v8.65h-8.65zM190.88,356.11h8.65v8.65h-8.65zM173.59,364.75h8.65v8.65h-8.65zM190.88,364.75h8.65v8.65h-8.65zM182.24,373.40h8.65v8.65h-8.65zM104.42,382.04h8.65v8.65h-8.65zM121.72,382.04h8.65v8.65h-8.65zM156.30,382.04h8.65v8.65h-8.65zM182.24,382.04h8.65v8.65h-8.65zM104.42,390.69h8.65v8.65h-8.65zM173.59,390.69h8.65v8.65h-8.65zM113.07,399.34h8.65v8.65h-8.65zM164.95,399.34h8.65v8.65h-8.65zM121.72,407.98h8.65v8.65h-8.65zM147.65,407.98h8.65v8.65h-8.65z" fill="#966238"/>
+<path d="M182.24,330.17h8.65v8.65h-8.65zM190.88,338.81h8.65v8.65h-8.65zM190.88,347.46h8.65v8.65h-8.65zM130.36,356.11h8.65v8.65h-8.65zM199.53,356.11h8.65v8.65h-8.65zM199.53,364.75h8.65v8.65h-8.65zM190.88,373.40h8.65v8.65h-8.65zM199.53,373.40h8.65v8.65h-8.65zM190.88,382.04h8.65v8.65h-8.65zM182.24,390.69h8.65v8.65h-8.65zM190.88,390.69h8.65v8.65h-8.65zM104.42,399.34h8.65v8.65h-8.65zM147.65,399.34h8.65v8.65h-8.65zM173.59,399.34h8.65v8.65h-8.65zM113.07,407.98h8.65v8.65h-8.65zM156.30,407.98h8.65v8.65h-8.65zM130.36,416.63h8.65v8.65h-8.65zM139.01,416.63h8.65v8.65h-8.65zM147.65,416.63h8.65v8.65h-8.65z" fill="#895435"/>
+<path d="M156.30,338.81h8.65v8.65h-8.65zM147.65,347.46h8.65v8.65h-8.65zM139.01,356.11h8.65v8.65h-8.65zM182.24,356.11h8.65v8.65h-8.65zM121.72,364.75h8.65v8.65h-8.65zM113.07,373.40h8.65v8.65h-8.65zM113.07,390.69h8.65v8.65h-8.65zM156.30,399.34h8.65v8.65h-8.65zM130.36,407.98h8.65v8.65h-8.65zM139.01,407.98h8.65v8.65h-8.65z" fill="#A56F35"/>
+<path d="M164.95,338.81h8.65v8.65h-8.65zM173.59,347.46h8.65v8.65h-8.65zM147.65,356.11h8.65v8.65h-8.65zM139.01,364.75h8.65v8.65h-8.65zM147.65,364.75h8.65v8.65h-8.65zM156.30,364.75h8.65v8.65h-8.65zM182.24,364.75h8.65v8.65h-8.65zM147.65,373.40h8.65v8.65h-8.65zM164.95,373.40h8.65v8.65h-8.65zM113.07,382.04h8.65v8.65h-8.65zM147.65,382.04h8.65v8.65h-8.65zM173.59,382.04h8.65v8.65h-8.65zM121.72,390.69h8.65v8.65h-8.65zM156.30,390.69h8.65v8.65h-8.65zM164.95,390.69h8.65v8.65h-8.65zM121.72,399.34h8.65v8.65h-8.65zM130.36,399.34h8.65v8.65h-8.65z" fill="#B57D3B"/>
+<path d="M173.59,338.81h8.65v8.65h-8.65zM182.24,347.46h8.65v8.65h-8.65zM130.36,364.75h8.65v8.65h-8.65zM164.95,364.75h8.65v8.65h-8.65zM139.01,373.40h8.65v8.65h-8.65zM156.30,373.40h8.65v8.65h-8.65zM173.59,373.40h8.65v8.65h-8.65zM164.95,382.04h8.65v8.65h-8.65zM130.36,390.69h8.65v8.65h-8.65zM139.01,390.69h8.65v8.65h-8.65zM147.65,390.69h8.65v8.65h-8.65zM139.01,399.34h8.65v8.65h-8.65z" fill="#C48A3F"/>
+<path d="M156.30,347.46h8.65v8.65h-8.65zM164.95,347.46h8.65v8.65h-8.65zM164.95,356.11h8.65v8.65h-8.65zM173.59,356.11h8.65v8.65h-8.65zM121.72,373.40h8.65v8.65h-8.65zM130.36,373.40h8.65v8.65h-8.65zM130.36,382.04h8.65v8.65h-8.65zM139.01,382.04h8.65v8.65h-8.65z" fill="#CF954B"/>
+<path d="M199.53,347.46h8.65v8.65h-8.65z" fill="#6F3C1E"/>
+<path d="M199.53,382.04h8.65v8.65h-8.65zM182.24,399.34h8.65v8.65h-8.65zM190.88,399.34h8.65v8.65h-8.65zM104.42,407.98h8.65v8.65h-8.65zM164.95,407.98h8.65v8.65h-8.65zM173.59,407.98h8.65v8.65h-8.65zM182.24,407.98h8.65v8.65h-8.65zM113.07,416.63h8.65v8.65h-8.65zM121.72,416.63h8.65v8.65h-8.65zM156.30,416.63h8.65v8.65h-8.65zM164.95,416.63h8.65v8.65h-8.65zM173.59,416.63h8.65v8.65h-8.65zM130.36,425.27h8.65v8.65h-8.65zM139.01,425.27h8.65v8.65h-8.65zM147.65,425.27h8.65v8.65h-8.65zM156.30,425.27h8.65v8.65h-8.65z" fill="#6F4025"/>
+<circle cx="159.17" cy="385.17" r="49.80" fill="none" stroke="#1C120A" stroke-width="7.10"/>
+<line x1="124.31" y1="385.17" x2="94.43" y2="385.17" stroke="#1C120A" stroke-width="7.10"/>
+<line x1="194.03" y1="385.17" x2="223.91" y2="385.17" stroke="#1C120A" stroke-width="7.10"/>
+<line x1="159.17" y1="350.31" x2="159.17" y2="320.43" stroke="#1C120A" stroke-width="7.10"/>
+<line x1="159.17" y1="420.03" x2="159.17" y2="449.91" stroke="#1C120A" stroke-width="7.10"/>
+<circle cx="159.17" cy="385.17" r="49.80" fill="none" stroke="#FFFFFF" stroke-width="3.74"/>
+<line x1="124.31" y1="385.17" x2="94.43" y2="385.17" stroke="#FFFFFF" stroke-width="3.74"/>
+<line x1="194.03" y1="385.17" x2="223.91" y2="385.17" stroke="#FFFFFF" stroke-width="3.74"/>
+<line x1="159.17" y1="350.31" x2="159.17" y2="320.43" stroke="#FFFFFF" stroke-width="3.74"/>
+<line x1="159.17" y1="420.03" x2="159.17" y2="449.91" stroke="#FFFFFF" stroke-width="3.74"/>
+<rect x="153.19" y="379.19" width="11.95" height="11.95" fill="#1C120A"/>
+<rect x="154.69" y="380.69" width="8.96" height="8.96" fill="#FF5A1F"/>
+<path transform="translate(250.47,316.00) scale(1.3834)" d="M0,0H38L44,6V52L38,58H16V100H0Z M16,15V43H28V15Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(321.02,316.00) scale(1.3834)" d="M6,0H38L44,6V94L38,100H6L0,94V6Z M16,15V85H28V15Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(391.57,316.00) scale(1.3834)" d="M0,0H44V15H30.0V100H14.0V15H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(462.12,316.00) scale(1.3834)" d="M6,0H38L44,6V100H28V57.5H16V100H0V6Z M16,15V42.5H28V15Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(532.68,316.00) scale(1.3834)" d="M0,0H44V15H30.0V100H14.0V15H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(603.23,316.00) scale(1.3834)" d="M6,0H38L44,6V94L38,100H6L0,94V6Z M16,15V85H28V15Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(704.21,316.00) scale(1.3834)" d="M0,0H44V15H16V42.5H38V57.5H16V85H44V100H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(774.76,316.00) scale(1.3834)" d="M0,0H38L44,6V52L38,58H16V100H0Z M16,15V43H28V15Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(845.31,316.00) scale(1.3834)" d="M0,0H16V100H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(877.13,316.00) scale(1.3834)" d="M6,0H44V15H16V85H44V100H6L0,94V6Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<rect x="90" y="478.34" width="848.00" height="3" fill="#5A5E66"/>
+<path transform="translate(90.00,497.34) scale(0.1500)" d="M0,0H16V70L22.0,84L28,70V0H44V76L26.0,100H18.0L0,76Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(102.60,497.34) scale(0.1500)" d="M6,0H38L44,6V94L38,100H6L0,94V6Z M16,15V85H28V15Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(115.20,497.34) scale(0.1500)" d="M0,0H16L44,100H28Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(115.20,497.34) scale(0.1500)" d="M28,0H44L16,100H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(127.80,497.34) scale(0.1500)" d="M0,0H44V15H16V42.5H38V57.5H16V85H44V100H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(140.40,497.34) scale(0.1500)" d="M0,0H16V85H44V100H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(166.50,497.34) scale(0.1500)" d="M6,0H44V15H16V42.5H38L44,48.5V94L38,100H0V85H28V57.5H6L0,51.5V6Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(179.10,497.34) scale(0.1500)" d="M0,0H16V42.5H28V0H44V100H28V57.5H16V100H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(191.70,497.34) scale(0.1500)" d="M6,0H38L44,6V94L38,100H6L0,94V6Z M16,15V85H28V15Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(204.30,497.34) scale(0.1500)" d="M6,0H38L44,6V94L38,100H6L0,94V6Z M16,15V85H28V15Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(216.90,497.34) scale(0.1500)" d="M0,0H44V15H30.0V100H14.0V15H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(229.50,497.34) scale(0.1500)" d="M0,0H44V15H16V42.5H38V57.5H16V85H44V100H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(242.10,497.34) scale(0.1500)" d="M0,0H38L44,6V52L38,58H16V100H0Z M16,15V43H28V15Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(242.10,497.34) scale(0.1500)" d="M28,52H44V100H28Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(893.60,497.34) scale(0.1500)" d="M0,0H38L44,6V58H16V85H44V100H0V42H28V15H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(906.20,497.34) scale(0.1500)" d="M6,0H38L44,6V94L38,100H6L0,94V6Z M16,15V85H28V15Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(918.80,497.34) scale(0.1500)" d="M0,0H38L44,6V58H16V85H44V100H0V42H28V15H0Z" fill="#F2EFE9" fill-rule="evenodd"/>
+<path transform="translate(931.40,497.34) scale(0.1500)" d="M6,0H44V15H16V42H38L44,48V94L38,100H6L0,94V6Z M16,58V85H28V58Z" fill="#F2EFE9" fill-rule="evenodd"/>
+</svg></div><div class="bt-load"><div id="bootbar"><i></i></div><div class="bt-row"><span id="boottext">正在加载…</span><span id="bootpct">0%</span></div></div></div><div id="boottip"></div><div id="bootnote"></div></div>
+<script>
+  // (a phone held upright: the boot screen on its side as the game will be - mobile.js's Stage, once it is there, decides;
+  // before, a coarse pointer on a small upright screen. --u / --bw from the turned size)
+  (function () {
+    function fit() {
+      var b = document.getElementById('boot'); if (!b) return;
+      var S = typeof Stage !== 'undefined' ? Stage : null, st = S && S.el, rot;
+      if (st) rot = !!S.rot; else rot = !!(window.matchMedia && matchMedia('(pointer: coarse)').matches) && Math.min(screen.width, screen.height) < 600 && innerHeight > innerWidth * 1.05;
+      if (st && b.parentNode !== st) st.appendChild(b);
+      var w = rot ? innerHeight : innerWidth, h = rot ? innerWidth : innerHeight;
+      var clr = function () { ['position', 'left', 'top', 'right', 'bottom', 'width', 'height', 'transform', 'transformOrigin', 'transition'].forEach(function (k) { b.style[k] = ''; }); };
+      if (st) { clr(); w = S.w(); h = S.h(); }
+      else if (rot) { b.style.position = 'fixed'; b.style.left = '0px'; b.style.top = '0px'; b.style.right = 'auto'; b.style.bottom = 'auto'; b.style.width = w + 'px'; b.style.height = h + 'px'; b.style.transformOrigin = '0 0'; b.style.transition = 'opacity .45s ease, filter .45s ease'; b.style.transform = 'translateX(' + innerWidth + 'px) rotate(90deg)'; }
+      else clr();
+      b.style.setProperty('--u', Math.min(w / 100, h * 1.78 / 100) + 'px'); b.style.setProperty('--bw', (w / 100) + 'px');
+      self.BOOT_ROT = rot;
+    }
+    self.fitBoot = fit;
+    fit(); addEventListener('DOMContentLoaded', fit); addEventListener('resize', function () { setTimeout(fit, 0); }); addEventListener('load', function () { setTimeout(fit, 0); });
+  })();
+</script>
+<script>
+  // #C2 土豆史诗: the pure-shooter game - the lobby instead of the title, the gun mods built in (js/potato.js)
+  self.POTATO = true; self.MODS_ALWAYS = ['xzguns', 'xzrange'];
+</script>
+<script>
+  // D-010: 版本展示单源（production/release/versioning.md §4）—— GAME_BUILD（js/telemetry.js）是唯一事实源：
+  // 构建时 tools/build.mjs 从源码提取该值填充 build-number 占位节点；运行时在此同步。
+  // 脚本加载失败时保留通用「BUILD」字样，不展示伪造旧版本。
+  (function () {
+    var el = document.getElementById('build-number');
+    if (!el) return;
+    var sync = function () {
+      var v = null;
+      try { v = (typeof GAME_BUILD !== 'undefined') ? GAME_BUILD : null; } catch (e) { }
+      if (v && el.textContent !== 'BUILD ' + v) el.textContent = 'BUILD ' + v;
+    };
+    sync(); addEventListener('load', sync);
+  })();
+</script>
+<script>
+  // the loading bar: the game's scripts as they arrive (how many there are: counted in this page itself), then the
+  // start-up (textures, the title world) creeping on until the title screen is up
+  (function () {
+    var bar = document.querySelector('#bootbar i'), txt = document.getElementById('boottext'), total = 90, got = 0, shown = 0;
+    // (D-004: boot 失败终态 - main.js 的 init catch 调 self.BOOT_FAIL(e)：装饰层淡出、加载条冻结为错误样式、
+    //  文案切「启动失败」终态、露出 #err 面板（含重试按钮）；不再出现「失败后假进度爬到 98%」的界面撒谎)
+    var failed = false;
+    self.BOOT_FAIL = function (err) {
+      failed = true;
+      var b = document.getElementById('boot');
+      if (b) b.classList.add('fail');
+      var bb = document.getElementById('bootbar');
+      if (bb) bb.classList.add('fail');
+      txt.textContent = '启动失败';
+      var pcf = document.getElementById('bootpct'); if (pcf) pcf.textContent = Math.floor(shown) + '%';
+      var e = document.getElementById('err');
+      if (!e) return;
+      var msg = (err && err.message) || (err ? String(err) : '未知错误');
+      e.innerHTML = '<div class="err-panel"><div class="err-title">启动失败</div><div class="err-msg"></div>' +
+        '<div class="err-hint">请使用最新版 Chrome / Edge / Firefox 浏览器打开，并确保已启用 WebGL2 / 硬件加速。</div>' +
+        '<div class="err-actions"><button id="err-retry" type="button">重试</button></div></div>';
+      e.querySelector('.err-msg').textContent = msg;
+      document.getElementById('err-retry').addEventListener('click', function () { location.reload(); });
+      e.style.display = 'block';
+    };
+    // (the tags counted with a pattern that is not itself one: the plain one counted this line too, one more than there
+    // are - the bar waited at 84 % for a script that never came, all through the start-up, 11-10; the mods' scripts,
+    // written in by mods.js, are added as they are written: self.BOOT_EXTRA)
+    var tag = new RegExp('<scr' + 'ipt src=', 'g');
+    try { fetch(location.href, { cache: 'force-cache' }).then(function (r) { return r.text(); }).then(function (t) { var n = (t.match(tag) || []).length; if (n) total = n; }).catch(function () { }); } catch (e) { }
+    document.addEventListener('load', function (e) { if (e.target && e.target.tagName === 'SCRIPT' && e.target.src) got++; }, true);
+    // (all the scripts in - window load - is the end of loading whatever was counted)
+    var loaded = false; addEventListener('load', function () { loaded = true; });
+    var t0 = 0;
+    // (drawn again by the game too as it starts up a step - game.js init: self.BOOT_STEP, BOOT_DRAW)
+    var draw = self.BOOT_DRAW = function () {
+      if (failed) return false; // (D-004: 失败终态 - 加载条冻结在当前值，循环停走，文案已切「启动失败」)
+      if (self.BOOT_HELD) return false; // (loaded: 准备就绪 held - the hide script below)
+      var b = document.getElementById('boot'); if (!b || b.style.display === 'none') return false;
+      var all = total + (self.BOOT_EXTRA || 0), more = !loaded && got < all;
+      var want = more ? 85 * got / all : 85 + 14 * (1 - Math.exp(-(performance.now() - (t0 || (t0 = performance.now()))) / 4000));
+      shown = Math.max(shown, Math.min(99, want));
+      bar.style.width = shown.toFixed(1) + '%';
+      txt.textContent = more ? '正在加载资源' : (self.BOOT_STEP || '正在准备大厅'); var pc = document.getElementById('bootpct'); if (pc) pc.textContent = Math.floor(shown) + '%';
+      return true;
+    };
+    (function step() { if (draw()) setTimeout(step, 100); })();
+  })();
+</script>
+<div id="err"></div>
+<link rel="preload" href="mods/xzguns/data.js" as="script">
+<link rel="preload" href="mods/xzrange/data.js" as="script">
+<link rel="preload" href="mods/xzguns/code.js" as="script">
+<link rel="preload" href="mods/xzrange/code.js" as="script">
+<link rel="preload" href="mods/xzguns/bundle.js" as="script">
+<link rel="preload" href="mods/xzguns/tiles.webp" as="image">
+<!-- W0 还原：4 个 pack 内联 loader 替换为按原始加载顺序的外部脚本（pack1→2→3→4，pack 内顺序不变） -->
+<script src="js/integrity.js"></script>
+<script src="js/mods.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/assets_i1.js"></script>
+<script src="js/assets_i2.js"></script>
+<script src="js/emoji.js"></script>
+<script src="js/texts.js"></script>
+<script src="js/util.js"></script>
+<script src="js/worldgen_data.js"></script>
+<script src="js/sfe_mapdata.js"></script>
+<script src="js/worldgen.js"></script>
+<script src="js/blockdata.js"></script>
+<script src="js/itemdata.js"></script>
+<script src="js/recipedata.js"></script>
+<script src="js/modapi.js"></script>
+<script src="js/mods_data.js"></script>
+<script src="js/blocks.js"></script>
+<script src="js/world.js"></script>
+<script src="js/mesher.js"></script>
+<script src="js/models.js"></script>
+<script src="js/vmodels.js"></script>
+<script src="js/render.js"></script>
+<script src="js/render2.js"></script>
+<script src="js/shaders.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/subtitles.js"></script>
+<script src="js/entity.js"></script>
+<script src="js/mobs2.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/save.js"></script>
+<script src="js/game.js"></script>
+<script src="js/terrain2.js"></script>
+<script src="js/features.js"></script>
+<script src="js/trees.js"></script>
+<script src="js/structures_data.js"></script>
+<script src="js/structgen.js"></script>
+<script src="js/structtypes.js"></script>
+<script src="js/gen_worker.js"></script>
+<script src="js/structures.js"></script>
+<script src="js/nbt.js"></script>
+<script src="js/anvil.js"></script>
+<script src="js/export.js"></script>
+<script src="js/screens.js"></script>
+<script src="js/commands.js"></script>
+<script src="js/controls.js"></script>
+<script src="js/dims.js"></script>
+<script src="js/nether_mobs.js"></script>
+<script src="js/village_mobs.js"></script>
+<script src="js/merchant.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/enchant.js"></script>
+<script src="js/workstations.js"></script>
+<script src="js/equip.js"></script>
+<script src="js/vehicles.js"></script>
+<script src="js/redstone.js"></script>
+<script src="js/itemuse.js"></script>
+<script src="js/entitydata.js"></script>
+<script src="js/etex.js"></script>
+<script src="js/emodel.js"></script>
+<script src="js/vmobs.js"></script>
+<script src="js/mobs_animals.js"></script>
+<script src="js/mobs_water.js"></script>
+<script src="js/mobs_hostile.js"></script>
+<script src="js/mobitems.js"></script>
+<script src="js/spawning.js"></script>
+<script src="js/draw2.js"></script>
+<script src="js/blockents.js"></script>
+<script src="js/decor.js"></script>
+<script src="js/items3.js"></script>
+<script src="js/specials.js"></script>
+<script src="js/raids.js"></script>
+<script src="js/cmdrun.js"></script>
+<script src="js/mods_ui.js"></script>
+<script src="js/mods_code.js"></script>
+<script src="js/main.js"></script>
+<script src="js/touch.js"></script>
+<script src="js/gyro.js"></script>
+<script src="js/perf.js"></script>
+<script src="js/netconfig.js"></script>
+<script src="js/net.js"></script>
+<script src="js/beacon.js"></script>
+<script src="js/cmdblock.js"></script>
+<script src="js/telemetry.js"></script>
+<script src="js/toy.js"></script>
+<script src="js/account.js"></script>
+<script src="js/capes.js"></script>
+<script src="js/skins.js"></script>
+<script src="js/cloudsave.js"></script>
+<script src="js/social.js"></script>
+<script src="js/mobile.js"></script>
+<script src="js/onboard.js"></script>
+<script src="js/jing_tex.js"></script>
+<script src="js/companion.js"></script>
+<script src="js/extras.js"></script>
+<script src="js/cosmetics.js"></script>
+<script src="js/news.js"></script>
+<script src="js/checkin.js"></script>
+<script src="js/shareholders.js"></script>
+<script src="js/live.js"></script>
+<script src="js/minigame.js"></script>
+<script src="js/anticheat.js"></script>
+<script src="js/p2p.js"></script>
+<script src="js/panorama.js"></script>
+<script src="js/sfe_world.js"></script>
+<script src="js/sfe_poi.js"></script>
+<script src="js/sfe_rules.js"></script>
+<script src="js/sfe_survival.js"></script>
+<script src="js/sfe_throwable.js"></script>
+<script src="js/sfe_economy.js"></script>
+<script src="js/sfe_minimap.js"></script>
+<script src="js/potato.js"></script>
+<script>
+  // hide boot splash once the title screen is up
+  // (the user 11-16: 「加载完之后把这个界面的logo直接动画位移到主界面的左上角（要丝滑）」): the logo flies to the lobby's logo
+  // board, turning from white to ink on the way, while the rest fades; the board takes it where it lands
+  (function wait() {
+    if (!(window.game && window.game.state !== 'boot')) { setTimeout(wait, 100); return; }
+    // (ready: the bar full and 准备就绪 held a moment - at least 2.6 s from the start, the logo's reveal played out - then the
+    // flight: the user 11-16 「这个界面加载完成后等待一小下 现在太快了 看不清楚」)
+    if (!wait.held) { wait.held = true; var bi = document.querySelector('#bootbar i'), tx = document.getElementById('boottext'), pc = document.getElementById('bootpct');
+      self.BOOT_HELD = true; if (bi) bi.style.width = '100%'; if (tx) tx.textContent = '准备就绪'; if (pc) pc.textContent = '100%';
+      setTimeout(wait, Math.max(1100, 2600 - performance.now())); return; }
+    // (not a copy laid over the board - the user 11-16 「这个与加载界面衔接的位置太诡异了 像是覆盖了一样 你把他做成真正的动画」: the lobby's
+    // board itself starts where the loading logo is - no paper, no frame, the white logo over its own - and moves to its
+    // corner, turning in, the paper and the frame coming in, the white going to ink; the rest of the lobby comes in with it)
+    var b = document.getElementById('boot'), bl = b.querySelector('.bt-logo'), lob = document.getElementById('lobby'), L = lob && lob.querySelector('.lb-logo'),
+      blk = L && L.querySelector('.blk'), img = L && L.querySelector('img');
+    var end = function () { b.style.display = 'none'; };
+    if (!bl || !img || !blk) { b.classList.add('done'); setTimeout(end, 460); return; }
+    if (self.fitBoot) self.fitBoot();
+    var rot = !!(typeof Stage !== 'undefined' && Stage.rot), R = function (r) { return rot ? { left: r.top, top: innerWidth - r.right, width: r.height, height: r.width } : r; };
+    var r0 = R(bl.getBoundingClientRect());
+    L.classList.add('fx', 'morph'); L.style.transition = 'none'; L.style.transform = 'none'; L.style.transformOrigin = '0 0';
+    var Lr = R(L.getBoundingClientRect()), ri = R(img.getBoundingClientRect());
+    if (!r0.width || !ri.width) { L.classList.remove('morph'); L.style.cssText = ''; b.classList.add('done'); setTimeout(end, 460); return; }
+    var k = r0.width / ri.width, dx = r0.left - (Lr.left + (ri.left - Lr.left) * k), dy = r0.top - (Lr.top + (ri.top - Lr.top) * k);
+    // (the white logo over the ink one, fading as it flies)
+    var ov = bl.querySelector('svg').cloneNode(true); ov.setAttribute('class', 'lb-ov');
+    ov.style.cssText = 'left:' + img.offsetLeft + 'px;top:' + img.offsetTop + 'px;width:' + img.offsetWidth + 'px;height:' + img.offsetHeight + 'px';
+    blk.appendChild(ov);
+    L.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + k + ')';
+    // (the lobby over the fading loading screen while it moves; its cards' coming-in played again now)
+    lob.classList.add('noanim'); lob.style.zIndex = '10';
+    bl.style.visibility = 'hidden'; b.classList.add('done');
+    void L.offsetWidth;
+    requestAnimationFrame(function () {
+      lob.classList.remove('noanim');
+      // (only the logo flies - the white turning to ink on the way, as the dark goes -; the board's paper and frame come once it is there)
+      L.style.transition = 'transform .95s cubic-bezier(.7,0,.18,1)'; L.style.transform = '';
+      ov.style.opacity = '0';
+      setTimeout(function () { L.classList.remove('morph'); L.classList.add('pop'); }, 900);
+      setTimeout(function () { ov.remove(); L.style.cssText = ''; L.classList.remove('pop'); /* (fx kept: taking it off started the board's own slide-in again - a second logo coming in, 11-17) */ lob.style.zIndex = ''; end(); }, 1400);
+    });
+  })();
+  // (tips while it loads)
+  (function () { var T = ['爆头伤害 ×2，四肢 ×0.75', 'R 换弹 · F 检视 · 右键开镜', '天梯五局三胜，五局都要打完', '好友约战：把邀请码发给朋友', '平板「辅助」页能开无限弹药（对局里不生效）', '移动中开枪会打飘，停稳再开'], i = Math.floor(Math.random() * T.length), el = document.getElementById('boottip');
+    function show() { var b = document.getElementById('boot'); if (!b || b.classList.contains('done')) return; el.style.opacity = 0; setTimeout(function () { el.innerHTML = '<b>TIP</b>' + T[i++ % T.length]; el.style.opacity = 1; }, 250); setTimeout(show, 2600); } show(); })();
+</script>
+</body>
+</html>

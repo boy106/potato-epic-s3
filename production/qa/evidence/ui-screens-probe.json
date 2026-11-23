@@ -1,0 +1,837 @@
+{
+  "options": {
+    "console": [
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_oxidized_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_exposed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_weathered_copper_door"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      }
+    ],
+    "errors": [
+      "Cannot read properties of undefined (reading 'fx')"
+    ],
+    "badResponses": [
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/js/skins_data.js"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/logo.svg"
+      }
+    ],
+    "failed": [
+      {
+        "url": "http://127.0.0.1:8811/js/skins_data.js",
+        "failure": "net::ERR_ABORTED"
+      }
+    ],
+    "requests": [],
+    "targetCount": 1,
+    "after": {
+      "screen": "PotatoSettings",
+      "body": "设置\n改动立即生效\n常规\nGENERAL\n触屏\nTOUCH\n操作\nCONTROLS\n准星\nCROSSHAIR\n画面\nVIDEO\n声音\nAUDIO\n账号\nACCOUNT\n完成",
+      "visible": [
+        {
+          "id": "stage",
+          "cls": "",
+          "text": "设置\n改动立即生效\n常规\nGENERAL\n触屏\nTOUCH\n操作\nCONTROLS\n准星\nCROSSHAIR\n画面\nVIDEO\n声音\nAUDIO\n账号\nACCOUNT\n完成"
+        },
+        {
+          "id": "lobby",
+          "cls": "rk st",
+          "text": "设置\n改动立即生效\n常规\nGENERAL\n触屏\nTOUCH\n操作\nCONTROLS\n准星\nCROSSHAIR\n画面\nVIDEO\n声音\nAUDIO\n账号\nACCOUNT\n完成"
+        },
+        {
+          "id": "",
+          "cls": "rk-dim",
+          "text": ""
+        },
+        {
+          "id": "",
+          "cls": "rk-wrap",
+          "text": "设置\n改动立即生效\n常规\nGENERAL\n触屏\nTOUCH\n操作\nCONTROLS\n准星\nCROSSHAIR\n画面\nVIDEO\n声音\nAUDIO\n账号\nACCOUNT\n完成"
+        },
+        {
+          "id": "",
+          "cls": "st-body",
+          "text": "常规\nGENERAL\n触屏\nTOUCH\n操作\nCONTROLS\n准星\nCROSSHAIR\n画面\nVIDEO\n声音\nAUDIO\n账号\nACCOUNT"
+        },
+        {
+          "id": "",
+          "cls": "st-nav",
+          "text": "常规\nGENERAL\n触屏\nTOUCH\n操作\nCONTROLS\n准星\nCROSSHAIR\n画面\nVIDEO\n声音\nAUDIO\n账号\nACCOUNT"
+        },
+        {
+          "id": "",
+          "cls": "st-pan",
+          "text": ""
+        }
+      ],
+      "images": [],
+      "storage": {}
+    }
+  },
+  "armory": {
+    "console": [
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_oxidized_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_exposed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_weathered_copper_door"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      }
+    ],
+    "errors": [],
+    "badResponses": [
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/js/skins_data.js"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/logo.svg"
+      }
+    ],
+    "failed": [
+      {
+        "url": "http://127.0.0.1:8811/js/skins_data.js",
+        "failure": "net::ERR_ABORTED"
+      }
+    ],
+    "requests": [],
+    "targetCount": 1,
+    "after": {
+      "screen": "PotatoGet",
+      "body": "衣柜\n关注 UP 主，免费获得这些\n完全免费，关注一次就够了\n披\n全部动态 / 静态披风\n0先登录（B站 一键登录）\n1点「去关注 UP 主」，在 B站 App 里 UP 主「土豆味小哲」的空间点关注\n2回到游戏点「检查」，马上就能用（回来时也会自动检查）\n先登录\n暂时不用",
+      "visible": [
+        {
+          "id": "stage",
+          "cls": "",
+          "text": "衣柜\n关注 UP 主，免费获得这些\n完全免费，关注一次就够了\n披\n全部动态 / 静态披风\n0先登录（B站 一键登录）\n1点「去关注 UP 主」，在 B站 App 里 UP 主「土豆味小哲」的空间点关注\n2回到游戏点「检查」，马上就能用（回来时也会自动检查）\n先登录\n暂时不用"
+        },
+        {
+          "id": "lobby",
+          "cls": "pg",
+          "text": "衣柜\n关注 UP 主，免费获得这些\n完全免费，关注一次就够了\n披\n全部动态 / 静态披风\n0先登录（B站 一键登录）\n1点「去关注 UP 主」，在 B站 App 里 UP 主「土豆味小哲」的空间点关注\n2回到游戏点「检查」，马上就能用（回来时也会自动检查）\n先登录\n暂时不用"
+        },
+        {
+          "id": "",
+          "cls": "pg-card",
+          "text": "衣柜\n关注 UP 主，免费获得这些\n完全免费，关注一次就够了\n披\n全部动态 / 静态披风\n0先登录（B站 一键登录）\n1点「去关注 UP 主」，在 B站 App 里 UP 主「土豆味小哲」的空间点关注\n2回到游戏点「检查」，马上就能用（回来时也会自动检查）\n先登录\n暂时不用"
+        }
+      ],
+      "images": [],
+      "storage": {}
+    }
+  },
+  "sign": {
+    "console": [
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_oxidized_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_exposed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_weathered_copper_door"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      }
+    ],
+    "errors": [],
+    "badResponses": [
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/js/skins_data.js"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/logo.svg"
+      }
+    ],
+    "failed": [
+      {
+        "url": "http://127.0.0.1:8811/js/skins_data.js",
+        "failure": "net::ERR_ABORTED"
+      }
+    ],
+    "requests": [],
+    "targetCount": 1,
+    "after": {
+      "screen": "PotatoCheckin",
+      "body": "每日签到\n连续签到土豆币越来越多 · 第 7 天起每天 1000 · 断签从第 1 天重新开始\n0 天连续\n累计签到 0 天\n第 1 天\n+300\n第 2 天\n+400\n第 3 天\n+500\n第 4 天\n+600\n第 5 天\n+700\n第 6 天\n+800\n第 7 天起\n+1000\n土豆币靠签到和游玩获得（天梯、淘汰赛每分钟 5 个，约战、靶场每分钟 3 个，每天第一次赢 +50），用来升级枪皮\n登录后签到\n关闭",
+      "visible": [
+        {
+          "id": "stage",
+          "cls": "",
+          "text": "每日签到\n连续签到土豆币越来越多 · 第 7 天起每天 1000 · 断签从第 1 天重新开始\n0 天连续\n累计签到 0 天\n第 1 天\n+300\n第 2 天\n+400\n第 3 天\n+500\n第 4 天\n+600\n第 5 天\n+700\n第 6 天\n+800\n第 7 天起\n+1000\n土豆币靠签到和游玩获得（天梯、淘汰赛每分钟 5 个，约战、靶场每分钟 3 个，每天第一次赢 +50），用来升级枪皮\n登录后签到\n关闭"
+        },
+        {
+          "id": "lobby",
+          "cls": "ci",
+          "text": "每日签到\n连续签到土豆币越来越多 · 第 7 天起每天 1000 · 断签从第 1 天重新开始\n0 天连续\n累计签到 0 天\n第 1 天\n+300\n第 2 天\n+400\n第 3 天\n+500\n第 4 天\n+600\n第 5 天\n+700\n第 6 天\n+800\n第 7 天起\n+1000\n土豆币靠签到和游玩获得（天梯、淘汰赛每分钟 5 个，约战、靶场每分钟 3 个，每天第一次赢 +50），用来升级枪皮\n登录后签到\n关闭"
+        },
+        {
+          "id": "",
+          "cls": "ci-dim",
+          "text": ""
+        },
+        {
+          "id": "",
+          "cls": "ci-card ci2",
+          "text": "每日签到\n连续签到土豆币越来越多 · 第 7 天起每天 1000 · 断签从第 1 天重新开始\n0 天连续\n累计签到 0 天\n第 1 天\n+300\n第 2 天\n+400\n第 3 天\n+500\n第 4 天\n+600\n第 5 天\n+700\n第 6 天\n+800\n第 7 天起\n+1000\n土豆币靠签到和游玩获得（天梯、淘汰赛每分钟 5 个，约战、靶场每分钟 3 个，每天第一次赢 +50），用来升级枪皮\n登录后签到\n关闭"
+        },
+        {
+          "id": "",
+          "cls": "ci2-days",
+          "text": "第 1 天\n+300\n第 2 天\n+400\n第 3 天\n+500\n第 4 天\n+600\n第 5 天\n+700\n第 6 天\n+800\n第 7 天起\n+1000"
+        }
+      ],
+      "images": [],
+      "storage": {}
+    }
+  },
+  "ai": {
+    "console": [
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_oxidized_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_exposed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_weathered_copper_door"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "warning",
+        "text": "The resource http://127.0.0.1:8811/mods/xzguns/tiles.webp was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+      }
+    ],
+    "errors": [],
+    "badResponses": [
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/js/skins_data.js"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/logo.svg"
+      }
+    ],
+    "failed": [
+      {
+        "url": "http://127.0.0.1:8811/js/skins_data.js",
+        "failure": "net::ERR_ABORTED"
+      }
+    ],
+    "requests": [],
+    "targetCount": 1,
+    "after": {
+      "screen": "LobbyScreen",
+      "body": "反馈 BUG\n遇到问题？直接发给开发者\n›\n人机对战\n随时开打 · 不卡顿 · 不排队\n1V1 / 2V2 / 淘汰赛 / 乱斗 · 赢了也加天梯分\n开始对战\n天梯排位\n未登录\n好友约战\n自定义房间 · 房间码\n靶场训练\n清房 · 自由射击\n衣柜\n皮肤 · 枪皮 · 披风 · 装饰\n签到\n—\n登录\n登录后可以排位、约战\n人机对战\n和电脑对手打，赢了也能加天梯分（800 分以下）。困难档的机器人会找掩体、听枪声找人。\n1V1\n2V2 · 带机器人队友\n8 人淘汰赛\n乱斗 · 6 人混战\n简单\n加分 ×10%\n普通\n加分 ×25%\n困难\n加排位分 ×50%\n登录后，人机赢了也能加天梯分\n开始\n关闭",
+      "visible": [
+        {
+          "id": "",
+          "cls": "blk cut it rank aibig",
+          "text": "人机对战\n随时开打 · 不卡顿 · 不排队\n1V1 / 2V2 / 淘汰赛 / 乱斗 · 赢了也加天梯分\n开始对战"
+        },
+        {
+          "id": "",
+          "cls": "top",
+          "text": "人机对战\n随时开打 · 不卡顿 · 不排队\n1V1 / 2V2 / 淘汰赛 / 乱斗 · 赢了也加天梯分"
+        },
+        {
+          "id": "",
+          "cls": "go",
+          "text": "开始对战"
+        },
+        {
+          "id": "",
+          "cls": "row2",
+          "text": "天梯排位\n未登录\n好友约战\n自定义房间 · 房间码"
+        },
+        {
+          "id": "",
+          "cls": "itw sh",
+          "text": "天梯排位\n未登录"
+        },
+        {
+          "id": "",
+          "cls": "blk cut it rk2",
+          "text": "天梯排位\n未登录"
+        },
+        {
+          "id": "",
+          "cls": "itw sh",
+          "text": "好友约战\n自定义房间 · 房间码"
+        },
+        {
+          "id": "",
+          "cls": "blk cut it ",
+          "text": "好友约战\n自定义房间 · 房间码"
+        },
+        {
+          "id": "",
+          "cls": "row2",
+          "text": "靶场训练\n清房 · 自由射击\n衣柜\n皮肤 · 枪皮 · 披风 · 装饰"
+        },
+        {
+          "id": "",
+          "cls": "itw sh",
+          "text": "靶场训练\n清房 · 自由射击"
+        },
+        {
+          "id": "",
+          "cls": "blk cut it ",
+          "text": "靶场训练\n清房 · 自由射击"
+        },
+        {
+          "id": "",
+          "cls": "itw sh",
+          "text": "衣柜\n皮肤 · 枪皮 · 披风 · 装饰"
+        },
+        {
+          "id": "",
+          "cls": "blk cut it ",
+          "text": "衣柜\n皮肤 · 枪皮 · 披风 · 装饰"
+        },
+        {
+          "id": "",
+          "cls": "rk-pp",
+          "text": "人机对战\n和电脑对手打，赢了也能加天梯分（800 分以下）。困难档的机器人会找掩体、听枪声找人。\n1V1\n2V2 · 带机器人队友\n8 人淘汰赛\n乱斗 · 6 人混战\n简单\n加分 ×10%\n普通\n加分 ×25%\n困难\n加排位分 ×50%\n登录后，人机赢了也能加天梯分\n开始\n关闭"
+        },
+        {
+          "id": "",
+          "cls": "rk-ppc",
+          "text": "人机对战\n和电脑对手打，赢了也能加天梯分（800 分以下）。困难档的机器人会找掩体、听枪声找人。\n1V1\n2V2 · 带机器人队友\n8 人淘汰赛\n乱斗 · 6 人混战\n简单\n加分 ×10%\n普通\n加分 ×25%\n困难\n加排位分 ×50%\n登录后，人机赢了也能加天梯分\n开始\n关闭"
+        }
+      ],
+      "images": [
+        "http://127.0.0.1:8811/potato/logo.svg",
+        ""
+      ],
+      "storage": {}
+    }
+  },
+  "rank": {
+    "console": [
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_oxidized_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_exposed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_weathered_copper_door"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Access to fetch at 'https://xz.honghemc.cn:8443/potato/top' from origin 'http://127.0.0.1:8811' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      },
+      {
+        "type": "error",
+        "text": "Access to fetch at 'https://xz.honghemc.cn:8443/potato/top' from origin 'http://127.0.0.1:8811' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      }
+    ],
+    "errors": [],
+    "badResponses": [
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/js/skins_data.js"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/logo.svg"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/tiers/2.webp"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/tiers/3.webp"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/tiers/0.webp"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/tiers/5.webp"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/tiers/4.webp"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/tiers/1.webp"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/tiers/6.webp"
+      }
+    ],
+    "failed": [
+      {
+        "url": "http://127.0.0.1:8811/js/skins_data.js",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://xz.honghemc.cn:8443/potato/top",
+        "failure": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://xz.honghemc.cn:8443/potato/top",
+        "failure": "net::ERR_FAILED"
+      }
+    ],
+    "requests": [
+      "https://xz.honghemc.cn:8443/potato/top",
+      "https://xz.honghemc.cn:8443/potato/top"
+    ],
+    "targetCount": 1,
+    "after": {
+      "screen": "PotatoRanked",
+      "body": "1V1\n天梯排位\n第一赛季 · 五局三胜 · 打满五局\n人机对战赢了也加天梯分：简单 ×10% · 普通 ×25% · 困难 ×50%（800 分以下 · 乱斗除外）\n当前段位\n未登录\n—\n分\n登录后开始排位 · 新玩家从石头 100 分起步\n0\n场次\n0\n胜场\n—\n胜率\n原木\n0+\n石头\n100+\n金\n300+\n钻石\n500+\n绿宝石\n650+\n红宝石\n800+\n土豆之神\n1000+\n已选择\nVS\n天梯 1V1\n单挑 · 同段位优先\n五局三胜，打满五局\n段位越高，加分越少\n赢强者多加，输弱者多扣\n已选择\nVS\n2V2 组队\n好友组队 · 随机匹配\n和好友组队或随机匹配\n队友之间没有伤害\n一方全倒，这局结束\n已选择\n8 人淘汰赛\n八强 → 半决赛 → 决赛\n每场先胜 3 局，输一场就出局\n每局随机抽一把枪\n同轮出局按伤害排名\n排行榜\n正在读取排行榜…\n返回\n开始匹配\n同段位优先 · 平均 1 分钟内",
+      "visible": [
+        {
+          "id": "stage",
+          "cls": "",
+          "text": "1V1\n天梯排位\n第一赛季 · 五局三胜 · 打满五局\n人机对战赢了也加天梯分：简单 ×10% · 普通 ×25% · 困难 ×50%（800 分以下 · 乱斗除外）\n当前段位\n未登录\n—\n分\n登录后开始排位 · 新玩家从石头 100 分起步\n0\n场次\n0\n胜场\n—\n胜率\n原木\n0+\n石头\n100+\n金\n300+\n钻石\n500+\n绿宝石\n650+\n红宝石\n800+\n土豆之神\n1000+\n已选择\nVS\n天梯 1V1\n单挑 · 同段位优先\n五局三胜，打满五局\n段位越高，加分越少\n赢强者多加，输弱者多扣\n已选择\nVS\n2V2 组队\n好友组队 · 随机匹配\n和好友组队或随机匹配\n队友之间没有伤害\n一方全倒，这局结束\n已选择\n8 人淘汰赛\n八强 → 半决赛 → 决赛\n每场先胜 3 局，输一场就出局\n每局随机抽一把枪\n同轮出局按伤害排名\n排行榜\n正在读取排行榜…\n返回\n开始匹配\n同段位优先 · 平均 1 分钟内"
+        },
+        {
+          "id": "lobby",
+          "cls": "rk",
+          "text": "1V1\n天梯排位\n第一赛季 · 五局三胜 · 打满五局\n人机对战赢了也加天梯分：简单 ×10% · 普通 ×25% · 困难 ×50%（800 分以下 · 乱斗除外）\n当前段位\n未登录\n—\n分\n登录后开始排位 · 新玩家从石头 100 分起步\n0\n场次\n0\n胜场\n—\n胜率\n原木\n0+\n石头\n100+\n金\n300+\n钻石\n500+\n绿宝石\n650+\n红宝石\n800+\n土豆之神\n1000+\n已选择\nVS\n天梯 1V1\n单挑 · 同段位优先\n五局三胜，打满五局\n段位越高，加分越少\n赢强者多加，输弱者多扣\n已选择\nVS\n2V2 组队\n好友组队 · 随机匹配\n和好友组队或随机匹配\n队友之间没有伤害\n一方全倒，这局结束\n已选择\n8 人淘汰赛\n八强 → 半决赛 → 决赛\n每场先胜 3 局，输一场就出局\n每局随机抽一把枪\n同轮出局按伤害排名\n排行榜\n正在读取排行榜…\n返回\n开始匹配\n同段位优先 · 平均 1 分钟内"
+        },
+        {
+          "id": "",
+          "cls": "rk-dim",
+          "text": ""
+        },
+        {
+          "id": "",
+          "cls": "rk-wrap",
+          "text": "1V1\n天梯排位\n第一赛季 · 五局三胜 · 打满五局\n人机对战赢了也加天梯分：简单 ×10% · 普通 ×25% · 困难 ×50%（800 分以下 · 乱斗除外）\n当前段位\n未登录\n—\n分\n登录后开始排位 · 新玩家从石头 100 分起步\n0\n场次\n0\n胜场\n—\n胜率\n原木\n0+\n石头\n100+\n金\n300+\n钻石\n500+\n绿宝石\n650+\n红宝石\n800+\n土豆之神\n1000+\n已选择\nVS\n天梯 1V1\n单挑 · 同段位优先\n五局三胜，打满五局\n段位越高，加分越少\n赢强者多加，输弱者多扣\n已选择\nVS\n2V2 组队\n好友组队 · 随机匹配\n和好友组队或随机匹配\n队友之间没有伤害\n一方全倒，这局结束\n已选择\n8 人淘汰赛\n八强 → 半决赛 → 决赛\n每场先胜 3 局，输一场就出局\n每局随机抽一把枪\n同轮出局按伤害排名\n排行榜\n正在读取排行榜…\n返回\n开始匹配\n同段位优先 · 平均 1 分钟内"
+        },
+        {
+          "id": "",
+          "cls": "rk-hero",
+          "text": "当前段位\n未登录\n—\n分\n登录后开始排位 · 新玩家从石头 100 分起步\n0\n场次\n0\n胜场\n—\n胜率"
+        },
+        {
+          "id": "",
+          "cls": "rk-who",
+          "text": "当前段位\n未登录\n—\n分\n登录后开始排位 · 新玩家从石头 100 分起步"
+        },
+        {
+          "id": "",
+          "cls": "rk-track",
+          "text": "原木\n0+\n石头\n100+\n金\n300+\n钻石\n500+\n绿宝石\n650+\n红宝石\n800+\n土豆之神\n1000+"
+        },
+        {
+          "id": "",
+          "cls": "rk-low",
+          "text": "已选择\nVS\n天梯 1V1\n单挑 · 同段位优先\n五局三胜，打满五局\n段位越高，加分越少\n赢强者多加，输弱者多扣\n已选择\nVS\n2V2 组队\n好友组队 · 随机匹配\n和好友组队或随机匹配\n队友之间没有伤害\n一方全倒，这局结束\n已选择\n8 人淘汰赛\n八强 → 半决赛 → 决赛\n每场先胜 3 局，输一场就出局\n每局随机抽一把枪\n同轮出局按伤害排名\n排行榜\n正在读取排行榜…"
+        },
+        {
+          "id": "",
+          "cls": "rk-modes",
+          "text": "已选择\nVS\n天梯 1V1\n单挑 · 同段位优先\n五局三胜，打满五局\n段位越高，加分越少\n赢强者多加，输弱者多扣\n已选择\nVS\n2V2 组队\n好友组队 · 随机匹配\n和好友组队或随机匹配\n队友之间没有伤害\n一方全倒，这局结束\n已选择\n8 人淘汰赛\n八强 → 半决赛 → 决赛\n每场先胜 3 局，输一场就出局\n每局随机抽一把枪\n同轮出局按伤害排名"
+        },
+        {
+          "id": "",
+          "cls": "rk-panel rk-board",
+          "text": "排行榜\n正在读取排行榜…"
+        }
+      ],
+      "images": [
+        "http://127.0.0.1:8811/potato/tiers/1.webp",
+        "http://127.0.0.1:8811/potato/tiers/0.webp",
+        "http://127.0.0.1:8811/potato/tiers/1.webp",
+        "http://127.0.0.1:8811/potato/tiers/2.webp",
+        "http://127.0.0.1:8811/potato/tiers/3.webp",
+        "http://127.0.0.1:8811/potato/tiers/4.webp",
+        "http://127.0.0.1:8811/potato/tiers/5.webp",
+        "http://127.0.0.1:8811/potato/tiers/6.webp"
+      ],
+      "storage": {}
+    }
+  },
+  "friend": {
+    "console": [
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_oxidized_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_exposed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_weathered_copper_door"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      }
+    ],
+    "errors": [],
+    "badResponses": [
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/js/skins_data.js"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/logo.svg"
+      }
+    ],
+    "failed": [
+      {
+        "url": "http://127.0.0.1:8811/js/skins_data.js",
+        "failure": "net::ERR_ABORTED"
+      }
+    ],
+    "requests": [],
+    "targetCount": 1,
+    "after": {
+      "screen": "PotatoCustom",
+      "body": "1V1\n自定义房间\n好友约战 · 不计分 · 房主定规则\n模式\n1V1\n单挑\n2V2\n两人一队\n地图\n标准竞技场\nARENA\n三线长廊\nALLEY\n集装箱码头\nDOCKS\n空旷对枪\nOPEN\n高台\nTOWERS\n天梯同款：中央石柱，两侧掩体，低墙上有玻璃窗\n局数\n三局两胜\n五局三胜\n七局四胜\n武器\n轮换\n每局换一把\n随机\n每局抽一把\n手枪\n左轮\n冲锋枪\n突击步枪\n狙击枪\n霰弹枪\n轻机枪\n栓动步枪\n娱乐规则\n只能爆头\n打身体不掉血\n一枪倒\n打中就倒，不论部位\n伤害减半\n血更厚，打得更久\n低重力\n跳得更高，摔不疼\n极速\n移动快 40%\n无限子弹\n弹匣永远是满的\n好友房间\n房间码 · 直连对战\n登录后可以创建好友房间，或者输入好友的房间码加入。\n登录\n人机试玩\n同样的规则 · 空位由人机补上\n简单\n普通\n困难\n这一场\n1V1\n标准竞技场\n五局三胜\n武器轮换\n返回\n和人机开打\n难度：普通 · 不计分",
+      "visible": [
+        {
+          "id": "stage",
+          "cls": "",
+          "text": "1V1\n自定义房间\n好友约战 · 不计分 · 房主定规则\n模式\n1V1\n单挑\n2V2\n两人一队\n地图\n标准竞技场\nARENA\n三线长廊\nALLEY\n集装箱码头\nDOCKS\n空旷对枪\nOPEN\n高台\nTOWERS\n天梯同款：中央石柱，两侧掩体，低墙上有玻璃窗\n局数\n三局两胜\n五局三胜\n七局四胜\n武器\n轮换\n每局换一把\n随机\n每局抽一把\n手枪\n左轮\n冲锋枪\n突击步枪\n狙击枪\n霰弹枪\n轻机枪\n栓动步枪\n娱乐规则\n只能爆头\n打身体不掉血\n一枪倒\n打中就倒，不论部位\n伤害减半\n血更厚，打得更久\n低重力\n跳得更高，摔不疼\n极速\n移动快 40%\n无限子弹\n弹匣永远是满的\n好友房间\n房间码 · 直连对战\n登录后可以创建好友房间，或者输入好友的房间码加入。\n登录\n人机试玩\n同样的规则 · 空位由人机补上\n简单\n普通\n困难\n这一场\n1V1\n标准竞技场\n五局三胜\n武器轮换\n返回\n和人机开打\n难度：普通 · 不计分"
+        },
+        {
+          "id": "lobby",
+          "cls": "rk cr",
+          "text": "1V1\n自定义房间\n好友约战 · 不计分 · 房主定规则\n模式\n1V1\n单挑\n2V2\n两人一队\n地图\n标准竞技场\nARENA\n三线长廊\nALLEY\n集装箱码头\nDOCKS\n空旷对枪\nOPEN\n高台\nTOWERS\n天梯同款：中央石柱，两侧掩体，低墙上有玻璃窗\n局数\n三局两胜\n五局三胜\n七局四胜\n武器\n轮换\n每局换一把\n随机\n每局抽一把\n手枪\n左轮\n冲锋枪\n突击步枪\n狙击枪\n霰弹枪\n轻机枪\n栓动步枪\n娱乐规则\n只能爆头\n打身体不掉血\n一枪倒\n打中就倒，不论部位\n伤害减半\n血更厚，打得更久\n低重力\n跳得更高，摔不疼\n极速\n移动快 40%\n无限子弹\n弹匣永远是满的\n好友房间\n房间码 · 直连对战\n登录后可以创建好友房间，或者输入好友的房间码加入。\n登录\n人机试玩\n同样的规则 · 空位由人机补上\n简单\n普通\n困难\n这一场\n1V1\n标准竞技场\n五局三胜\n武器轮换\n返回\n和人机开打\n难度：普通 · 不计分"
+        },
+        {
+          "id": "",
+          "cls": "rk-dim",
+          "text": ""
+        },
+        {
+          "id": "",
+          "cls": "rk-wrap",
+          "text": "1V1\n自定义房间\n好友约战 · 不计分 · 房主定规则\n模式\n1V1\n单挑\n2V2\n两人一队\n地图\n标准竞技场\nARENA\n三线长廊\nALLEY\n集装箱码头\nDOCKS\n空旷对枪\nOPEN\n高台\nTOWERS\n天梯同款：中央石柱，两侧掩体，低墙上有玻璃窗\n局数\n三局两胜\n五局三胜\n七局四胜\n武器\n轮换\n每局换一把\n随机\n每局抽一把\n手枪\n左轮\n冲锋枪\n突击步枪\n狙击枪\n霰弹枪\n轻机枪\n栓动步枪\n娱乐规则\n只能爆头\n打身体不掉血\n一枪倒\n打中就倒，不论部位\n伤害减半\n血更厚，打得更久\n低重力\n跳得更高，摔不疼\n极速\n移动快 40%\n无限子弹\n弹匣永远是满的\n好友房间\n房间码 · 直连对战\n登录后可以创建好友房间，或者输入好友的房间码加入。\n登录\n人机试玩\n同样的规则 · 空位由人机补上\n简单\n普通\n困难\n这一场\n1V1\n标准竞技场\n五局三胜\n武器轮换\n返回\n和人机开打\n难度：普通 · 不计分"
+        },
+        {
+          "id": "",
+          "cls": "cr-body",
+          "text": "模式\n1V1\n单挑\n2V2\n两人一队\n地图\n标准竞技场\nARENA\n三线长廊\nALLEY\n集装箱码头\nDOCKS\n空旷对枪\nOPEN\n高台\nTOWERS\n天梯同款：中央石柱，两侧掩体，低墙上有玻璃窗\n局数\n三局两胜\n五局三胜\n七局四胜\n武器\n轮换\n每局换一把\n随机\n每局抽一把\n手枪\n左轮\n冲锋枪\n突击步枪\n狙击枪\n霰弹枪\n轻机枪\n栓动步枪\n娱乐规则\n只能爆头\n打身体不掉血\n一枪倒\n打中就倒，不论部位\n伤害减半\n血更厚，打得更久\n低重力\n跳得更高，摔不疼\n极速\n移动快 40%\n无限子弹\n弹匣永远是满的\n好友房间\n房间码 · 直连对战\n登录后可以创建好友房间，或者输入好友的房间码加入。\n登录\n人机试玩\n同样的规则 · 空位由人机补上\n简单\n普通\n困难\n这一场\n1V1\n标准竞技场\n五局三胜\n武器轮换"
+        },
+        {
+          "id": "",
+          "cls": "cr-set",
+          "text": "模式\n1V1\n单挑\n2V2\n两人一队\n地图\n标准竞技场\nARENA\n三线长廊\nALLEY\n集装箱码头\nDOCKS\n空旷对枪\nOPEN\n高台\nTOWERS\n天梯同款：中央石柱，两侧掩体，低墙上有玻璃窗\n局数\n三局两胜\n五局三胜\n七局四胜\n武器\n轮换\n每局换一把\n随机\n每局抽一把\n手枪\n左轮\n冲锋枪\n突击步枪\n狙击枪\n霰弹枪\n轻机枪\n栓动步枪\n娱乐规则\n只能爆头\n打身体不掉血\n一枪倒\n打中就倒，不论部位\n伤害减半\n血更厚，打得更久\n低重力\n跳得更高，摔不疼\n极速\n移动快 40%\n无限子弹\n弹匣永远是满的"
+        },
+        {
+          "id": "",
+          "cls": "cr-row ",
+          "text": "地图\n标准竞技场\nARENA\n三线长廊\nALLEY\n集装箱码头\nDOCKS\n空旷对枪\nOPEN\n高台\nTOWERS\n天梯同款：中央石柱，两侧掩体，低墙上有玻璃窗"
+        },
+        {
+          "id": "",
+          "cls": "",
+          "text": "标准竞技场\nARENA\n三线长廊\nALLEY\n集装箱码头\nDOCKS\n空旷对枪\nOPEN\n高台\nTOWERS\n天梯同款：中央石柱，两侧掩体，低墙上有玻璃窗"
+        },
+        {
+          "id": "",
+          "cls": "cr-mapl",
+          "text": "标准竞技场\nARENA\n三线长廊\nALLEY\n集装箱码头\nDOCKS\n空旷对枪\nOPEN\n高台\nTOWERS"
+        },
+        {
+          "id": "",
+          "cls": "cr-row ",
+          "text": "娱乐规则\n只能爆头\n打身体不掉血\n一枪倒\n打中就倒，不论部位\n伤害减半\n血更厚，打得更久\n低重力\n跳得更高，摔不疼\n极速\n移动快 40%\n无限子弹\n弹匣永远是满的"
+        },
+        {
+          "id": "",
+          "cls": "",
+          "text": "只能爆头\n打身体不掉血\n一枪倒\n打中就倒，不论部位\n伤害减半\n血更厚，打得更久\n低重力\n跳得更高，摔不疼\n极速\n移动快 40%\n无限子弹\n弹匣永远是满的"
+        },
+        {
+          "id": "",
+          "cls": "cr-rules",
+          "text": "只能爆头\n打身体不掉血\n一枪倒\n打中就倒，不论部位\n伤害减半\n血更厚，打得更久\n低重力\n跳得更高，摔不疼\n极速\n移动快 40%\n无限子弹\n弹匣永远是满的"
+        },
+        {
+          "id": "",
+          "cls": "cr-side",
+          "text": "好友房间\n房间码 · 直连对战\n登录后可以创建好友房间，或者输入好友的房间码加入。\n登录\n人机试玩\n同样的规则 · 空位由人机补上\n简单\n普通\n困难\n这一场\n1V1\n标准竞技场\n五局三胜\n武器轮换"
+        }
+      ],
+      "images": [],
+      "storage": {}
+    }
+  },
+  "bug": {
+    "console": [
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_oxidized_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_exposed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_weathered_copper_door"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      }
+    ],
+    "errors": [],
+    "badResponses": [
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/js/skins_data.js"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/logo.svg"
+      }
+    ],
+    "failed": [
+      {
+        "url": "http://127.0.0.1:8811/js/skins_data.js",
+        "failure": "net::ERR_ABORTED"
+      }
+    ],
+    "requests": [],
+    "targetCount": 1,
+    "after": {
+      "screen": "PotatoBug",
+      "body": "反馈 BUG\n遇到问题了？直接告诉开发者\n说清楚在哪、做了什么、出了什么事，修得最快。会一起发送：游戏版本、设备、最近的帧率和报错；不会发送聊天和存档。\nBUG\n出错、卡住、点不动\n卡顿\n掉帧、延迟高\n建议\n想加什么、想改什么\n其他\n别的事\n0 / 500\n发送给开发者\n取消",
+      "visible": [
+        {
+          "id": "stage",
+          "cls": "",
+          "text": "反馈 BUG\n遇到问题了？直接告诉开发者\n说清楚在哪、做了什么、出了什么事，修得最快。会一起发送：游戏版本、设备、最近的帧率和报错；不会发送聊天和存档。\nBUG\n出错、卡住、点不动\n卡顿\n掉帧、延迟高\n建议\n想加什么、想改什么\n其他\n别的事\n0 / 500\n发送给开发者\n取消"
+        },
+        {
+          "id": "lobby",
+          "cls": "fb",
+          "text": "反馈 BUG\n遇到问题了？直接告诉开发者\n说清楚在哪、做了什么、出了什么事，修得最快。会一起发送：游戏版本、设备、最近的帧率和报错；不会发送聊天和存档。\nBUG\n出错、卡住、点不动\n卡顿\n掉帧、延迟高\n建议\n想加什么、想改什么\n其他\n别的事\n0 / 500\n发送给开发者\n取消"
+        },
+        {
+          "id": "",
+          "cls": "fb-card",
+          "text": "反馈 BUG\n遇到问题了？直接告诉开发者\n说清楚在哪、做了什么、出了什么事，修得最快。会一起发送：游戏版本、设备、最近的帧率和报错；不会发送聊天和存档。\nBUG\n出错、卡住、点不动\n卡顿\n掉帧、延迟高\n建议\n想加什么、想改什么\n其他\n别的事\n0 / 500\n发送给开发者\n取消"
+        },
+        {
+          "id": "",
+          "cls": "fb-box",
+          "text": "0 / 500"
+        }
+      ],
+      "images": [],
+      "storage": {}
+    }
+  },
+  "account": {
+    "console": [
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_oxidized_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_exposed_copper_door"
+      },
+      {
+        "type": "warning",
+        "text": "missing tile i_waxed_weathered_copper_door"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+      },
+      {
+        "type": "warning",
+        "text": "The resource http://127.0.0.1:8811/mods/xzguns/tiles.webp was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+      }
+    ],
+    "errors": [],
+    "badResponses": [
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/js/skins_data.js"
+      },
+      {
+        "status": 404,
+        "url": "http://127.0.0.1:8811/potato/logo.svg"
+      }
+    ],
+    "failed": [
+      {
+        "url": "http://127.0.0.1:8811/js/skins_data.js",
+        "failure": "net::ERR_ABORTED"
+      }
+    ],
+    "requests": [],
+    "targetCount": 1,
+    "after": {
+      "screen": "LoginScreen",
+      "body": "",
+      "visible": [
+        {
+          "id": "stage",
+          "cls": "",
+          "text": ""
+        }
+      ],
+      "images": [],
+      "storage": {}
+    }
+  }
+}

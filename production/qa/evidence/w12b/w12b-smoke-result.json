@@ -1,0 +1,82 @@
+{
+  "pass": 15,
+  "total": 15,
+  "results": [
+    {
+      "name": "pen 封顶 7（long_sniper+穿甲弹匣 6.5+1.5→7）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "pen 基线不带配件 = 6.5；扩容弹匣不加 pen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "穿甲弹匣 dmg×0.9（30→27，卸下恢复 30）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "快拔弹匣换弹 ×0.8 / 弹鼓 ×1.3（slowOf）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "枪托稳定器 air=1.5 可读（腾空系数挂钩数据源）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "两脚架稳态开镜 spread×0.55 / recoil×0.8；移动/无两脚架 →1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dmr 自带 4 倍镜 zoom=.25/scope=4；long_sniper 8 倍 .125/8；配件可覆盖",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "黑市商店可购 8 新枪 + 4 新弹 + 5 新配件",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "改装白名单：bipod/pen_mag/scope3 挂枪与拒绝判定",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "新枪 g3/g3fp/keys 模型链路齐备（第一人称动画可播）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "19 枪 ammo ∈ 8 口径；5 枪口径迁移生效",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ITEMS 注册：新枪/新弹 key↔id 可达，cn 正确",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "弹容计算：扩容 ×1.5、弹鼓 ×2.5（drum_smg 50→125）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "乱斗 FFA_W 权重表存在且新枪 ≤840；抽样分布低权重生效",
+      "ok": true,
+      "detail": "{\"pistol\": 2140, \"long_sniper\": 606, \"dmr\": 643}"
+    },
+    {
+      "name": "页面无运行时 JS 错误",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "page_errors": []
+}

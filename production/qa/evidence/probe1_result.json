@@ -1,0 +1,110 @@
+{
+ "url": "http://127.0.0.1:8813/index.html",
+ "state": {
+  "title": "土豆史诗",
+  "gameDefined": true,
+  "gameState": "boot",
+  "errText": "启动失败：WebGL2 不可用\n\n请使用最新版 Chrome / Edge / Firefox 浏览器打开，并确保已启用 WebGL2 / 硬件加速。",
+  "errDisplay": "block",
+  "bootDisplay": "flex",
+  "bootHeld": false,
+  "bootText": "正在准备贴图",
+  "bootPct": "97%",
+  "lobbyExists": false,
+  "canvasCount": 2,
+  "localStorageKeys": [],
+  "potatoGlobals": [
+   "POTATO",
+   "MODS_ALWAYS",
+   "PotatoMod",
+   "villagerSkin",
+   "modsGate",
+   "openModsScreen",
+   "PotatoSkinRules",
+   "SKINS_BUILTIN",
+   "Potato",
+   "PotatoPause",
+   "PotatoOptions",
+   "PotatoKeys",
+   "PotatoHub",
+   "PotatoSettings",
+   "PotatoGet",
+   "PotatoBug",
+   "PotatoCapTurn",
+   "PotatoWardrobe",
+   "PotatoGunSkins",
+   "PotatoCheckin",
+   "PotatoRanked",
+   "PotatoCustom",
+   "PotatoQuality",
+   "PotatoWelcome",
+   "PotatoLoadout",
+   "POTATO_TOUCH",
+   "POTATO_BTN",
+   "POTATO_STICK",
+   "PotatoResult",
+   "PotatoMusic",
+   "PotatoFfaResult",
+   "POTATO_CAM",
+   "PotatoTourQueue",
+   "PotatoTour",
+   "PotatoTourEnd",
+   "PotatoShare"
+  ],
+  "webgl2": false
+ },
+ "console": [
+  {
+   "type": "warning",
+   "text": "missing tile i_waxed_copper_door",
+   "loc": "js/blocks.js:1"
+  },
+  {
+   "type": "warning",
+   "text": "missing tile i_waxed_oxidized_copper_door",
+   "loc": "js/blocks.js:1"
+  },
+  {
+   "type": "warning",
+   "text": "missing tile i_waxed_exposed_copper_door",
+   "loc": "js/blocks.js:1"
+  },
+  {
+   "type": "warning",
+   "text": "missing tile i_waxed_weathered_copper_door",
+   "loc": "js/blocks.js:1"
+  },
+  {
+   "type": "error",
+   "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+   "loc": "http://127.0.0.1:8813/js/skins_data.js:0"
+  },
+  {
+   "type": "error",
+   "text": "Error: WebGL2 不可用\n    at new Renderer (js/render.js:2:12657)\n    at Game.init (js/game.js:2:3473)\n    at Game.init (js/telemetry.js:2:7233)\n    at js/main.js:2:10336",
+   "loc": "js/main.js:1"
+  },
+  {
+   "type": "error",
+   "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+   "loc": "http://127.0.0.1:8813/favicon.ico:0"
+  },
+  {
+   "type": "warning",
+   "text": "The resource http://127.0.0.1:8813/mods/xzguns/tiles.webp was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.",
+   "loc": "http://127.0.0.1:8813/index.html:0"
+  }
+ ],
+ "http_fail": [
+  {
+   "url": "http://127.0.0.1:8813/js/skins_data.js",
+   "err": "net::ERR_ABORTED"
+  }
+ ],
+ "http_4xx": [
+  {
+   "url": "http://127.0.0.1:8813/js/skins_data.js",
+   "status": 404
+  }
+ ]
+}

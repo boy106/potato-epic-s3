@@ -1,0 +1,125 @@
+{
+ "base": "http://127.0.0.1:8815/index.html",
+ "ts": "2026-11-21 21:10:52",
+ "results": [
+  {
+   "id": "S-01",
+   "name": "页面可达与标题",
+   "result": "PASS",
+   "detail": "GET http://127.0.0.1:8815/index.html -> 200",
+   "defect": ""
+  },
+  {
+   "id": "S-02",
+   "name": "核心脚本与 mod 入口可达",
+   "result": "PASS",
+   "detail": "全部 200",
+   "defect": ""
+  },
+  {
+   "id": "S-03",
+   "name": "mods/index.json 资源完整性",
+   "result": "PASS",
+   "detail": "116 个文件全部存在",
+   "defect": ""
+  },
+  {
+   "id": "S-04",
+   "name": "控制台无未预期错误/警告",
+   "result": "PASS",
+   "detail": "仅环境限制错误与已归类缺陷告警",
+   "defect": ""
+  },
+  {
+   "id": "S-05",
+   "name": "js/skins_data.js 可达（回归门控）",
+   "result": "FAIL",
+   "detail": "GET js/skins_data.js -> 404",
+   "defect": "D-001"
+  },
+  {
+   "id": "S-06",
+   "name": "favicon.ico 可达",
+   "result": "FAIL",
+   "detail": "GET favicon.ico -> 404",
+   "defect": "D-006"
+  },
+  {
+   "id": "S-07",
+   "name": "无 missing tile 贴图告警",
+   "result": "FAIL",
+   "detail": "4 条: ['missing tile i_waxed_copper_door', 'missing tile i_waxed_oxidized_copper_door', 'missing tile i_waxed_exposed_copper_door', 'missing tile i_waxed_weathered_copper_door']",
+   "defect": "D-002"
+  },
+  {
+   "id": "S-08",
+   "name": "boot 引导界面结构渲染",
+   "result": "PASS",
+   "detail": "bootVisible=True logoSvg=True bootbar=True",
+   "defect": ""
+  },
+  {
+   "id": "S-09",
+   "name": "加载流程有明确终态（100% 或可见错误提示）",
+   "result": "PASS",
+   "detail": "pct=6% text=启动失败 errVisible=True",
+   "defect": ""
+  },
+  {
+   "id": "S-10",
+   "name": "错误提示不被 logo 遮挡",
+   "result": "PASS",
+   "detail": "errVisible=True overlap=False errBox={'x': 349.125, 'y': 204.75, 'w': 581.75, 'h': 195.28125}",
+   "defect": ""
+  },
+  {
+   "id": "S-11",
+   "name": "WebGL2 能力探测路径安全",
+   "result": "PASS",
+   "detail": "webgl2Probe=False",
+   "defect": ""
+  },
+  {
+   "id": "S-12",
+   "name": "大厅功能全局入口齐备",
+   "result": "PASS",
+   "detail": "7 个入口全部就绪",
+   "defect": ""
+  },
+  {
+   "id": "S-13",
+   "name": "启动过程不写入 localStorage",
+   "result": "PASS",
+   "detail": "keys=[]",
+   "defect": ""
+  },
+  {
+   "id": "S-14",
+   "name": "存档 key 命名规范（mcjs-/potato 前缀）",
+   "result": "PASS",
+   "detail": "0 个 key 全部合规",
+   "defect": ""
+  },
+  {
+   "id": "S-15",
+   "name": "mods/index.json 结构合法",
+   "result": "PASS",
+   "detail": "mods=[xzguns, xzrange]",
+   "defect": ""
+  },
+  {
+   "id": "S-16",
+   "name": "无开发机残留地址（127.0.0.1:8842）",
+   "result": "FAIL",
+   "detail": "出现在: ['pack4.js']",
+   "defect": "D-008"
+  },
+  {
+   "id": "S-17",
+   "name": "两次加载控制台输出稳定（flaky 初筛）",
+   "result": "PASS",
+   "detail": "一致",
+   "defect": ""
+  }
+ ]
+}

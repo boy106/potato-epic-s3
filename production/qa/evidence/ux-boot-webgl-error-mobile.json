@@ -1,0 +1,75 @@
+{
+  "states": {
+    "boot": {
+      "text": "POTATO EPIC // VOXEL SHOOTERBUILD 2026.11SYS · READY土豆史诗 · 仅在 B站 Toy 平台发布PVP · 1V1 · RANKED\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n正在准备贴图94%TIP天梯五局三胜，五局都要打完",
+      "display": "flex",
+      "color": "rgb(242, 239, 233)",
+      "background": "rgb(14, 15, 18)",
+      "zIndex": "9",
+      "fontSize": "14px",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 844,
+        "h": 390
+      }
+    },
+    "err": {
+      "text": "启动失败：WebGL2 不可用\n\n请使用最新版 Chrome / Edge / Firefox 浏览器打开，并确保已启用 WebGL2 / 硬件加速。",
+      "display": "block",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgba(0, 0, 0, 0)",
+      "zIndex": "auto",
+      "fontSize": "18px",
+      "rect": {
+        "x": 84.390625,
+        "y": 117,
+        "w": 675.1875,
+        "h": 99
+      }
+    },
+    "boottext": {
+      "text": "正在准备贴图",
+      "display": "block",
+      "color": "rgba(242, 239, 233, 0.8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "zIndex": "auto",
+      "fontSize": "13px",
+      "rect": {
+        "x": 206.796875,
+        "y": 338.046875,
+        "w": 84.015625,
+        "h": 19
+      }
+    },
+    "bootpct": {
+      "text": "94%",
+      "display": "block",
+      "color": "rgb(255, 90, 31)",
+      "background": "rgba(0, 0, 0, 0)",
+      "zIndex": "auto",
+      "fontSize": "24.9912px",
+      "rect": {
+        "x": 584.171875,
+        "y": 332.0625,
+        "w": 53.015625,
+        "h": 24.984375
+      }
+    },
+    "boottip": {
+      "text": "TIP天梯五局三胜，五局都要打完",
+      "display": "block",
+      "color": "rgba(242, 239, 233, 0.75)",
+      "background": "rgba(0, 0, 0, 0)",
+      "zIndex": "auto",
+      "fontSize": "13px",
+      "rect": {
+        "x": 317.4296875,
+        "y": 329.359375,
+        "w": 209.140625,
+        "h": 19
+      }
+    }
+  },
+  "bodyText": "POTATO EPIC // VOXEL SHOOTER\nBUILD 2026.11\nSYS · READY\n土豆史诗 · 仅在 B站 Toy 平台发布\nPVP · 1V1 · RANKED\n正在准备贴图\n94%\nTIP天梯五局三胜，五局都要打完\n启动失败：WebGL2 不可用\n\n请使用最新版 Chrome / Edge / Firefox 浏览器打开，并确保已启用 WebGL2 / 硬件加速。"
+}

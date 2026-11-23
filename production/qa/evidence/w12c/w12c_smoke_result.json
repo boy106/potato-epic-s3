@@ -1,0 +1,383 @@
+{
+  "inject": {
+    "eco": true,
+    "mm": true,
+    "meleeCatalog": true
+  },
+  "eco": {
+    "loot": {
+      "a": {
+        "ok": true,
+        "tier": 3,
+        "itemId": "diamond",
+        "count": 2,
+        "voucher": {
+          "id": "knife_paint_voucher_t3",
+          "n": 1
+        },
+        "lootCount": 2
+      },
+      "b": {
+        "ok": true,
+        "tier": null,
+        "itemId": "iron_ingot",
+        "count": 3,
+        "voucher": null,
+        "lootCount": 5
+      },
+      "c": {
+        "ok": true,
+        "tier": 4,
+        "itemId": "sniper",
+        "count": 1,
+        "voucher": null,
+        "lootCount": 6
+      },
+      "d": {
+        "ok": true,
+        "tier": 3,
+        "itemId": "diamond",
+        "count": 1,
+        "voucher": {
+          "id": "knife_paint_voucher_t3",
+          "n": 1
+        },
+        "lootCount": 7
+      },
+      "ledgerN": 4,
+      "lootCount": 7,
+      "carried": 2
+    },
+    "extractWin": {
+      "win": true,
+      "coins": 28,
+      "coinsRaw": 28,
+      "capped": false,
+      "kept": [
+        {
+          "id": "assault_rifle",
+          "n": 1,
+          "value": 13
+        },
+        {
+          "id": "diamond",
+          "n": 3,
+          "value": 15
+        }
+      ],
+      "lost": [],
+      "vouchers": [
+        {
+          "id": "knife_paint_voucher_t3",
+          "n": 1,
+          "tier": 3
+        },
+        {
+          "id": "knife_paint_voucher_t4",
+          "n": 1,
+          "tier": 4
+        }
+      ],
+      "voucherRedeemable": [
+        "knife_paint_voucher_t3",
+        "knife_paint_voucher_t4"
+      ],
+      "stashT3": 1,
+      "stashT4": 1
+    },
+    "extractDeath": {
+      "win": false,
+      "coins": 0,
+      "coinsRaw": 28,
+      "capped": false,
+      "kept": [],
+      "lost": [
+        {
+          "id": "assault_rifle",
+          "n": 1,
+          "value": 13
+        },
+        {
+          "id": "knife_paint_voucher_t3",
+          "n": 1,
+          "value": 0
+        },
+        {
+          "id": "knife_paint_voucher_t4",
+          "n": 1,
+          "value": 0
+        },
+        {
+          "id": "diamond",
+          "n": 3,
+          "value": 15
+        }
+      ],
+      "vouchers": [],
+      "voucherRedeemable": []
+    },
+    "sellVoucherT3": 0,
+    "valueOfThroughPoi": 0,
+    "mapT3": [
+      {
+        "knife": "knife_combat",
+        "paint": "potatogold",
+        "name": "薯光 · 土豆金"
+      },
+      {
+        "knife": "knife_combat",
+        "paint": "penguinice",
+        "name": "冰薯 · 企鹅冰"
+      },
+      {
+        "knife": "knife_butterfly",
+        "paint": "damascus",
+        "name": "薯纹 · 大马士革"
+      }
+    ],
+    "mapT4": [
+      {
+        "knife": "knife_combat",
+        "paint": "nebula",
+        "name": "暗窖 · 星云"
+      },
+      {
+        "knife": "knife_butterfly",
+        "paint": "fade",
+        "name": "丰收 · 极光渐变"
+      }
+    ],
+    "mapWrong": "该凭证不能兑换这个涂装（T3 档位不符）",
+    "origShopExisted": true,
+    "origShopSaved": 21,
+    "buyCoinsBefore": 1000
+  },
+  "eco_buy": {
+    "coinsAfterBuy": 700,
+    "kpCombat": [
+      "potatogold",
+      "penguinice",
+      "nebula"
+    ],
+    "redeem1": {
+      "ok": true,
+      "granted": {
+        "knife": "knife_combat",
+        "paint": "penguinice"
+      },
+      "knife": "knife_combat",
+      "paint": "penguinice"
+    },
+    "redeem2": {
+      "ok": true,
+      "granted": {
+        "knife": "knife_combat",
+        "paint": "nebula"
+      },
+      "knife": "knife_combat",
+      "paint": "nebula"
+    },
+    "redeemDup": {
+      "ok": true,
+      "granted": {
+        "knife": "knife_butterfly",
+        "paint": "fade"
+      },
+      "knife": "knife_butterfly",
+      "paint": "fade"
+    },
+    "redeemAll": {
+      "ok": true,
+      "convertedCoins": 50,
+      "knife": "knife_butterfly",
+      "paint": "fade"
+    },
+    "kpButterfly": [
+      "fade",
+      "damascus"
+    ],
+    "coinsBeforeConvert": 750,
+    "redeemT3All": {
+      "ok": true,
+      "convertedCoins": 50,
+      "knife": "knife_combat",
+      "paint": "potatogold"
+    },
+    "coinsAfterConvert": 800
+  },
+  "eco_stub_deleted": {
+    "restored": true,
+    "isOrig": true
+  },
+  "skins": {
+    "slotN": 9,
+    "kinds": [
+      "gun:pistol",
+      "gun:revolver",
+      "gun:smg",
+      "gun:ar",
+      "gun:rifle",
+      "gun:sniper",
+      "gun:shotgun",
+      "gun:lmg",
+      "melee:melee"
+    ],
+    "meleeKey": "melee",
+    "paintN": 5,
+    "paints": [
+      {
+        "knife": "knife_combat",
+        "paint": "potatogold",
+        "name": "薯光 · 土豆金",
+        "tile": "xzgunsm:knife_combat_potatogold_0",
+        "tileIndex": 3629,
+        "voucher": "t3",
+        "price": 300
+      },
+      {
+        "knife": "knife_combat",
+        "paint": "nebula",
+        "name": "暗窖 · 星云",
+        "tile": "xzgunsm:knife_combat_nebula_0",
+        "tileIndex": 3597,
+        "voucher": "t4",
+        "price": 300
+      },
+      {
+        "knife": "knife_combat",
+        "paint": "penguinice",
+        "name": "冰薯 · 企鹅冰",
+        "tile": "xzgunsm:knife_combat_penguinice_0",
+        "tileIndex": 3661,
+        "voucher": "t3",
+        "price": 300
+      },
+      {
+        "knife": "knife_butterfly",
+        "paint": "damascus",
+        "name": "薯纹 · 大马士革",
+        "tile": "xzgunsm:knife_butterfly_damascus_0",
+        "tileIndex": 3742,
+        "voucher": "t3",
+        "price": 300
+      },
+      {
+        "knife": "knife_butterfly",
+        "paint": "fade",
+        "name": "丰收 · 极光渐变",
+        "tile": "xzgunsm:knife_butterfly_fade_0",
+        "tileIndex": 3710,
+        "voucher": "t4",
+        "price": 300
+      }
+    ],
+    "assetsTilesReady": true
+  },
+  "live": {
+    "state": "play",
+    "sfe": true,
+    "matchId": "sfe~mwrv1e4x",
+    "mmOn": true,
+    "baseStarted": true,
+    "cursor": 33,
+    "phase": "DEPLOY",
+    "t": 1
+  },
+  "base": {
+    "cursor": 2025,
+    "done": true,
+    "doneAt": 34553,
+    "matchT": 36
+  },
+  "win": {
+    "opaquePx": 129600,
+    "totalPx": 129600,
+    "stats": {
+      "n": 2082,
+      "last": 0,
+      "max": 0.6999998092651367,
+      "sum": 100.70004844665527
+    }
+  },
+  "scan": {
+    "r1": true,
+    "snap1": [
+      [
+        393,
+        355
+      ],
+      [
+        371,
+        369
+      ],
+      [
+        374,
+        370
+      ],
+      [
+        377,
+        371
+      ]
+    ],
+    "cd": 45,
+    "r2Accepted": false,
+    "shotsN": 1,
+    "freeScanUsed": true
+  },
+  "big05": {
+    "zoom": 0.5,
+    "hudMs": 0.7
+  },
+  "big1x": {
+    "zoom": 1,
+    "hudMs": 1
+  },
+  "dirty": {
+    "putBefore": [
+      103,
+      131,
+      72,
+      255
+    ],
+    "afterPut": [
+      125,
+      125,
+      125,
+      255
+    ],
+    "changedPut": true,
+    "digBefore": [
+      140,
+      179,
+      99,
+      255
+    ],
+    "afterDig": [
+      134,
+      96,
+      67,
+      255
+    ],
+    "changedDig": true,
+    "dirtyMarked": 1
+  },
+  "toggle": {
+    "off": false,
+    "on": true
+  },
+  "perf": {
+    "n": 180,
+    "lastMs": 0.1,
+    "maxMs": 0.2,
+    "avgMs": 0.039
+  },
+  "release": {
+    "settle": true,
+    "baseReleased": true,
+    "domGone": true
+  },
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "console": [
+    {
+      "type": "warning",
+      "text": "missing tile i_waxed_copper_door"
+    },
+    {
+      "type": "warning",
+      "text": "missing tile i_waxed_oxidized_copper_door"
+    },
+    {
+      "type": "warning",
+      "text": "missing tile i_waxed_exposed_copper_door"
+    },
+    {
+      "type": "warning",
+      "text": "missing tile i_waxed_weathered_copper_door"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+    },
+    {
+      "type": "error",
+      "text": "Error: WebGL2 不可用\n    at new Renderer (js/render.js:2:12657)\n    at Game.init (js/game.js:2:3473)\n    at Game.init (js/telemetry.js:2:7233)\n    at js/main.js:2:10336"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+    },
+    {
+      "type": "warning",
+      "text": "The resource http://127.0.0.1:8811/mods/xzguns/tiles.webp was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    }
+  ],
+  "pageerrors": [],
+  "requests": [
+    "http://127.0.0.1:8811/index.html",
+    "http://127.0.0.1:8811/mods/xzguns/data.js",
+    "http://127.0.0.1:8811/mods/xzrange/data.js",
+    "http://127.0.0.1:8811/mods/xzguns/code.js",
+    "http://127.0.0.1:8811/mods/xzrange/code.js",
+    "http://127.0.0.1:8811/mods/xzguns/bundle.js",
+    "http://127.0.0.1:8811/mods/xzguns/tiles.webp",
+    "http://127.0.0.1:8811/js/pack1.js",
+    "http://127.0.0.1:8811/js/pack2.js",
+    "http://127.0.0.1:8811/js/pack3.js",
+    "http://127.0.0.1:8811/js/pack4.js",
+    "http://127.0.0.1:8811/index.html",
+    "http://127.0.0.1:8811/mods/index.json",
+    "http://127.0.0.1:8811/js/skins_data.js"
+  ],
+  "responses": [
+    {
+      "status": 404,
+      "url": "http://127.0.0.1:8811/js/skins_data.js"
+    }
+  ],
+  "failed": [
+    {
+      "url": "http://127.0.0.1:8811/js/skins_data.js",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "title": "土豆史诗",
+  "body": "POTATO EPIC // VOXEL SHOOTER\nBUILD 2026.11\nSYS · READY\n土豆史诗 · 仅在 B站 Toy 平台发布\nPVP · 1V1 · RANKED\n正在准备贴图\n96%\nTIP爆头伤害 ×2，四肢 ×0.75\n启动失败：WebGL2 不可用\n\n请使用最新版 Chrome / Edge / Firefox 浏览器打开，并确保已启用 WebGL2 / 硬件加速。",
+  "dom": {
+    "ready": "complete",
+    "canvases": [
+      {
+        "id": "gl",
+        "w": 300,
+        "h": 150,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "top": 0,
+          "right": 1440,
+          "bottom": 900,
+          "left": 0
+        }
+      },
+      {
+        "id": "ui",
+        "w": 300,
+        "h": 150,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "top": 0,
+          "right": 1440,
+          "bottom": 900,
+          "left": 0
+        }
+      }
+    ],
+    "err": {
+      "text": "启动失败：WebGL2 不可用\n\n请使用最新版 Chrome / Edge / Firefox 浏览器打开，并确保已启用 WebGL2 / 硬件加速。",
+      "display": "block",
+      "rect": {
+        "x": 144,
+        "y": 270,
+        "width": 1152,
+        "height": 73,
+        "top": 270,
+        "right": 1296,
+        "bottom": 343,
+        "left": 144
+      },
+      "z": "auto"
+    },
+    "boot": {
+      "text": "POTATO EPIC // VOXEL SHOOTER\nBUILD 2026.11\nSYS · READY\n土豆史诗 · 仅在 B站 Toy 平台发布\nPVP · 1V1 · RANKED\n正在准备贴图\n96%\nTIP爆头伤害 ×2，四肢 ×0.75",
+      "display": "flex",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900,
+        "top": 0,
+        "right": 1440,
+        "bottom": 900,
+        "left": 0
+      }
+    },
+    "game": {
+      "state": "boot",
+      "keys": [
+        "hadSettings",
+        "settings",
+        "state",
+        "mode",
+        "entities",
+        "blockEntities",
+        "keys",
+        "mouseBtn",
+        "tickCount",
+        "worldTime",
+        "fps",
+        "perspective",
+        "weather",
+        "rainTarget",
+        "weatherTimer",
+        "breaking",
+        "useCd",
+        "attackCd",
+        "stats",
+        "adv",
+        "openChests",
+        "chestLids",
+        "signs",
+        "lastTap",
+        "sleepFade",
+        "canvas"
+      ]
+    },
+    "globals": [
+      "LobbyScreen",
+      "MODS_ALWAYS",
+      "POTATO",
+      "POTATO_BTN",
+      "POTATO_CAM",
+      "POTATO_STICK",
+      "POTATO_TOUCH"
+    ],
+    "localStorage": {}
+  }
+}

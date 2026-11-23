@@ -1,0 +1,237 @@
+{
+  "results": [
+    {
+      "name": "A1 Gyro 全局就位",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A2 pageerror=0（WebGL 环境错误豁免）",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "A3 桌面端零开销旁路（未注册传感器监听）",
+      "ok": true,
+      "detail": "{'listening': False, 'on': False}"
+    },
+    {
+      "name": "A4/AC5a 桌面端设置组隐藏",
+      "ok": true,
+      "detail": "False"
+    },
+    {
+      "name": "A5 桌面设备判定",
+      "ok": true,
+      "detail": "pc/false"
+    },
+    {
+      "name": "B0 移动端环境（触屏 + DOF 可用）",
+      "ok": true,
+      "detail": "{'kind': 'phone', 'dof': 'function', 'listening': True}"
+    },
+    {
+      "name": "AC1a 移动端设置页有「陀螺仪」分组",
+      "ok": true,
+      "detail": "['键位方案', '灵敏度', '陀螺仪', '按钮', '其他']"
+    },
+    {
+      "name": "AC1b 三档分段按钮，默认高亮「开镜开启」",
+      "ok": true,
+      "detail": "[{'v': '0', 'on': False, 'dis': False, 'txt': '关闭'}, {'v': '1', 'on': True, 'dis': False, 'txt': '开镜开启'}, {'v': '2', 'on': False, 'dis': False, 'txt': '总是开启'}]"
+    },
+    {
+      "name": "AC1c 双灵敏度滑条默认 100%",
+      "ok": true,
+      "detail": "(['基础灵敏度', '开镜灵敏度'], ['基础灵敏度:100%', '开镜灵敏度:100%'])"
+    },
+    {
+      "name": "AC1d 辅助说明文案",
+      "ok": true,
+      "detail": "开镜开启：仅开镜时生效；总是开启：全程生效（需设备支持）"
+    },
+    {
+      "name": "AC1e 恢复默认入口存在",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "AC5b 移动端无传感器报错（pageerror=0）",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "UI1 点「总是开启」→ 存档 gyroMode=2",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "UI2 分段按钮高亮同步",
+      "ok": true,
+      "detail": "[False, False, True]"
+    },
+    {
+      "name": "UI3 档位=关闭 → 滑条置灰但保留数值",
+      "ok": true,
+      "detail": "[{'enabled': False, 'label': '基础灵敏度：100%'}, {'enabled': False, 'label': '开镜灵敏度：100%'}]"
+    },
+    {
+      "name": "UI4 关闭档不重置灵敏度数值",
+      "ok": true,
+      "detail": "['基础灵敏度：100%']"
+    },
+    {
+      "name": "UI5 滑条 0.5 → 155（10+290×0.5，步进 5 生效）",
+      "ok": true,
+      "detail": "{'v': 155, 'label': '基础灵敏度：155%', 'val': '500'}"
+    },
+    {
+      "name": "UI6 滑条上限钳到 300",
+      "ok": true,
+      "detail": "300"
+    },
+    {
+      "name": "UI7 开镜灵敏度独立存取（0.3→97→步进吸附 95）",
+      "ok": true,
+      "detail": "95"
+    },
+    {
+      "name": "AC8b/§2.4 恢复默认：未授权 → 档位写 0 + toast「陀螺仪需要授权后才能开启」+ 不触发权限弹窗",
+      "ok": true,
+      "detail": "{'mode': 0, 'base': 100, 'ads': 100, 'toast': '陀螺仪需要授权后才能开启'}"
+    },
+    {
+      "name": "AC7a 权限拒绝 → 档位回退「关闭」",
+      "ok": true,
+      "detail": "{'mode': 0, 'toast': '未获得陀螺仪权限，陀螺仪已关闭。可在系统设置中允许后重试。'}"
+    },
+    {
+      "name": "AC7b toast 文案与 §3.3 逐字一致",
+      "ok": true,
+      "detail": "未获得陀螺仪权限，陀螺仪已关闭。可在系统设置中允许后重试。"
+    },
+    {
+      "name": "AC8a 权限请求仅发生在点选回调内（调用 1 次）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "AC7c denied toast 每会话最多 2 次（第 3 次静默）",
+      "ok": true,
+      "detail": "{'two': 2, 'three': 2, 'mode': 0}"
+    },
+    {
+      "name": "AC6 授权后档位生效并写入存储（无 toast）",
+      "ok": true,
+      "detail": "{'mode': 2, 'saved': True, 'toasts': 0}"
+    },
+    {
+      "name": "AC6b 授权后传感器监听已注册",
+      "ok": true,
+      "detail": "True"
+    },
+    {
+      "name": "§3.3 请求抛错 → 回退关闭 + toast「当前环境不支持陀螺仪，已关闭。」",
+      "ok": true,
+      "detail": "{'mode': 0, 'toast': '当前环境不支持陀螺仪，已关闭。'}"
+    },
+    {
+      "name": "AC2a 右转手机 10° → 视角右转（yaw −10°±10%）",
+      "ok": true,
+      "detail": "{'yawDeg': 9.999999999999991, 'pitchDeg': -0.2799060023705215, 'dE': [80.00000000000001, 2.0000000000000067, -90]}"
+    },
+    {
+      "name": "AC2b 抬起手机 10° → 屏面朝天（z 上升）+ 视角上抬（pitch +10°×0.8±10%）",
+      "ok": true,
+      "detail": "{'pitchDeg': 7.999999999999994, 'zBefore': 0, 'zAfter': 0.1735423958889124}"
+    },
+    {
+      "name": "AC3a 开镜档未开镜不生效",
+      "ok": true,
+      "detail": "{'stopped0': 0, 'appliedDeg': -10, 'stopped2Deg': 0, 'noJumpDeg': 0}"
+    },
+    {
+      "name": "AC3b 开镜后生效（−10°）",
+      "ok": true,
+      "detail": "{'stopped0': 0, 'appliedDeg': -10, 'stopped2Deg': 0, 'noJumpDeg': 0}"
+    },
+    {
+      "name": "AC3c 收镜立即停止、无跳变无回弹",
+      "ok": true,
+      "detail": "{'stopped0': 0, 'appliedDeg': -10, 'stopped2Deg': 0, 'noJumpDeg': 0}"
+    },
+    {
+      "name": "AC4 基础 100% vs 200% → 视角速度 2 倍（±10%）",
+      "ok": true,
+      "detail": "{'r': 2, 'r2': 2, 'yawA': 10, 'yawB': 20, 'yawC': 20}"
+    },
+    {
+      "name": "AC4b 开镜 200% 独立生效",
+      "ok": true,
+      "detail": "{'r': 2, 'r2': 2, 'yawA': 10, 'yawB': 20, 'yawC': 20}"
+    },
+    {
+      "name": "§5.3a 单事件 <0.05° 丢弃（3×0.03° 不动）",
+      "ok": true,
+      "detail": "{'before': 0, 'applied': 0.05999999999999999}"
+    },
+    {
+      "name": "§5.3b 累计 ≥0.1° 一次性应用（ flush 帧 EMA 跨帧：0.5×0.12=0.06°）",
+      "ok": true,
+      "detail": "{'before': 0, 'applied': 0.05999999999999999}"
+    },
+    {
+      "name": "§5.4 EMA α=0.5（首帧全量，次帧衰减一半）",
+      "ok": true,
+      "detail": "{'y1': 10, 'y2': 4.999999999999998}"
+    },
+    {
+      "name": "AC11 甩机单帧 100° → 实际应用钳到 30°",
+      "ok": true,
+      "detail": "{'yawDeg': 29.999999999999996}"
+    },
+    {
+      "name": "AC12/§7.5 触屏写视角的帧内陀螺仪增量被丢弃，松开后恢复（EMA 跨帧 0.5×10=5°）",
+      "ok": true,
+      "detail": "{'vetoed': True, 'drained': True, 'applied': 5}"
+    },
+    {
+      "name": "AC10 死亡/观战挂起，复活自动恢复",
+      "ok": true,
+      "detail": "{'alive': 10, 'dead': 0, 'revived': 10, 'spec': 0}"
+    },
+    {
+      "name": "§7.4 竖屏挂起 + 旋转静默期丢弃",
+      "ok": true,
+      "detail": "{'portrait': 0, 'silence': 0}"
+    },
+    {
+      "name": "AC9 切后台挂起；恢复后前 2 个事件丢弃，随后正常生效无瞬移",
+      "ok": true,
+      "detail": "{'hiddenApplied': 0, 'after': 9.999999999999991, 'drops': 0}"
+    },
+    {
+      "name": "§4.4 截止衰减尾：同向衰减、无回弹、最终静止",
+      "ok": true,
+      "detail": "{'y0': 10, 'extra': 14.7480576, 'noBounce': True, 'endStatic': True}"
+    },
+    {
+      "name": "AC13a 对战类对局中：分组标题标注锁定、分段按钮置灰、陀螺仪双滑条置灰、改档无效",
+      "ok": true,
+      "detail": "{'secs': ['键位方案', '灵敏度', '陀螺仪（对局中锁定）', '按钮', '其他'], 'segDis': [True, True, True], 'sliders': [False, True, True, False, False], 'pickBlocked': True, 'unlocked': [False, False, False]}"
+    },
+    {
+      "name": "AC13b 非对局（含靶场，XZ.match.on=false）可实时调整",
+      "ok": true,
+      "detail": "[False, False, False]"
+    },
+    {
+      "name": "AC14 600 事件 + 600 帧消费微基准（事件回调 <0.2ms/个，帧消费 <0.3ms/帧）",
+      "ok": true,
+      "detail": "{'evtMs': 2.90000057220459, 'frameMs': 3.5, 'perEvtUs': 4.833334287007649, 'perFrameUs': 5.833333333333333}"
+    }
+  ],
+  "passed": 46,
+  "total": 46,
+  "ts": "2026-11-21 20:30:30"
+}

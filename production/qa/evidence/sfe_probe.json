@@ -1,0 +1,108 @@
+{
+  "base": "http://127.0.0.1:8834/index.html",
+  "dom": {
+    "gameState": "title",
+    "dataA": [
+      "ck",
+      "agree"
+    ],
+    "lobbyLen": 2416,
+    "hasWebGL2": true,
+    "lobbyVisible": true,
+    "sfeCardExists": true,
+    "sfeCardText": " 搜打撤PVE · 搜物资 · 撤离变现",
+    "sfeCardColor": "#F5A623",
+    "sfeGlobals": [
+      "SFE_MAP",
+      "SFE_POI",
+      "SFE_WORLD",
+      "SFE_RULES"
+    ],
+    "sfeTuneSize": 720,
+    "wgSfe": true
+  },
+  "entry": {
+    "sfeRootLen": 2183,
+    "rootTag": "DIV",
+    "prepVisible": true,
+    "prepTitle": "出击准备",
+    "bareBtn": true,
+    "goBtn": true,
+    "cancelBtn": true
+  },
+  "phase2": {
+    "state_samples": [
+      {
+        "state": "loading",
+        "sfe": true,
+        "seed": -880590634,
+        "gen": 2,
+        "chunks": 0,
+        "genPoolDim": null,
+        "errVisible": false
+      },
+      {
+        "state": "loading",
+        "sfe": true,
+        "seed": -880590634,
+        "gen": 2,
+        "chunks": 0,
+        "genPoolDim": null,
+        "errVisible": false
+      },
+      {
+        "state": "loading",
+        "sfe": true,
+        "seed": -880590634,
+        "gen": 2,
+        "chunks": 5,
+        "genPoolDim": null,
+        "errVisible": false
+      },
+      {
+        "state": "loading",
+        "sfe": true,
+        "seed": -880590634,
+        "gen": 2,
+        "chunks": 28,
+        "genPoolDim": null,
+        "errVisible": false
+      },
+      {
+        "state": "loading",
+        "sfe": true,
+        "seed": -880590634,
+        "gen": 2,
+        "chunks": 55,
+        "genPoolDim": null,
+        "errVisible": false
+      },
+      {
+        "state": "play",
+        "sfe": true,
+        "seed": -880590634,
+        "gen": 2,
+        "chunks": 69,
+        "genPoolDim": null,
+        "errVisible": false
+      }
+    ]
+  },
+  "pageErrors": [],
+  "consoleErrors": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+    },
+    {
+      "type": "error",
+      "text": "[区块线程出错] Error: Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope': The script at 'http://127.0.0.1:8834/js/assets.js' failed to load."
+    }
+  ],
+  "verdict": {
+    "pageerror_zero": true,
+    "sfe_card": true,
+    "entry_reachable": true,
+    "sfe_modules_loaded": true
+  }
+}
